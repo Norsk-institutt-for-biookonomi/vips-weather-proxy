@@ -1,0 +1,824 @@
+{
+	"info": {
+		"_postman_id": "ee4e9939-ca6e-4a37-b1d4-e0721da71ca7",
+		"name": "VIPS Weather Proxy tests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "5789128",
+		"_collection_link": "https://grey-eclipse-463120.postman.co/workspace/My-Workspace~6b58be42-cd43-40ed-8053-51ab1d8655fb/collection/5789128-ee4e9939-ca6e-4a37-b1d4-e0721da71ca7?action=share&source=collection_link&creator=5789128"
+	},
+	"item": [
+		{
+			"name": "Meteobot",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{vipsweatherproxy_url}}/rest/meteobotapi/Index?stationId=20160049%3B%3B3230313630303439%3B%3BXm8JXWC_oF1jv1k9W&logIntervalId=1&timeZone=Europe/Oslo&startDate=2020-09-16&startTime=0&endDate=2020-09-30&endTime=0&elementMeasurementTypes[]=BT&elementMeasurementTypes[]=BTg&elementMeasurementTypes[]=UM&elementMeasurementTypes[]=RR&elementMeasurementTypes[]=TM",
+					"host": [
+						"{{vipsweatherproxy_url}}"
+					],
+					"path": [
+						"rest",
+						"meteobotapi",
+						"Index"
+					],
+					"query": [
+						{
+							"key": "stationId",
+							"value": "20160049%3B%3B3230313630303439%3B%3BXm8JXWC_oF1jv1k9W",
+							"description": "18150029;;3138313530303239;;Y3Nw_48aNe4y1Z0Wj"
+						},
+						{
+							"key": "logIntervalId",
+							"value": "1"
+						},
+						{
+							"key": "timeZone",
+							"value": "Europe/Oslo"
+						},
+						{
+							"key": "startDate",
+							"value": "2020-09-16"
+						},
+						{
+							"key": "startTime",
+							"value": "0"
+						},
+						{
+							"key": "endDate",
+							"value": "2020-09-30"
+						},
+						{
+							"key": "endTime",
+							"value": "0"
+						},
+						{
+							"key": "elementMeasurementTypes[]",
+							"value": "BT"
+						},
+						{
+							"key": "elementMeasurementTypes[]",
+							"value": "BTg"
+						},
+						{
+							"key": "elementMeasurementTypes[]",
+							"value": "UM"
+						},
+						{
+							"key": "elementMeasurementTypes[]",
+							"value": "RR"
+						},
+						{
+							"key": "elementMeasurementTypes[]",
+							"value": "TM"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "A-lab",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{vipsweatherproxy_url}}/rest/alab/00000000000BAD92E601?timeZone=Europe/Helsinki&startDate=2022-01-01&endDate=2022-01-30&userName=nsl&password=yE9H9reV",
+					"host": [
+						"{{vipsweatherproxy_url}}"
+					],
+					"path": [
+						"rest",
+						"alab",
+						"00000000000BAD92E601"
+					],
+					"query": [
+						{
+							"key": "logIntervalId",
+							"value": "1",
+							"disabled": true
+						},
+						{
+							"key": "startTime",
+							"value": "0",
+							"disabled": true
+						},
+						{
+							"key": "endTime",
+							"value": "0",
+							"disabled": true
+						},
+						{
+							"key": "elementMeasurementTypes[]",
+							"value": "BT",
+							"disabled": true
+						},
+						{
+							"key": "elementMeasurementTypes[]",
+							"value": "BTg",
+							"disabled": true
+						},
+						{
+							"key": "elementMeasurementTypes[]",
+							"value": "UM",
+							"disabled": true
+						},
+						{
+							"key": "elementMeasurementTypes[]",
+							"value": "RR",
+							"disabled": true
+						},
+						{
+							"key": "elementMeasurementTypes[]",
+							"value": "TM",
+							"disabled": true
+						},
+						{
+							"key": "timeZone",
+							"value": "Europe/Helsinki"
+						},
+						{
+							"key": "startDate",
+							"value": "2022-01-01"
+						},
+						{
+							"key": "endDate",
+							"value": "2022-01-30"
+						},
+						{
+							"key": "userName",
+							"value": "nsl"
+						},
+						{
+							"key": "password",
+							"value": "yE9H9reV"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "FMI",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{vipsweatherproxy_url}}/rest/fmi/101104?timeZone=Europe/Helsinki&startDate=2020-06-12&endDate=2020-06-28&elementMeasurementTypes[]=Q0",
+					"host": [
+						"{{vipsweatherproxy_url}}"
+					],
+					"path": [
+						"rest",
+						"fmi",
+						"101104"
+					],
+					"query": [
+						{
+							"key": "timeZone",
+							"value": "Europe/Helsinki"
+						},
+						{
+							"key": "startDate",
+							"value": "2020-06-12"
+						},
+						{
+							"key": "endDate",
+							"value": "2020-06-28"
+						},
+						{
+							"key": "elementMeasurementTypes[]",
+							"value": "Q0"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Fruitweb Helgøy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{vipsweatherproxy_url}}/rest/fruitwebdavis/id=536&pw=GF90esoleo?elementMeasurementTypes%5B%5D=TM&elementMeasurementTypes%5B%5D=RR&logInterval=1h&startDate=2024-01-01&startTime=00&timeZone=Europe%2FOslo",
+					"host": [
+						"{{vipsweatherproxy_url}}"
+					],
+					"path": [
+						"rest",
+						"fruitwebdavis",
+						"id=536&pw=GF90esoleo"
+					],
+					"query": [
+						{
+							"key": "elementMeasurementTypes%5B%5D",
+							"value": "TM"
+						},
+						{
+							"key": "elementMeasurementTypes%5B%5D",
+							"value": "RR"
+						},
+						{
+							"key": "logInterval",
+							"value": "1h"
+						},
+						{
+							"key": "startDate",
+							"value": "2024-01-01"
+						},
+						{
+							"key": "startTime",
+							"value": "00"
+						},
+						{
+							"key": "endDate",
+							"value": "2021-03-01",
+							"disabled": true
+						},
+						{
+							"key": "endTime",
+							"value": "00",
+							"disabled": true
+						},
+						{
+							"key": "timeZone",
+							"value": "Europe%2FOslo"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Fruitweb Perunantutkimuslaitos (Finland)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{vipsweatherproxy_url}}/rest/fruitwebdavis/id=393&pw=Hg265r8etZ?elementMeasurementTypes%5B%5D=TM&elementMeasurementTypes%5B%5D=Q0&logInterval=1h&startDate=2022-01-01&startTime=00&timeZone=Europe%2FHelsinki",
+					"host": [
+						"{{vipsweatherproxy_url}}"
+					],
+					"path": [
+						"rest",
+						"fruitwebdavis",
+						"id=393&pw=Hg265r8etZ"
+					],
+					"query": [
+						{
+							"key": "elementMeasurementTypes%5B%5D",
+							"value": "TM"
+						},
+						{
+							"key": "elementMeasurementTypes%5B%5D",
+							"value": "Q0"
+						},
+						{
+							"key": "logInterval",
+							"value": "1h"
+						},
+						{
+							"key": "startDate",
+							"value": "2022-01-01"
+						},
+						{
+							"key": "startTime",
+							"value": "00"
+						},
+						{
+							"key": "endDate",
+							"value": "2021-03-01",
+							"disabled": true
+						},
+						{
+							"key": "endTime",
+							"value": "00",
+							"disabled": true
+						},
+						{
+							"key": "timeZone",
+							"value": "Europe%2FHelsinki"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Met.no locationforecast",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{vipsweatherproxy_url}}/rest/forecasts/yr?longitude=10.961&latitude=50.109&altitude=100",
+					"host": [
+						"{{vipsweatherproxy_url}}"
+					],
+					"path": [
+						"rest",
+						"forecasts",
+						"yr"
+					],
+					"query": [
+						{
+							"key": "longitude",
+							"value": "10.961"
+						},
+						{
+							"key": "latitude",
+							"value": "50.109"
+						},
+						{
+							"key": "altitude",
+							"value": "100"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DMI (Denmark)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{vipsweatherproxy_url}}/rest/dmipointweb/9.583,56.488?startDate=2022-01-01&endDate=2022-01-15",
+					"host": [
+						"{{vipsweatherproxy_url}}"
+					],
+					"path": [
+						"rest",
+						"dmipointweb",
+						"9.583,56.488"
+					],
+					"query": [
+						{
+							"key": "startDate",
+							"value": "2022-01-01"
+						},
+						{
+							"key": "endDate",
+							"value": "2022-01-15"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Tahmo",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{vipsweatherproxy_url}}/rest/tahmoopen?stationId=TA00744&startDate=2021-03-27&endDate=2021-03-28&variable=te",
+					"host": [
+						"{{vipsweatherproxy_url}}"
+					],
+					"path": [
+						"rest",
+						"tahmoopen"
+					],
+					"query": [
+						{
+							"key": "stationId",
+							"value": "TA00744"
+						},
+						{
+							"key": "startDate",
+							"value": "2021-03-27"
+						},
+						{
+							"key": "endDate",
+							"value": "2021-03-28"
+						},
+						{
+							"key": "variable",
+							"value": "te"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "VitiMeteo (FIBL/Agroscope) Hourly data",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Weather data have no timestamp duplicates\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    var lastTimestamp = null;",
+							"    for(var i=0;i<jsonData.length;i++)",
+							"    {",
+							"        ",
+							"        var weatherObservation = jsonData[i];",
+							"        if(weatherObservation[\"elementMeasurementTypeId\"] == \"TM\")",
+							"        {",
+							"            console.info(lastTimestamp);",
+							"            if(lastTimestamp != null)",
+							"            {",
+							"                pm.expect(weatherObservation[\"timeMeasured\"]).to.not.eql(lastTimestamp);",
+							"                ",
+							"            }",
+							"            lastTimestamp = weatherObservation[\"timeMeasured\"];",
+							"        }",
+							"    }",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{vipsweatherproxy_url}}/rest/vitimeteo/189?startDate=2024-06-15&endDate=2024-06-19&elementMeasurementTypes[]=TM&timeZone=Europe/Zurich&logIntervalId=1",
+					"host": [
+						"{{vipsweatherproxy_url}}"
+					],
+					"path": [
+						"rest",
+						"vitimeteo",
+						"189"
+					],
+					"query": [
+						{
+							"key": "startDate",
+							"value": "2024-06-15"
+						},
+						{
+							"key": "endDate",
+							"value": "2024-06-19"
+						},
+						{
+							"key": "elementMeasurementTypes[]",
+							"value": "TM"
+						},
+						{
+							"key": "timeZone",
+							"value": "Europe/Zurich"
+						},
+						{
+							"key": "logIntervalId",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "VitiMeteo (FIBL/Agroscope) Daily data",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Weather data have no timestamp duplicates\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    var lastTimestamp = null;",
+							"    for(var i=0;i<jsonData.length;i++)",
+							"    {",
+							"        ",
+							"        var weatherObservation = jsonData[i];",
+							"        if(weatherObservation[\"elementMeasurementTypeId\"] == \"TM\")",
+							"        {",
+							"            console.info(lastTimestamp);",
+							"            if(lastTimestamp != null)",
+							"            {",
+							"                pm.expect(weatherObservation[\"timeMeasured\"]).to.not.eql(lastTimestamp);",
+							"                ",
+							"            }",
+							"            lastTimestamp = weatherObservation[\"timeMeasured\"];",
+							"        }",
+							"    }",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{vipsweatherproxy_url}}/rest/vitimeteo/189?logIntervalId=2&timeZone=Europe/Zurich&startDate=2024-01-01&startTime=0&endDate=2024-07-06&endTime=12&elementMeasurementTypes[]=TN&elementMeasurementTypes[]=TX",
+					"host": [
+						"{{vipsweatherproxy_url}}"
+					],
+					"path": [
+						"rest",
+						"vitimeteo",
+						"189"
+					],
+					"query": [
+						{
+							"key": "logIntervalId",
+							"value": "2"
+						},
+						{
+							"key": "timeZone",
+							"value": "Europe/Zurich"
+						},
+						{
+							"key": "startDate",
+							"value": "2024-01-01"
+						},
+						{
+							"key": "startTime",
+							"value": "0"
+						},
+						{
+							"key": "endDate",
+							"value": "2024-07-06"
+						},
+						{
+							"key": "endTime",
+							"value": "12"
+						},
+						{
+							"key": "elementMeasurementTypes[]",
+							"value": "TN"
+						},
+						{
+							"key": "elementMeasurementTypes[]",
+							"value": "TX"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Tahmo Open",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{vipsweatherproxy_url}}/rest/tahmoopen?stationId=TA00739&timeZone=Africa/Niamey&variable=te&startDate=2021-05-01&endDate=2021-05-01",
+					"host": [
+						"{{vipsweatherproxy_url}}"
+					],
+					"path": [
+						"rest",
+						"tahmoopen"
+					],
+					"query": [
+						{
+							"key": "stationId",
+							"value": "TA00739"
+						},
+						{
+							"key": "timeZone",
+							"value": "Africa/Niamey"
+						},
+						{
+							"key": "variable",
+							"value": "te"
+						},
+						{
+							"key": "startDate",
+							"value": "2021-05-01"
+						},
+						{
+							"key": "endDate",
+							"value": "2021-05-01"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "FMI forecasts",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{vipsweatherproxy_url}}/rest/forecasts/fmi?longitude=22.35&latitude=61.25&altitude=0",
+					"host": [
+						"{{vipsweatherproxy_url}}"
+					],
+					"path": [
+						"rest",
+						"forecasts",
+						"fmi"
+					],
+					"query": [
+						{
+							"key": "longitude",
+							"value": "22.35"
+						},
+						{
+							"key": "latitude",
+							"value": "61.25"
+						},
+						{
+							"key": "altitude",
+							"value": "0"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Open-Meteo_path",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{vipsweatherproxy_url}}/rest/grid/openmeteo/10_65?timeZone=Europe%2FHelsinki&startDate=2024-08-12&endDate=2024-08-14&elementMeasurementTypes[]=TM&logIntervalId=1",
+					"host": [
+						"{{vipsweatherproxy_url}}"
+					],
+					"path": [
+						"rest",
+						"grid",
+						"openmeteo",
+						"10_65"
+					],
+					"query": [
+						{
+							"key": "timeZone",
+							"value": "Europe%2FHelsinki"
+						},
+						{
+							"key": "startDate",
+							"value": "2024-08-12"
+						},
+						{
+							"key": "endDate",
+							"value": "2024-08-14"
+						},
+						{
+							"key": "elementMeasurementTypes[]",
+							"value": "TM"
+						},
+						{
+							"key": "logIntervalId",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Open-Meteo no path",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{vipsweatherproxy_url}}/rest/grid/openmeteo/?timeZone=Europe%2FOslo&startDate=2024-10-30&endDate=2024-11-05&elementMeasurementTypes[]=TM&logIntervalId=1&latitude=59.660468&longitude=10.781989",
+					"host": [
+						"{{vipsweatherproxy_url}}"
+					],
+					"path": [
+						"rest",
+						"grid",
+						"openmeteo",
+						""
+					],
+					"query": [
+						{
+							"key": "timeZone",
+							"value": "Europe%2FOslo"
+						},
+						{
+							"key": "startDate",
+							"value": "2024-10-30"
+						},
+						{
+							"key": "endDate",
+							"value": "2024-11-05"
+						},
+						{
+							"key": "elementMeasurementTypes[]",
+							"value": "TM"
+						},
+						{
+							"key": "logIntervalId",
+							"value": "1"
+						},
+						{
+							"key": "latitude",
+							"value": "59.660468"
+						},
+						{
+							"key": "longitude",
+							"value": "10.781989"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
