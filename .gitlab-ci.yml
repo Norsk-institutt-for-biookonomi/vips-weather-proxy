@@ -36,7 +36,8 @@ before_script:
   - java -version
   - mvn -version
   - ifconfig
-  - host docker
+  - hostname
+  - uname -a
   - docker info
   - echo "Done with docker info"
   - echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER $CI_REGISTRY --password-stdin
