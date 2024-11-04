@@ -37,7 +37,6 @@ before_script:
   - mvn -version
   - ifconfig
   - hostname
-  - host docker
   - cat /etc/hosts
   - uname -a
   - docker info
