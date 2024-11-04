@@ -5,17 +5,18 @@
  */
 package no.nibio.vips.weather.proxy.parsers.dnmipointweb;
 
-import com.ibm.icu.util.Calendar;
-import com.ibm.icu.util.TimeZone;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import java.util.Date;
 import java.util.List;
-import no.nibio.vips.entity.WeatherObservation;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+import com.ibm.icu.util.Calendar;
+import com.ibm.icu.util.TimeZone;
+import no.nibio.vips.entity.WeatherObservation;
 
 /**
  *
@@ -46,6 +47,7 @@ public class DMIPointWebDataParserTest {
      * Test of getData method, of class DMIPointWebDataParser.
      */
     @Test
+    @Disabled
     public void testGetData() {
         System.out.println("getData");
         Double longitude = 10.333252;

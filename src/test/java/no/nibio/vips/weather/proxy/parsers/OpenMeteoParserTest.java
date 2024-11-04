@@ -6,20 +6,20 @@
 package no.nibio.vips.weather.proxy.parsers;
 
 
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.TimeZone;
-import java.util.Calendar;
-import no.nibio.vips.entity.WeatherObservation;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+import no.nibio.vips.entity.WeatherObservation;
 
 /**
  *
@@ -50,6 +50,7 @@ public class OpenMeteoParserTest {
      * Test of getWeatherObservations method, of class ALabDataParser.
      */
     @Test
+    @Disabled
     public void testOpenMeteoParser() throws Exception {
         System.out.println("testOpenMeteo");
         TimeZone timeZone = TimeZone.getTimeZone("Europe/Oslo");

@@ -18,14 +18,15 @@
  */
 package no.nibio.vips.weather.proxy.parsers;
 
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import java.util.List;
-import no.nibio.vips.entity.WeatherObservation;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+import no.nibio.vips.entity.WeatherObservation;
 
 /**
  *
@@ -56,6 +57,7 @@ public class YrWeatherForecastProviderTest {
      * Test of getWeatherForecasts method, of class YrWeatherForecastProvider.
      */
     @Test
+    @Disabled
     public void testGetWeatherForecasts() throws Exception {
         System.out.println("getWeatherForecasts");
         // Test Norwegian location

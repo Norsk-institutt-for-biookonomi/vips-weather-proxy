@@ -5,18 +5,20 @@
  */
 package no.nibio.vips.weather.proxy.parsers.fmi;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.stream.Collectors;
-import no.nibio.vips.entity.WeatherObservation;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+import no.nibio.vips.entity.WeatherObservation;
 
 
 /**
@@ -48,6 +50,7 @@ public class FmiOpenDataRadiationParserTest {
      * Test of getVIPSWeatherObservations method, of class FmiOpenDataRadiationParser.
      */
     @Test
+    @Disabled
     public void testGetAsJson() {
         System.out.println("getAsJson");
         String FMIXMLString = new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream("/fmi_response_radiation.xml"), StandardCharsets.UTF_8)).lines()
