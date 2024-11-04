@@ -72,23 +72,23 @@ build-docker:
   script:
     - ./mvnw $MAVEN_CLI_OPTS $MAVEN_OPTS clean package -DskipTests -Dquarkus.container-image.build=true
     - docker images
-    - echo "Trying to set VERSION"
-    - |
+      #    - echo "Trying to set VERSION"
+      #    - |
       # Run a command and capture its error message
-      error_message=$(VERSION=$(./mvnw help:evaluate -Dexpression=project.version -q -DforceStdout) 2>&1)
+      #error_message=$(VERSION=$(./mvnw help:evaluate -Dexpression=project.version -q -DforceStdout) 2>&1)
       
       # Check if the command failed
-      if [ $? -ne 0 ]; then
-        echo "Error: $error_message"
-        exit 1
-      fi
-    - VERSION=$(./mvnw help:evaluate -Dexpression=project.version -q -DforceStdout)
+      #if [ $? -ne 0 ]; then
+      #  echo "Error: $error_message"
+      #  exit 1
+      #fi
+    #- VERSION=$(./mvnw help:evaluate -Dexpression=project.version -q -DforceStdout)
     - echo "Trying to echo VERSION"
-    - echo $VERSION
+    #- echo $VERSION
     - echo "Trying to echo a CI variable"
     - echo $CI_COMMIT_SHORT_SHA
     - echo $TAG_NAME
-    - docker tag $REGISTRY_IMAGE:$VERSION $TAG_NAME
+    - docker tag $REGISTRY_IMAGE:1.0.0-FIXME $TAG_NAME
     - docker push $TAG_NAME
   after_script:
     - docker logout $CI_REGISTRY
