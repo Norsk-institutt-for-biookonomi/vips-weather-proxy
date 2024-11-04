@@ -73,6 +73,8 @@ build-docker:
     - ./mvnw $MAVEN_CLI_OPTS $MAVEN_OPTS clean package -DskipTests -Dquarkus.container-image.build=true
     - docker images
     - VERSION=$(./mvnw help:evaluate -Dexpression=project.version -q -DforceStdout)
+    - echo $VERSION
+    - echo "Trying to echo a CI variable"
     - echo $CI_COMMIT_SHORT_SHA
     - echo $TAG_NAME
     - docker tag $REGISTRY_IMAGE:$VERSION $TAG_NAME
