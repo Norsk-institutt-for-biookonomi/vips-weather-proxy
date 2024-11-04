@@ -73,7 +73,7 @@ build-docker:
     - ./mvnw $MAVEN_CLI_OPTS $MAVEN_OPTS clean package -DskipTests -Dquarkus.container-image.build=true
     - docker images
     - echo "Trying to set VERSION"
-    - ./mvnw help:evaluate -Dexpression=project.version -q -DforceStdout
+    - ./mvnw $MAVEN_CLI_OPTS $MAVEN_OPTS help:evaluate -Dexpression=project.version -q -DforceStdout
     #- VERSION=$(./mvnw help:evaluate -Dexpression=project.version -DforceStdout=true)
     - echo "Trying to echo VERSION"
     - echo $VERSION
