@@ -1,0 +1,129 @@
+# https://java.testcontainers.org/supported_docker_environment/continuous_integration/gitlab_ci/
+
+# (Still no luck in running) <--- Comment from LMTAdminServices. Update when fixed there
+# https://www.docker.com/blog/running-testcontainers-tests-on-gitlab-ci/
+
+image: docker:24.0.9
+
+stages:
+  - test
+  - build
+  - deploy-staging
+  - deploy-prod
+
+services:
+  - docker:24.0.9-dind
+
+variables:
+  COMMON_CONFIG_REMOTE: https://root:$CONFIG_ACCESS_TOKEN@$CI_SERVER_HOST/VIPS/vips-common-config.git
+  COMMON_CONFIG_LOCAL: "vips-common-config"
+  SETTINGS_XML: "ci_settings.xml"
+  MAVEN_CLI_OPTS: "-s $SETTINGS_XML --batch-mode"
+  MAVEN_OPTS: "-Dmaven.repo.local=.m2/repository -Dmaven.artifact.threads=10"
+  REGISTRY: gitlab.nibio.no
+  GROUP: vips
+  NAME: vips-weather-proxy
+  REGISTRY_IMAGE: "$REGISTRY/$GROUP/$NAME"
+  TAG_NAME: "$CI_REGISTRY/$GROUP/$NAME:$CI_COMMIT_SHORT_SHA"
+cache:
+  paths:
+    - .m2/repository/
+
+# Get ci_settings.xml from common config repo, in order to be able to use it for mvn builds
+before_script:
+  - apk update
+  - apk add --no-cache openjdk17 maven git
+  - java -version
+  - mvn -version
+  - docker info
+  - echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER $CI_REGISTRY --password-stdin
+  - apt-get update && apt-get install -y git
+  - git config --global user.name "${GITLAB_USER_NAME}"
+  - git config --global user.email "${GITLAB_USER_EMAIL}"
+  - echo "Get common settings"
+  - git clone $COMMON_CONFIG_REMOTE $COMMON_CONFIG_LOCAL
+  - cd $COMMON_CONFIG_LOCAL
+  - cp $SETTINGS_XML ../$SETTINGS_XML
+  - cd ..
+  - rm -rf $COMMON_CONFIG_LOCAL
+
+test:
+  stage: test
+  script:
+    - ./mvnw $MAVEN_CLI_OPTS $MAVEN_OPTS test
+  tags:
+    - java
+  only:
+    - main
+
+build-docker:
+  stage: build
+  variables:
+    DOCKER_DRIVER: overlay2
+    DOCKER_TLS_CERTDIR: /certs
+    DOCKER_HOST: tcp://docker:2376
+    DOCKER_TLS_VERIFY: 1
+    DOCKER_CERT_PATH: /certs/client
+  script:
+    - ./mvnw $MAVEN_CLI_OPTS $MAVEN_OPTS clean package -DskipTests -Dquarkus.container-image.build=true
+    - docker images
+    - VERSION=$(./mvnw help:evaluate -Dexpression=project.version -q -DforceStdout)
+    - echo $TAG_NAME
+    - docker tag $REGISTRY_IMAGE:$VERSION $TAG_NAME
+    - docker push $TAG_NAME
+  after_script:
+    - docker logout $CI_REGISTRY
+  tags:
+    - java
+  only:
+    - main
+
+deploy-staging:
+  stage: deploy-staging
+  variables:
+    DOCKER_DRIVER: overlay2
+    DOCKER_TLS_CERTDIR: /certs
+    DOCKER_CERT_PATH: /certs/client
+    DOCKER_HOST: "ssh://$SERVER_USER@$STAGING_SERVER_IP"
+  before_script:
+    - eval $(ssh-agent -s)
+    - ssh-add <(echo "$STAGING_SSH_PRIVATE_KEY")
+    - mkdir -p ~/.ssh
+    - echo "$STAGING_SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
+    - echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER $CI_REGISTRY --password-stdin
+  script:
+    - docker-compose -f $STAGING_DOCKER_COMPOSE pull
+    - docker-compose -f $STAGING_DOCKER_COMPOSE up -d --remove-orphans
+    - docker ps
+  after_script:
+    - docker logout $CI_REGISTRY
+  tags:
+    - java
+  only:
+    - main
+
+deploy-prod:
+  stage: deploy-prod
+  variables:
+    DOCKER_DRIVER: overlay2
+    DOCKER_TLS_CERTDIR: /certs
+    DOCKER_CERT_PATH: /certs/client
+    DOCKER_HOST: "ssh://$SERVER_USER@$PROD_SERVER_IP"
+  before_script:
+    - eval $(ssh-agent -s)
+    - ssh-add <(echo "$PROD_SSH_PRIVATE_KEY")
+    - mkdir -p ~/.ssh
+    - echo "$PROD_SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
+    - echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER $CI_REGISTRY --password-stdin
+  script:
+    - hostname
+    - docker-compose -f $PROD_DOCKER_COMPOSE pull
+    - docker-compose -f $PROD_DOCKER_COMPOSE up -d --remove-orphans
+    - docker ps
+  after_script:
+    - docker logout $CI_REGISTRY
+  tags:
+    - java
+  only:
+    - main
+  when: manual
