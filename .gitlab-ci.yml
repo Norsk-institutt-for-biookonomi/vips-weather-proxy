@@ -32,7 +32,7 @@ cache:
 # Get ci_settings.xml from common config repo, in order to be able to use it for mvn builds
 before_script:
   - apk update
-  - apk add --no-cache openjdk17 maven git bind-tools
+  - apk add --no-cache openjdk17 maven git
   - java -version
   - mvn -version
   - ifconfig
@@ -42,7 +42,7 @@ before_script:
   - docker info
   - echo "Done with docker info"
   - echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER $CI_REGISTRY --password-stdin
-  - apt-get update && apt-get install -y git
+  #- apt-get update && apt-get install -y git
   - git config --global user.name "${GITLAB_USER_NAME}"
   - git config --global user.email "${GITLAB_USER_EMAIL}"
   - echo "Get common settings"
