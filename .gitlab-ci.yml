@@ -36,6 +36,7 @@ before_script:
   - java -version
   - mvn -version
   - docker info
+  - echo "Done with docker info"
   - echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER $CI_REGISTRY --password-stdin
   - apt-get update && apt-get install -y git
   - git config --global user.name "${GITLAB_USER_NAME}"
