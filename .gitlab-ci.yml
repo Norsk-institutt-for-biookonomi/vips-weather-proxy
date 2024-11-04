@@ -3,8 +3,7 @@
 # (Still no luck in running) <--- Comment from LMTAdminServices. Update when fixed there
 # https://www.docker.com/blog/running-testcontainers-tests-on-gitlab-ci/
 
-#image: docker:24.0.9
-image: eclipse-temurin:17.0.9_9-jdk-jammy
+image: docker:24.0.9
 
 stages:
   - test
