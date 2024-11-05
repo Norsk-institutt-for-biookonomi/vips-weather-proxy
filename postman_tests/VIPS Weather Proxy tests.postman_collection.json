@@ -27,7 +27,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{vipsweatherproxy_url}}/rest/meteobotapi/Index?stationId=20160049%3B%3B3230313630303439%3B%3BXm8JXWC_oF1jv1k9W&logIntervalId=1&timeZone=Europe/Oslo&startDate=2020-09-16&startTime=0&endDate=2020-09-30&endTime=0&elementMeasurementTypes[]=BT&elementMeasurementTypes[]=BTg&elementMeasurementTypes[]=UM&elementMeasurementTypes[]=RR&elementMeasurementTypes[]=TM",
+					"raw": "{{vipsweatherproxy_url}}/rest/meteobotapi/Index?stationId={{meteobot_test_stationId}}&logIntervalId=1&timeZone=Europe/Oslo&startDate=2021-09-16&startTime=0&endDate=2021-09-17&endTime=0&elementMeasurementTypes[]=BT&elementMeasurementTypes[]=BTg&elementMeasurementTypes[]=UM&elementMeasurementTypes[]=RR&elementMeasurementTypes[]=TM",
 					"host": [
 						"{{vipsweatherproxy_url}}"
 					],
@@ -39,7 +39,7 @@
 					"query": [
 						{
 							"key": "stationId",
-							"value": "20160049%3B%3B3230313630303439%3B%3BXm8JXWC_oF1jv1k9W",
+							"value": "{{meteobot_test_stationId}}",
 							"description": "18150029;;3138313530303239;;Y3Nw_48aNe4y1Z0Wj"
 						},
 						{
@@ -52,7 +52,7 @@
 						},
 						{
 							"key": "startDate",
-							"value": "2020-09-16"
+							"value": "2021-09-16"
 						},
 						{
 							"key": "startTime",
@@ -60,7 +60,7 @@
 						},
 						{
 							"key": "endDate",
-							"value": "2020-09-30"
+							"value": "2021-09-17"
 						},
 						{
 							"key": "endTime",
@@ -196,7 +196,8 @@
 							"    pm.response.to.have.status(200);",
 							"});"
 						],
-						"type": "text/javascript"
+						"type": "text/javascript",
+						"packages": {}
 					}
 				}
 			],
@@ -204,7 +205,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{vipsweatherproxy_url}}/rest/fmi/101104?timeZone=Europe/Helsinki&startDate=2020-06-12&endDate=2020-06-28&elementMeasurementTypes[]=Q0",
+					"raw": "{{vipsweatherproxy_url}}/rest/fmi/101104?timeZone=Europe/Helsinki&startDate=2024-10-29&endDate=2024-11-01&elementMeasurementTypes[]=Q0",
 					"host": [
 						"{{vipsweatherproxy_url}}"
 					],
@@ -220,11 +221,11 @@
 						},
 						{
 							"key": "startDate",
-							"value": "2020-06-12"
+							"value": "2024-10-29"
 						},
 						{
 							"key": "endDate",
-							"value": "2020-06-28"
+							"value": "2024-11-01"
 						},
 						{
 							"key": "elementMeasurementTypes[]",
@@ -246,7 +247,8 @@
 							"    pm.response.to.have.status(200);",
 							"});"
 						],
-						"type": "text/javascript"
+						"type": "text/javascript",
+						"packages": {}
 					}
 				}
 			],
@@ -254,14 +256,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{vipsweatherproxy_url}}/rest/fruitwebdavis/id=536&pw=GF90esoleo?elementMeasurementTypes%5B%5D=TM&elementMeasurementTypes%5B%5D=RR&logInterval=1h&startDate=2024-01-01&startTime=00&timeZone=Europe%2FOslo",
+					"raw": "{{vipsweatherproxy_url}}/rest/fruitwebdavis/{{FruitWeb Helgøy creds}}?elementMeasurementTypes%5B%5D=TM&elementMeasurementTypes%5B%5D=RR&logInterval=1h&startDate=2024-11-01&startTime=00&timeZone=Europe%2FOslo",
 					"host": [
 						"{{vipsweatherproxy_url}}"
 					],
 					"path": [
 						"rest",
 						"fruitwebdavis",
-						"id=536&pw=GF90esoleo"
+						"{{FruitWeb Helgøy creds}}"
 					],
 					"query": [
 						{
@@ -278,7 +280,7 @@
 						},
 						{
 							"key": "startDate",
-							"value": "2024-01-01"
+							"value": "2024-11-01"
 						},
 						{
 							"key": "startTime",
@@ -297,74 +299,6 @@
 						{
 							"key": "timeZone",
 							"value": "Europe%2FOslo"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Fruitweb Perunantutkimuslaitos (Finland)",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{vipsweatherproxy_url}}/rest/fruitwebdavis/id=393&pw=Hg265r8etZ?elementMeasurementTypes%5B%5D=TM&elementMeasurementTypes%5B%5D=Q0&logInterval=1h&startDate=2022-01-01&startTime=00&timeZone=Europe%2FHelsinki",
-					"host": [
-						"{{vipsweatherproxy_url}}"
-					],
-					"path": [
-						"rest",
-						"fruitwebdavis",
-						"id=393&pw=Hg265r8etZ"
-					],
-					"query": [
-						{
-							"key": "elementMeasurementTypes%5B%5D",
-							"value": "TM"
-						},
-						{
-							"key": "elementMeasurementTypes%5B%5D",
-							"value": "Q0"
-						},
-						{
-							"key": "logInterval",
-							"value": "1h"
-						},
-						{
-							"key": "startDate",
-							"value": "2022-01-01"
-						},
-						{
-							"key": "startTime",
-							"value": "00"
-						},
-						{
-							"key": "endDate",
-							"value": "2021-03-01",
-							"disabled": true
-						},
-						{
-							"key": "endTime",
-							"value": "00",
-							"disabled": true
-						},
-						{
-							"key": "timeZone",
-							"value": "Europe%2FHelsinki"
 						}
 					]
 				}
@@ -465,18 +399,18 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{vipsweatherproxy_url}}/rest/tahmoopen?stationId=TA00744&startDate=2021-03-27&endDate=2021-03-28&variable=te",
+					"raw": "{{vipsweatherproxy_url}}/rest/tahmo?stationId=TA00744%3B%3BNIBIO%3B%3BQYzW3Rh%23Xrqovx6&startDate=2021-03-27&endDate=2021-03-28&variable=te",
 					"host": [
 						"{{vipsweatherproxy_url}}"
 					],
 					"path": [
 						"rest",
-						"tahmoopen"
+						"tahmo"
 					],
 					"query": [
 						{
 							"key": "stationId",
-							"value": "TA00744"
+							"value": "TA00744%3B%3BNIBIO%3B%3BQYzW3Rh%23Xrqovx6"
 						},
 						{
 							"key": "startDate",
