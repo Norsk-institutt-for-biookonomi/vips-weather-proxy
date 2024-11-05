@@ -51,7 +51,7 @@ import no.nibio.vips.weather.proxy.util.DOMUtils;
  * @author Tor-Einar Skog <tor-einar.skog@nibio.no>
  * @author Brita Linnestad <brita.linnestad@nibio.no>
  */
-public class YrWeatherForecastProvider {
+public class MetNoLocationForecastProvider {
 
     //private final static String YR_API_URL = "https://api.met.no/weatherapi/locationforecast/1.9/?lat={0};lon={1}";
     private final static String YR_API_URLXML = "https://api.met.no/weatherapi/locationforecast/2.0/classic?lat={0}&lon={1}";
@@ -73,7 +73,7 @@ public class YrWeatherForecastProvider {
 
         try {
             yrURL = new URL(MessageFormat.format(
-                    YrWeatherForecastProvider.YR_API_URLXML,
+                    MetNoLocationForecastProvider.YR_API_URLXML,
                     String.valueOf(latitude.floatValue()),
                     String.valueOf(longitude.floatValue())));
 
@@ -190,7 +190,7 @@ public class YrWeatherForecastProvider {
         Integer log_interval = WeatherObservation.LOG_INTERVAL_ID_1H;
 
         try {
-            URL yrURL = new URL(MessageFormat.format(YrWeatherForecastProvider.YR_API_URLJSON,
+            URL yrURL = new URL(MessageFormat.format(MetNoLocationForecastProvider.YR_API_URLJSON,
                     String.valueOf(latitude.floatValue()),
                     String.valueOf(longitude.floatValue())));
 
@@ -227,7 +227,7 @@ public class YrWeatherForecastProvider {
                
                 if (instant != null) {
                     for (int j = 2; j < elementMeasurementTypes.length - 1; j++) {
-                        element = YrWeatherForecastProvider.elementMeasurementTypes[j][0];
+                        element = MetNoLocationForecastProvider.elementMeasurementTypes[j][0];
                         elementValue = (instant.findValue(element).toString());
 
                         if (!elementValue.equals("null")) {
@@ -235,7 +235,7 @@ public class YrWeatherForecastProvider {
 
                             Double value = Double.parseDouble(elementValue);
 
-                            obs.setElementMeasurementTypeId(YrWeatherForecastProvider.elementMeasurementTypes[j][1]);
+                            obs.setElementMeasurementTypeId(MetNoLocationForecastProvider.elementMeasurementTypes[j][1]);
                             obs.setTimeMeasured(thisHour);
                             obs.setValue(value);
                             obs.setLogIntervalId(log_interval);
@@ -246,7 +246,7 @@ public class YrWeatherForecastProvider {
                 }
                 
                 if (next1hours != null) {
-                    element = YrWeatherForecastProvider.elementMeasurementTypes[0][0];
+                    element = MetNoLocationForecastProvider.elementMeasurementTypes[0][0];
                     elementValue = (next1hours.findValue(element).toString());
 
                     if (!elementValue.equals("null")) {
@@ -254,7 +254,7 @@ public class YrWeatherForecastProvider {
 
                         WeatherObservation obs = new WeatherObservation();
 
-                        obs.setElementMeasurementTypeId(YrWeatherForecastProvider.elementMeasurementTypes[0][1]);
+                        obs.setElementMeasurementTypeId(MetNoLocationForecastProvider.elementMeasurementTypes[0][1]);
                         obs.setTimeMeasured(thisHour);
                         obs.setValue(value);
                         obs.setLogIntervalId(log_interval);
@@ -262,13 +262,13 @@ public class YrWeatherForecastProvider {
                         yrValues.add(obs);
                     }
                 } else if (next6hours != null) {
-                    element = YrWeatherForecastProvider.elementMeasurementTypes[0][0];
+                    element = MetNoLocationForecastProvider.elementMeasurementTypes[0][0];
                     elementValue = (next6hours.findValue(element).toString());
                     if (!elementValue.equals("null")) {
                         Double value = Double.parseDouble(elementValue);
                         WeatherObservation obs = new WeatherObservation();
 
-                        obs.setElementMeasurementTypeId(YrWeatherForecastProvider.elementMeasurementTypes[0][1]);
+                        obs.setElementMeasurementTypeId(MetNoLocationForecastProvider.elementMeasurementTypes[0][1]);
                         obs.setTimeMeasured(dFormat.parse((timeseries.get(i).findValue("time").toString()).replaceAll("[\"|\"$]", "")));
 
                         obs.setValue(value);

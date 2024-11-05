@@ -73,6 +73,11 @@ public class TahmoDataParser {
          // Assuming 1 hour resolution until we find a timestamp that says :05
          Integer logIntervalId = WeatherObservation.LOG_INTERVAL_ID_1H;
          String[] authStr = stationID.split(";;");     
+
+         if(authStr.length != 3)
+         {
+            throw new ParseWeatherDataException("No or invalid credentials provided");
+         }
          String stationCode = authStr[0];
    
          String[] headers;

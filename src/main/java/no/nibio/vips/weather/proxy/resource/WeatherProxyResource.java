@@ -51,6 +51,7 @@ import no.nibio.vips.util.WeatherObservationListException;
 import no.nibio.vips.util.XDate;
 import no.nibio.vips.weather.proxy.parsers.ALabDataParser;
 import no.nibio.vips.weather.proxy.parsers.FruitWebDavisDataParser;
+import no.nibio.vips.weather.proxy.parsers.MetNoLocationForecastProvider;
 import no.nibio.vips.weather.proxy.parsers.MeteobotAPIDataParser;
 import no.nibio.vips.weather.proxy.parsers.MetosAPIDataParser;
 import no.nibio.vips.weather.proxy.parsers.OpenMeteoParser;
@@ -58,7 +59,6 @@ import no.nibio.vips.weather.proxy.parsers.ParseWeatherDataException;
 import no.nibio.vips.weather.proxy.parsers.TahmoDataParser;
 import no.nibio.vips.weather.proxy.parsers.USPestDataParser;
 import no.nibio.vips.weather.proxy.parsers.VitiMeteoParser;
-import no.nibio.vips.weather.proxy.parsers.YrWeatherForecastProvider;
 import no.nibio.vips.weather.proxy.parsers.dnmipointweb.DMIPointWebDataParser;
 import no.nibio.vips.weather.proxy.parsers.fmi.FmiIntermediator;
 import no.nibio.vips.weather.proxy.parsers.fmi.FmiOpenDataAccess;
@@ -275,8 +275,6 @@ public class WeatherProxyResource {
             @QueryParam("variable") String variable
     ) throws ParseException, WeatherObservationListException, InvalidAggregationTypeException {
         stationId = stationId + tahmoOpenCredentials;
-        System.out.println("CREDS=" + tahmoOpenCredentials);
-
         return this.getTahmoAPIWeatherData(stationId, timeZonePOST, timeZoneGET, startDateStr, startTimeStr, endDateStr, endTimeStr, variable);
 
     }
@@ -475,13 +473,23 @@ public class WeatherProxyResource {
     @GET
     @Path("forecasts/yr/")
     @Produces("application/json;charset=UTF-8")
-    public Response getYRForecasts(
+    public Response getMetNoLocationForecastYrPath(
             @QueryParam("longitude") Double longitude,
             @QueryParam("latitude") Double latitude,
             @QueryParam("altitude") Double altitude
     ) {
+       return this.getMetNoLocationForecast(longitude, latitude, altitude);
+    }
+
+    @GET
+    @Path("forecasts/metnolocationforecast/")
+    @Produces("application/json;charset=UTF-8")
+    public Response getMetNoLocationForecast(@QueryParam("longitude") Double longitude,
+    @QueryParam("latitude") Double latitude,
+    @QueryParam("altitude") Double altitude)
+    {
         try {
-            return Response.ok().entity(new YrWeatherForecastProvider().getWeatherForecastsJSON(longitude, latitude, altitude)).build();
+            return Response.ok().entity(new MetNoLocationForecastProvider().getWeatherForecastsJSON(longitude, latitude, altitude)).build();
         } catch (ParseException ex) {
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(ex.getMessage()).build();
         }
