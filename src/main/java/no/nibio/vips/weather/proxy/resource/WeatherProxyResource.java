@@ -52,6 +52,7 @@ import no.nibio.vips.util.XDate;
 import no.nibio.vips.weather.proxy.parsers.ALabDataParser;
 import no.nibio.vips.weather.proxy.parsers.FruitWebDavisDataParser;
 import no.nibio.vips.weather.proxy.parsers.MetNoLocationForecastProvider;
+import no.nibio.vips.weather.proxy.parsers.MetNoSubSeasonalForecastProvider;
 import no.nibio.vips.weather.proxy.parsers.MeteobotAPIDataParser;
 import no.nibio.vips.weather.proxy.parsers.MetosAPIDataParser;
 import no.nibio.vips.weather.proxy.parsers.OpenMeteoParser;
@@ -491,6 +492,21 @@ public class WeatherProxyResource {
         try {
             return Response.ok().entity(new MetNoLocationForecastProvider().getWeatherForecastsJSON(longitude, latitude, altitude)).build();
         } catch (ParseException ex) {
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(ex.getMessage()).build();
+        }
+    }
+
+    @GET
+    @Path("forecasts/metnosubseasonal/")
+    @Produces("application/json;charset=UTF-8")
+    public Response getMetNoSubSeasonalForecast(
+        @QueryParam("longitude") Double longitude,
+        @QueryParam("latitude") Double latitude
+    )
+    {
+        try {
+            return Response.ok().entity(new MetNoSubSeasonalForecastProvider().getSubSeasonalForecasts(longitude, latitude)).build();
+        } catch (ParseWeatherDataException ex) {
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(ex.getMessage()).build();
         }
     }
