@@ -19,8 +19,8 @@ package no.nibio.vips.weather.proxy.parsers;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
 import java.net.URL;
-import java.net.URLConnection;
 import java.text.MessageFormat;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
@@ -45,7 +45,7 @@ public class MetNoSubSeasonalForecastProvider {
 
 
     public List<WeatherObservation> getSubSeasonalForecasts(Double longitude, Double latitude)
-            throws ParseWeatherDataException {
+            throws ParseWeatherDataException, OutOfAreaException {
         try {
             List<WeatherObservation> observations = new ArrayList<>();
             URL subSeasonalURL = new URL(MessageFormat.format(MetNoSubSeasonalForecastProvider.SUBSEASONAL_URL_TPL,
@@ -54,10 +54,15 @@ public class MetNoSubSeasonalForecastProvider {
             SimpleDateFormat dFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX");
             dFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
 
-            URLConnection conn = subSeasonalURL.openConnection();
+            HttpURLConnection conn = (HttpURLConnection) subSeasonalURL.openConnection();
             conn.setRequestProperty("User-Agent", "lmt.nibio.no lmt@nibio.no");
             conn.addRequestProperty("accept", "application/json");
             conn.connect();
+            System.out.println("Status = " + conn.getResponseCode());
+            if(conn.getResponseCode() == 422)
+            {
+                throw new OutOfAreaException("The requested location is outside of the service's area. See this link for details: https://api.met.no/weatherapi/subseasonal/1.0/documentation");
+            }
             BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
 
             String all = "";

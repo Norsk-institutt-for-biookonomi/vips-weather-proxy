@@ -2,6 +2,7 @@ package no.nibio.vips.weather.proxy.resource;
 
 import static io.restassured.RestAssured.given;
 import static jakarta.ws.rs.core.Response.Status.OK;
+import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
 import java.time.LocalDate;
 import org.junit.jupiter.api.Test;
@@ -77,6 +78,17 @@ public class WeatherProxyResourceTest {
         .get("grid/openmeteo/?timeZone=Europe%2FOslo&startDate=" + start + "&endDate=" + end + "&elementMeasurementTypes[]=TM&logIntervalId=1&latitude=59.660468&longitude=10.781989")
         .then().statusCode(OK.getStatusCode())
         .body("$.size()", not(0));
+    }
+
+    @Test public void testMetNoSubSeasonalForecast(){
+        given().when()
+        .get("forecasts/metnosubseasonal/?latitude=59.660468&longitude=10.781989")
+        .then().statusCode(OK.getStatusCode())
+        .body("$.size()", is(104));
+
+        given().when()
+        .get("forecasts/metnosubseasonal/?latitude=39.660468&longitude=10.781989")
+        .then().statusCode(422);
     }
 
 
