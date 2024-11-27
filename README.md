@@ -21,6 +21,43 @@ This project uses Quarkus, the Supersonic Subatomic Java Framework.
 
 If you want to learn more about Quarkus, please visit its website: <https://quarkus.io/>.
 
+## Generating sources for DMIWeatherService
+This has been done by 
+1. Place the WSDL file in the `src/main/resources/wsdl` directory
+2. Add the Quarkus version of Apache CXF to pom.xml
+```xml
+ <dependency>
+    <groupId>io.quarkiverse.cxf</groupId>
+    <artifactId>quarkus-cxf</artifactId>
+</dependency>
+ ```
+3. Add the generated sources directory to the Maven build process
+```xml
+<build>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <version>3.6.0</version>
+                <executions>
+                <execution>
+                    <id>add-source</id>
+                    <phase>generate-code</phase>
+                    <goals>
+                    <goal>add-source</goal>
+                    </goals>
+                    <configuration>
+                    <sources>
+                        <source>target/generated-sources/wsdl2java</source>
+                    </sources>
+                    </configuration>
+                </execution>
+                </executions>
+            </plugin>
+```
+And if you're developing this application with VSCode, you can add the sources to the classpath by clicking on `JAVA PROJECTS -> ... -> Configure classpath` and add `target/generated-sources/wsdl2java` to make the editor happy.
+
+
 ## Running the application in dev mode
 
 You can run your application in dev mode that enables live coding using:
