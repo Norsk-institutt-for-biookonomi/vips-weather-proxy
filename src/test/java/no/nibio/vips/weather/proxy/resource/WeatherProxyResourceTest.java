@@ -54,7 +54,7 @@ public class WeatherProxyResourceTest {
         LocalDate now = LocalDate.now();
         LocalDate start = now.minusDays(3);
         given().when()
-        .get("tahmoopen?stationId=TA00744&startDate=" + start + "&endDate=" + now + "&variable=te")
+        .get("tahmoopen?stationId=TA00390&startDate=" + start + "&endDate=" + now + "&variable=te")
         .then().statusCode(OK.getStatusCode())
         .body("$.size()", not(0));
     }
