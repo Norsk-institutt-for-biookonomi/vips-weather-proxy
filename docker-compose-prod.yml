@@ -1,7 +1,7 @@
 services:
   vipsweatherproxy:
     image: ${TAG_NAME}
-    user: "1006:1010"
+    user: "1008:1012"
     environment:
       QUARKUS_ROOT_PATH: ${QUARKUS_ROOT_PATH}
       QUARKUS_PROFILE: staging
