@@ -102,8 +102,8 @@ deploy-staging:
     - echo "$STAGING_SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
     - echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER $CI_REGISTRY --password-stdin
   script:
-    - docker-compose -f $STAGING_DOCKER_COMPOSE pull
-    - docker-compose -f $STAGING_DOCKER_COMPOSE up -d --remove-orphans
+    - docker-compose -f docker-compose-staging.yml pull
+    - docker-compose -f docker-compose-staging.yml up -d --remove-orphans
     - docker ps
   after_script:
     - docker logout $CI_REGISTRY
@@ -127,8 +127,8 @@ deploy-prod:
     - echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER $CI_REGISTRY --password-stdin
   script:
     - hostname
-    - docker-compose -f $PROD_DOCKER_COMPOSE pull
-    - docker-compose -f $PROD_DOCKER_COMPOSE up -d --remove-orphans
+    - docker-compose -f docker-compose-prod.yml pull
+    - docker-compose -f docker-compose-prod.yml up -d --remove-orphans
     - docker ps
   after_script:
     - docker logout $CI_REGISTRY
