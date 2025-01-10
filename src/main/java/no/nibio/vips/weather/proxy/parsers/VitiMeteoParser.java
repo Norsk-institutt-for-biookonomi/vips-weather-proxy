@@ -31,7 +31,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.TimeZone;
-import org.eclipse.microprofile.config.inject.ConfigProperty;
+
+ import jakarta.enterprise.context.ApplicationScoped;
+ import org.eclipse.microprofile.config.inject.ConfigProperty;
 import org.slf4j.LoggerFactory;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -43,6 +45,7 @@ import no.nibio.vips.entity.WeatherObservation;
   *
   * @author Tor-Einar Skog <tor-einar.skog@nibio.no>
   */
+ @ApplicationScoped
  public class VitiMeteoParser {
      
      private static final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(VitiMeteoParser.class);
@@ -171,4 +174,3 @@ import no.nibio.vips.entity.WeatherObservation;
      }
     
  }
- 

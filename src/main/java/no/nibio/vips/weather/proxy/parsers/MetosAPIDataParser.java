@@ -34,6 +34,8 @@ import java.util.Optional;
 import java.util.TimeZone;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import jakarta.enterprise.context.ApplicationScoped;
 import org.apache.http.Header;
 import org.apache.http.HttpHost;
 import org.apache.http.HttpResponse;
@@ -72,6 +74,7 @@ import no.nibio.vips.util.WeatherElements;
  * @copyright 2017 <a href="http://www.nibio.no/">NIBIO</a>
  * @author Tor-Einar Skog <tor-einar.skog@nibio.no>
  */
+@ApplicationScoped
 public class MetosAPIDataParser {
     private static final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(MetosAPIDataParser.class);
 
@@ -91,14 +94,12 @@ public class MetosAPIDataParser {
     @ConfigProperty(name = "no.nibio.vips.logic.weather.FIELDCLIMATE_API_CLIENT_SECRET")
     String apiClientSecret;
 
-
-
     // Mappping VIPS parameters and Metos sensors
     // Fieldclimate codes should be in decreasing priority
     // TODO; Separate parameter: Soil temperature. Search for name "Soil temperature", higher channel number = deeper sensor
     private final ParamInfo[] PARAM_MAP = {
         new ParamInfo(WeatherElements.PRECIPITATION,            new Integer[] {6},          "sum"),
-        new ParamInfo(WeatherElements.LEAF_WETNESS_DURATION,             new Integer[] {4},          "time"),
+        new ParamInfo(WeatherElements.LEAF_WETNESS_DURATION,    new Integer[] {4},          "time"),
         new ParamInfo(WeatherElements.GLOBAL_RADIATION,         new Integer[] {600},        "avg"),
         new ParamInfo(WeatherElements.WIND_SPEED_2M,            new Integer[] {5},          "avg"),
         new ParamInfo(WeatherElements.TEMPERATURE_MEAN,         new Integer[] {0,16385,506},      "avg"),
@@ -106,8 +107,7 @@ public class MetosAPIDataParser {
         new ParamInfo(WeatherElements.TEMPERATURE_MINIMUM,      new Integer[] {16385,506},      "min"),
         new ParamInfo(WeatherElements.RELATIVE_HUMIDITY_MEAN,   new Integer[] {1,507,21778},    "avg")
     };
-    
-    
+
     /**
      * 
      * @return
@@ -158,7 +158,6 @@ public class MetosAPIDataParser {
     
     public String getToken() throws IOException, AuthenticationException
     {
-        
         String accessCode = this.getAccessCode();
         
         CloseableHttpClient httpclient = HttpClients.createDefault();
@@ -167,7 +166,7 @@ public class MetosAPIDataParser {
         // Setting up HTTP BASIC authentication
         CredentialsProvider provider = new BasicCredentialsProvider();
         UsernamePasswordCredentials credentials = new UsernamePasswordCredentials(apiClientId, apiClientSecret);
-        
+
         HttpHost targetHost = new HttpHost("oauth-stage.fieldclimate.com", 80, "https");
         AuthCache authCache = new BasicAuthCache();
         authCache.put(targetHost, new BasicScheme());

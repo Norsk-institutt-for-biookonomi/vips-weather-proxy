@@ -81,6 +81,12 @@ public class WeatherProxyResource {
     private static final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(WeatherProxyResource.class);
 
     @Inject
+    MetosAPIDataParser metosAPIDataParser;
+
+    @Inject
+    VitiMeteoParser vitiMeteoParser;
+
+    @Inject
     @ConfigProperty(name = "no.nibio.vips.logic.weather.TAHMOOPEN_CREDENTIALS")
     String tahmoOpenCredentials;
 
@@ -196,7 +202,7 @@ public class WeatherProxyResource {
             String startDateParam = startDatePOST != null ? startDatePOST : startDateGET;
             Date startDate1 = format.parse(startDateParam);
             // System.out.println("WeatherProxyService: startDate1=" + startDate1);
-            observations = new MetosAPIDataParser().getWeatherObservations(stationId, timeZone, startDate1);
+            observations = metosAPIDataParser.getWeatherObservations(stationId, timeZone, startDate1);
         } catch (ParseException | ParseWeatherDataException | NullPointerException ex) {
             LOGGER.error("Exception while attempting to get MetosAPI weather data", ex);
             return Response.serverError().entity(ex).build();
@@ -686,7 +692,7 @@ public class WeatherProxyResource {
                     startDate != null ? startDate : new SimpleDateFormat("yyyy-MM-dd").format(new Date());
             String endDateParam = endDate != null ? endDate : new SimpleDateFormat("yyyy-MM-dd").format(new Date());
 
-            observations = new VitiMeteoParser().getWeatherObservations(stationId, startDateParam, endDateParam,
+            observations = vitiMeteoParser.getWeatherObservations(stationId, startDateParam, endDateParam,
                     timeZoneParam, logIntervalId, Arrays.asList(elementMeasurementTypes));
 
         } catch (NullPointerException ex) {
