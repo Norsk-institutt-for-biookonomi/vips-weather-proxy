@@ -28,12 +28,8 @@ import java.time.LocalTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.temporal.ChronoUnit;
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.Collections;
-import java.util.Date;
-import java.util.List;
-import java.util.TimeZone;
+import java.util.*;
+
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.media.Content;
@@ -87,6 +83,11 @@ public class WeatherProxyResource {
     @Inject
     @ConfigProperty(name = "no.nibio.vips.logic.weather.TAHMOOPEN_CREDENTIALS")
     String tahmoOpenCredentials;
+
+    public WeatherProxyResource() {
+        // Added to ensure that latitude, longitude and other doubles are correctly formatted in urls
+        Locale.setDefault(Locale.US);
+    }
 
     /**
      * Get weather data from the Finnish Meteorological Institute's open data API Read the docs here:
@@ -572,6 +573,9 @@ public class WeatherProxyResource {
         FmiOpenDataAccess dA = new FmiOpenDataAccess();
         FmiOpenDataForecastParser fP = new FmiOpenDataForecastParser();
         String forecastXML = dA.getForecastData(longitude, latitude);
+        if(forecastXML == null) {
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
+        }
         List<WeatherObservation> forecastObs = fP.getVIPSWeatherObservations(forecastXML);
         return Response.ok().entity(forecastObs).build();
     }
