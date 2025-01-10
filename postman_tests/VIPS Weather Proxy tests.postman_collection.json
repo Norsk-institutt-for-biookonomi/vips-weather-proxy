@@ -1,10 +1,9 @@
 {
 	"info": {
-		"_postman_id": "ee4e9939-ca6e-4a37-b1d4-e0721da71ca7",
+		"_postman_id": "72930c60-bab5-44d7-b8c0-f62a7eab6aec",
 		"name": "VIPS Weather Proxy tests",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "5789128",
-		"_collection_link": "https://grey-eclipse-463120.postman.co/workspace/My-Workspace~6b58be42-cd43-40ed-8053-51ab1d8655fb/collection/5789128-ee4e9939-ca6e-4a37-b1d4-e0721da71ca7?action=share&source=collection_link&creator=5789128"
+		"_exporter_id": "3222856"
 	},
 	"item": [
 		{
@@ -748,6 +747,35 @@
 						{
 							"key": "longitude",
 							"value": "10.781989"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "MetosAPI",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{vipsweatherproxy_url}}/rest/metosapi/000012DE?timeZone=Europe/Vilnius&startDate=2018-08-10",
+					"host": [
+						"{{vipsweatherproxy_url}}"
+					],
+					"path": [
+						"rest",
+						"metosapi",
+						"000012DE"
+					],
+					"query": [
+						{
+							"key": "timeZone",
+							"value": "Europe/Vilnius"
+						},
+						{
+							"key": "startDate",
+							"value": "2018-08-10"
 						}
 					]
 				}
