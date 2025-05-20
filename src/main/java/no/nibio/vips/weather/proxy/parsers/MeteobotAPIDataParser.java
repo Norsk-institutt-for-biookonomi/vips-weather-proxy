@@ -25,15 +25,27 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
+import java.text.DateFormat;
 import java.text.MessageFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.OffsetDateTime;
+import java.time.ZoneOffset;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.TimeZone;
+
+import org.apache.ws.commons.schema.constants.Constants.SystemConstants;
+import org.renjin.gcc.runtime.timespec;
+
+import io.smallrye.config.SysPropConfigSource;
 import no.nibio.vips.entity.WeatherObservation;
 
 /**
@@ -46,7 +58,7 @@ import no.nibio.vips.entity.WeatherObservation;
  */
 
 public class MeteobotAPIDataParser {
-    public final static String METEOS_URL_TEMPLATE = "https://export.meteobot.com/v1/Generic/{0}?id={1}&startdate={2}&enddate={3}&timeFormat=iso-8601";
+    public final static String METEOS_URL_TEMPLATE = "https://export.meteobot.com/v2/Generic/{0}?id={1}&startdate={2}&enddate={3}&timeFormat=iso-8601";
     
     private final static String[][] elementMeasurementTypes = {
         {"airTemperature","TM","AVG"},
@@ -71,24 +83,24 @@ public class MeteobotAPIDataParser {
     };
     
         
-public List<WeatherObservation> getWeatherObservations(String stationID, String startDate, String endDate) throws ParseWeatherDataException 
+public List<WeatherObservation> getWeatherObservations(String stationID, String startDate, String endDate, TimeZone timeZone) throws ParseWeatherDataException, ParseException 
     {  
-         List<WeatherObservation> retVal = new ArrayList<>();
+        List<WeatherObservation> retVal = new ArrayList<>();
           
-         SimpleDateFormat dFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX");
-         dFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
+        SimpleDateFormat dFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX");
+        dFormat.setTimeZone(timeZone);
           
-         List<String[]> data = new ArrayList<>();
+        List<String[]> data = new ArrayList<>();
          
-         String[] headers;
-         Map<Integer, Integer> elementOrdering = new HashMap<>();
+        String[] headers;
+        Map<Integer, Integer> elementOrdering = new HashMap<>();
          
-         //distinquish between Locate and Index
+        //distinquish between Locate and Index
            
-         String[] authStr = stationID.split(";;");
-         String method = "Index";
-         
-         try {  
+        String[] authStr = stationID.split(";;");
+        String method = "Index";
+          
+        try {  
               URL meteobotURL = new URL(MessageFormat.format(MeteobotAPIDataParser.METEOS_URL_TEMPLATE, method, authStr[0], startDate, endDate));
 
               URLConnection connection = meteobotURL.openConnection();
@@ -105,19 +117,20 @@ public List<WeatherObservation> getWeatherObservations(String stationID, String 
               { 
                 Date testTimestamp = null;
                 String[] lineData = inputLine.split(";");
-                
+
                 // Skip empty lines
                 if(lineData.length <= 1)
                 {
                     continue;
                 }
                 
-                // Check for valid start of line
                 try
                 {
                     testTimestamp = dFormat.parse(lineData[1]);
                     data.add(lineData);
                 } catch (ParseException ex) {}
+
+        
                     
                 // Is this the heading line?
                 // Then we parse it to set the ordering of elements
@@ -146,12 +159,12 @@ public List<WeatherObservation> getWeatherObservations(String stationID, String 
          Date timestamp = null;
          
          for(String[] lineData: data)
-         {
-             
+         {   
+            
             try
-            {
+            {   
                 timestamp = dFormat.parse(lineData[1]);
-            } catch(ParseException ex){
+            } catch (ParseException ex) {
                 throw new ParseWeatherDataException("Error with time stamp in weather data from Meteobot station: " + ex.getMessage());
             }
             
@@ -200,7 +213,7 @@ public List<WeatherObservation> getWeatherObservations(String stationID, String 
             catch (Exception ex){
                 throw new ParseWeatherDataException("Error, invalid method: " + ex.getMessage());
             }
-         }
+         } 
          return retVal;
     }
 }

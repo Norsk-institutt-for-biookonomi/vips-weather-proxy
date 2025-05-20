@@ -24,12 +24,14 @@ import java.net.URLDecoder;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
 
+import org.apache.ws.commons.schema.constants.Constants.SystemConstants;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.media.Content;
@@ -221,21 +223,27 @@ public class WeatherProxyResource {
      * @param endDateGET
      * @return
      */
-    @GET
-    @Path("meteobotapi/Index")
-    @Produces("application/json;charset=UTF-8")
-    public Response getMeteobotAPIWeatherData(
-            @QueryParam("stationId") String stationId,
-            @FormParam("startDate") String startDatePOST,
-            @QueryParam("startDate") String startDateGET,
-            @FormParam("endDate") String endDatePOST,
-            @QueryParam("endDate") String endDateGET) {
+         @GET
+         @Path("meteobotapi/Index")
+         @Produces("application/json;charset=UTF-8")
+         public Response getMeteobotAPIWeatherData(
+                 @QueryParam("stationId") String stationId,
+                 @FormParam("startDate") String startDatePOST,
+                 @QueryParam("startDate") String startDateGET,
+                 @FormParam("endDate") String endDatePOST,
+                 @QueryParam("endDate") String endDateGET,
+                 @FormParam("timeZone") String timeZonePOST,
+                 @QueryParam("timeZone") String timeZoneGET
+                 ) throws ParseException {
         List<WeatherObservation> observations;
-        try {
+        try {           
+            String timeZoneParam = timeZonePOST != null ? timeZonePOST : timeZoneGET != null ? timeZoneGET : "UTC";
+            TimeZone timeZone = TimeZone.getTimeZone(timeZoneParam);
+            
             String startDateParam = startDatePOST != null ? startDatePOST : startDateGET;
             String endDateParam = endDatePOST != null ? endDatePOST : endDateGET;
 
-            observations = new MeteobotAPIDataParser().getWeatherObservations(stationId, startDateParam, endDateParam);
+            observations = new MeteobotAPIDataParser().getWeatherObservations(stationId, startDateParam, endDateParam, timeZone);
 
         } catch (ParseWeatherDataException ex) {
             return Response.serverError().entity(ex).build();
