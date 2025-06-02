@@ -15,7 +15,7 @@ services:
   - docker:27.4.1-dind
 
 variables:
-  COMMON_CONFIG_REMOTE: https://root:$CONFIG_ACCESS_TOKEN@$CI_SERVER_HOST/VIPS/vips-common-config.git
+  COMMON_CONFIG_REMOTE: https://oauth2:$CICD_ACCESS_TOKEN@$CI_SERVER_HOST/VIPS/vips-common-config.git
   COMMON_CONFIG_LOCAL: "vips-common-config"
   SETTINGS_XML: "ci_settings.xml"
   MAVEN_CLI_OPTS: "-s $SETTINGS_XML --batch-mode"
@@ -40,15 +40,12 @@ before_script:
   - cat /etc/hosts
   - uname -a
   - docker info
-  - echo "Done with docker info"
   - echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER $CI_REGISTRY --password-stdin
   - git config --global user.name "${GITLAB_USER_NAME}"
   - git config --global user.email "${GITLAB_USER_EMAIL}"
   - echo "Get common settings"
-  - git clone $COMMON_CONFIG_REMOTE $COMMON_CONFIG_LOCAL
-  - cd $COMMON_CONFIG_LOCAL
-  - cp $SETTINGS_XML ../$SETTINGS_XML
-  - cd ..
+  - git clone --depth=1 "$COMMON_CONFIG_REMOTE" "$COMMON_CONFIG_LOCAL"
+  - cp $COMMON_CONFIG_LOCAL/$SETTINGS_XML .
   - rm -rf $COMMON_CONFIG_LOCAL
 
 test:
@@ -97,7 +94,7 @@ deploy-staging:
     DOCKER_HOST: "ssh://$SERVER_USER@$STAGING_SERVER_IP"
   before_script:
     - eval $(ssh-agent -s)
-    - ssh-add <(echo "$STAGING_SSH_PRIVATE_KEY")
+    - ssh-add <(echo "$SSH_PRIVATE_KEY")
     - mkdir -p ~/.ssh
     - echo "$STAGING_SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
     - echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER $CI_REGISTRY --password-stdin
@@ -120,7 +117,7 @@ deploy-prod:
     DOCKER_HOST: "ssh://$SERVER_USER@$PROD_SERVER_IP"
   before_script:
     - eval $(ssh-agent -s)
-    - ssh-add <(echo "$PROD_SSH_PRIVATE_KEY")
+    - ssh-add <(echo "$SSH_PRIVATE_KEY")
     - mkdir -p ~/.ssh
     - echo "$PROD_SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
     - echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER $CI_REGISTRY --password-stdin
