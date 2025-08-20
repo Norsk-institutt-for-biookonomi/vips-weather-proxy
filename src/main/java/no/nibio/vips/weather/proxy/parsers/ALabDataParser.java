@@ -31,10 +31,19 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.TimeZone;
-import org.dom4j.Document;
-import org.dom4j.DocumentException;
-import org.dom4j.Node;
-import org.dom4j.io.SAXReader;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.xpath.XPath;
+import javax.xml.xpath.XPathConstants;
+import javax.xml.xpath.XPathExpressionException;
+import javax.xml.xpath.XPathFactory;
+
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
+
 import no.nibio.vips.entity.WeatherObservation;
 import no.nibio.vips.util.InvalidAggregationTypeException;
 import no.nibio.vips.util.WeatherObservationListException;
@@ -81,24 +90,35 @@ public class ALabDataParser {
         Map<String, List<WeatherObservation>> serialized = new HashMap<>();
         try {
             URL aLabURL = new URL(MessageFormat.format(ALabDataParser.ALAB_URL_TEMPLATE, stationID,userName,password,from,to));
-            Document doc = this.getDocument(aLabURL);
+
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            org.w3c.dom.Document doc = builder.parse(aLabURL.openStream());
+
+
+            XPathFactory xPathFactory = XPathFactory.newInstance();
+            XPath xpath = xPathFactory.newXPath();
+
             
             // Get all measurements at 15 min intervals
             // Must aggregate afterwards
-            List<Node> list = doc.selectNodes("//Measurement");
-            
-            for(Node node:list)
-            {
-                Date timeMeasured = timeParseFormat.parse(node.valueOf("@Time"));
-                List<Node> valueNodes = node.selectNodes("Value");
-                for(Node valueNode : valueNodes)
+            //List<Node> list = doc.selectNodes("//Measurement");
+            NodeList measurements = (NodeList) xpath.evaluate("//Measurement", doc, XPathConstants.NODESET);
+
+            for (int i = 0; i < measurements.getLength(); i++) {
+                Element measurement = (Element) measurements.item(i);
+                Date timeMeasured = timeParseFormat.parse(measurement.getAttribute("Time"));
+
+                NodeList valueNodes = measurement.getElementsByTagName("Value");
+                for(int j = 0; j < valueNodes.getLength(); j++) 
                 {
+                    Element valueNode = (Element) valueNodes.item(j);
                     WeatherObservation obs = new WeatherObservation();
                     obs.setTimeMeasured(timeMeasured);
-                    obs.setElementMeasurementTypeId(ALabDataParser.parameters.get(valueNode.valueOf("@Type")));
+                    obs.setElementMeasurementTypeId(ALabDataParser.parameters.get(valueNode.getAttribute("Type")));
                     // Set logInterval to 15min
                     obs.setLogIntervalId(WeatherObservation.LOG_INTERVAL_ID_15M);
-                    obs.setValue(Double.valueOf(valueNode.getText()));
+                    obs.setValue(Double.valueOf(valueNode.getTextContent()));
                     
                     if(!serialized.containsKey(obs.getElementMeasurementTypeId()))
                     {
@@ -110,7 +130,7 @@ public class ALabDataParser {
                 //System.out.println(timeMeasured);
             }
         }
-        catch(IOException | DocumentException | ParseException ex)
+        catch(IOException | XPathExpressionException | ParserConfigurationException | ParseException | SAXException ex)
         {
             throw new ParseWeatherDataException(ex.getMessage());
         }
@@ -178,20 +198,4 @@ public class ALabDataParser {
 
     }
     
-    private Document getDocument(URL url) throws IOException, DocumentException
-    {
-        //System.out.println("URL=" + url.toString());
-        /*BufferedReader in = new BufferedReader(
-        new InputStreamReader(url.openStream()));
-
-        String inputLine;
-        while ((inputLine = in.readLine()) != null)
-        {
-            System.out.println(inputLine);
-        }*/
-        
-        Document doc = new SAXReader().read(url);
-        return doc;
-        
-    }
 }
