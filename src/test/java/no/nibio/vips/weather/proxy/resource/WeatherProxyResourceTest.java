@@ -58,7 +58,7 @@ public class WeatherProxyResourceTest {
         .body("$.size()", not(0));
     }
 
-    /* 
+    
     @Test
     public void testFMIForecasts()
     {
@@ -66,7 +66,7 @@ public class WeatherProxyResourceTest {
         .get("forecasts/fmi?longitude=22.35&latitude=61.25&altitude=0")
         .then().statusCode(OK.getStatusCode())
         .body("$.size()", not(0));
-    }*/
+    }
 
     @Test
     public void testOpenMeteo()

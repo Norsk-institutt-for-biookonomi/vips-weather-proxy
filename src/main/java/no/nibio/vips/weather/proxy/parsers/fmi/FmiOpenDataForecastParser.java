@@ -69,7 +69,7 @@ public class FmiOpenDataForecastParser {
 
             // Run through each timestamp
             for (int i = 0; i < positionsAndTimeStamps.length; i++) {
-                if (positionsAndTimeStamps[i].trim().isBlank() || valueLines[i].contains("NaN")) {
+                if (positionsAndTimeStamps[i].trim().isBlank()) {
                     continue;
                 }
 
@@ -103,7 +103,12 @@ public class FmiOpenDataForecastParser {
                             continue;
                     }
 
-                    o.setValue(Double.valueOf(rawValues[j]));
+                    
+                    if(!rawValues[j].trim().toLowerCase().equals("nan"))
+                    {
+                        o.setValue(Double.valueOf(rawValues[j]));
+                    }
+                                        
                     o.setLogIntervalId(WeatherObservation.LOG_INTERVAL_ID_1H);
                     o.setTimeMeasured(Date.from(
                         Instant.ofEpochSecond(Long.valueOf(positionsAndTimeStamps[i].trim().split("\\s+")[2]))));

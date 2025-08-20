@@ -144,6 +144,7 @@ public class FmiOpenDataAccess {
                 latitude, longitude,
                 UTCTodayAtMidnight.format(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ssX"))
             );
+            //System.out.println(formattedUrl);
             return new Scanner(new URL(formattedUrl).openStream(), "UTF-8").useDelimiter("\\A").next();
 
         } catch (IOException ex) {
