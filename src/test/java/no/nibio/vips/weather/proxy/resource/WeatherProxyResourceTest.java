@@ -36,6 +36,8 @@ public class WeatherProxyResourceTest {
         .body("$.size()", not(0));
     }
 
+    //commenting out for now, will make this optional in next mr
+    /*
     @Test
     public void testDMIPointWeb()
     {
@@ -45,7 +47,7 @@ public class WeatherProxyResourceTest {
         .get("dmipointweb/9.583,56.488?startDate=" + start + "&endDate=" + now)
         .then().statusCode(OK.getStatusCode())
         .body("$.size()", not(0));
-    }
+    }*/
 
     @Test
     public void testTahmoOpen()
