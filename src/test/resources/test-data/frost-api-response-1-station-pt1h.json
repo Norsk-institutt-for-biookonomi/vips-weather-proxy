@@ -1,0 +1,3363 @@
+{
+  "data": {
+    "tstype": "met.no/kvkafka",
+    "tseries": [
+      {
+        "header": {
+          "id": {
+            "level": 2,
+            "parametercode": "DD",
+            "parameterid": 61,
+            "sensor": 0,
+            "stationid": 58070,
+            "stationtype": "nationalnummer",
+            "typeid": 501
+          },
+          "extra": {
+            "element": {
+              "description": "Mean wind direction over the last ten minutes before the observation time. Wind direction is defined as the direction from which the wind blows and is registered in degrees, where 360 degrees is north and 90 degrees is east. ",
+              "id": "wind_from_direction",
+              "name": "Wind direction",
+              "unit": "degrees"
+            },
+            "station": {
+              "location": [
+                {
+                  "from": "1957-06-01T00:00:00Z",
+                  "to": "2017-12-31T00:00:00Z",
+                  "value": {
+                    "elevation(masl/hs)": "51",
+                    "latitude": "61.788000",
+                    "longitude": "6.183700"
+                  }
+                },
+                {
+                  "from": "2017-12-31T00:00:00Z",
+                  "to": "9999-01-01T00:00:00Z",
+                  "value": {
+                    "elevation(masl/hs)": "51",
+                    "latitude": "61.787300",
+                    "longitude": "6.183500"
+                  }
+                }
+              ],
+              "shortname": "Sandane"
+            },
+            "timeseries": {
+              "geometry": {
+                "level": {
+                  "unit": "m",
+                  "value": "2"
+                }
+              },
+              "quality": {
+                "exposure": [
+                  {
+                    "from": "2020-11-02T08:00:00Z",
+                    "to": "9999-01-01T00:00:00Z",
+                    "value": "unknown"
+                  }
+                ],
+                "performance": [
+                  {
+                    "from": "2020-11-02T08:00:00Z",
+                    "to": "9999-01-01T00:00:00Z",
+                    "value": "unknown"
+                  }
+                ]
+              },
+              "timeoffset": "PT0H",
+              "timeresolution": "PT1H"
+            }
+          },
+          "available": {
+            "from": "2020-11-02T08:00:00Z"
+          }
+        },
+        "observations": [
+          {
+            "time": "2025-10-02T00:00:00Z",
+            "body": {
+              "qualitycode": "2",
+              "value": "107"
+            }
+          }
+        ]
+      },
+      {
+        "header": {
+          "id": {
+            "level": 0,
+            "parametercode": "TAN",
+            "parameterid": 213,
+            "sensor": 0,
+            "stationid": 58070,
+            "stationtype": "nationalnummer",
+            "typeid": 501
+          },
+          "extra": {
+            "element": {
+              "description": "Lowest recorded air temperature per hour",
+              "id": "min(air_temperature PT1H)",
+              "name": "Minimum air temperature (1 h)",
+              "unit": "degC"
+            },
+            "station": {
+              "location": [
+                {
+                  "from": "1957-06-01T00:00:00Z",
+                  "to": "2017-12-31T00:00:00Z",
+                  "value": {
+                    "elevation(masl/hs)": "51",
+                    "latitude": "61.788000",
+                    "longitude": "6.183700"
+                  }
+                },
+                {
+                  "from": "2017-12-31T00:00:00Z",
+                  "to": "9999-01-01T00:00:00Z",
+                  "value": {
+                    "elevation(masl/hs)": "51",
+                    "latitude": "61.787300",
+                    "longitude": "6.183500"
+                  }
+                }
+              ],
+              "shortname": "Sandane"
+            },
+            "timeseries": {
+              "geometry": {
+                "level": {
+                  "unit": "m",
+                  "value": "2"
+                }
+              },
+              "quality": {
+                "exposure": [
+                  {
+                    "from": "2020-04-25T00:00:00Z",
+                    "to": "9999-01-01T00:00:00Z",
+                    "value": "1"
+                  }
+                ],
+                "performance": [
+                  {
+                    "from": "2020-10-30T01:00:00Z",
+                    "to": "9999-01-01T00:00:00Z",
+                    "value": "unknown"
+                  }
+                ]
+              },
+              "timeoffset": "PT0H",
+              "timeresolution": "PT1H"
+            }
+          },
+          "available": {
+            "from": "2020-10-30T01:00:00Z"
+          }
+        },
+        "observations": [
+          {
+            "time": "2025-10-02T00:00:00Z",
+            "body": {
+              "qualitycode": "0",
+              "value": "13.8999996"
+            }
+          }
+        ]
+      },
+      {
+        "header": {
+          "id": {
+            "level": 0,
+            "parametercode": "DD",
+            "parameterid": 61,
+            "sensor": 0,
+            "stationid": 58070,
+            "stationtype": "nationalnummer",
+            "typeid": 501
+          },
+          "extra": {
+            "element": {
+              "description": "Mean wind direction over the last ten minutes before the observation time. Wind direction is defined as the direction from which the wind blows and is registered in degrees, where 360 degrees is north and 90 degrees is east. ",
+              "id": "wind_from_direction",
+              "name": "Wind direction",
+              "unit": "degrees"
+            },
+            "station": {
+              "location": [
+                {
+                  "from": "1957-06-01T00:00:00Z",
+                  "to": "2017-12-31T00:00:00Z",
+                  "value": {
+                    "elevation(masl/hs)": "51",
+                    "latitude": "61.788000",
+                    "longitude": "6.183700"
+                  }
+                },
+                {
+                  "from": "2017-12-31T00:00:00Z",
+                  "to": "9999-01-01T00:00:00Z",
+                  "value": {
+                    "elevation(masl/hs)": "51",
+                    "latitude": "61.787300",
+                    "longitude": "6.183500"
+                  }
+                }
+              ],
+              "shortname": "Sandane"
+            },
+            "timeseries": {
+              "geometry": {
+                "level": {
+                  "unit": "m",
+                  "value": "10"
+                }
+              },
+              "quality": {
+                "exposure": [
+                  {
+                    "from": "2020-10-30T01:00:00Z",
+                    "to": "9999-01-01T00:00:00Z",
+                    "value": "unknown"
+                  }
+                ],
+                "performance": [
+                  {
+                    "from": "2020-10-30T01:00:00Z",
+                    "to": "9999-01-01T00:00:00Z",
+                    "value": "unknown"
+                  }
+                ]
+              },
+              "timeoffset": "PT0H",
+              "timeresolution": "PT1H"
+            }
+          },
+          "available": {
+            "from": "2020-10-30T01:00:00Z"
+          }
+        },
+        "observations": [
+          {
+            "time": "2025-10-02T00:00:00Z",
+            "body": {
+              "qualitycode": "0",
+              "value": "107"
+            }
+          }
+        ]
+      },
+      {
+        "header": {
+          "id": {
+            "level": 100,
+            "parametercode": "TJ",
+            "parameterid": 226,
+            "sensor": 0,
+            "stationid": 58070,
+            "stationtype": "nationalnummer",
+            "typeid": 501
+          },
+          "extra": {
+            "element": {
+              "description": "Soil temperature at given depth (default 10 cm)",
+              "id": "soil_temperature",
+              "name": "Soil temperature",
+              "unit": "degC"
+            },
+            "station": {
+              "location": [
+                {
+                  "from": "1957-06-01T00:00:00Z",
+                  "to": "2017-12-31T00:00:00Z",
+                  "value": {
+                    "elevation(masl/hs)": "51",
+                    "latitude": "61.788000",
+                    "longitude": "6.183700"
+                  }
+                },
+                {
+                  "from": "2017-12-31T00:00:00Z",
+                  "to": "9999-01-01T00:00:00Z",
+                  "value": {
+                    "elevation(masl/hs)": "51",
+                    "latitude": "61.787300",
+                    "longitude": "6.183500"
+                  }
+                }
+              ],
+              "shortname": "Sandane"
+            },
+            "timeseries": {
+              "geometry": {
+                "level": {
+                  "unit": "cm",
+                  "value": "100"
+                }
+              },
+              "quality": {
+                "exposure": [
+                  {
+                    "from": "2020-11-02T08:00:00Z",
+                    "to": "9999-01-01T00:00:00Z",
+                    "value": "unknown"
+                  }
+                ],
+                "performance": [
+                  {
+                    "from": "2020-11-02T08:00:00Z",
+                    "to": "9999-01-01T00:00:00Z",
+                    "value": "unknown"
+                  }
+                ]
+              },
+              "timeoffset": "PT0H",
+              "timeresolution": "PT1H"
+            }
+          },
+          "available": {
+            "from": "2020-11-02T08:00:00Z"
+          }
+        },
+        "observations": [
+          {
+            "time": "2025-10-02T00:00:00Z",
+            "body": {
+              "qualitycode": "0",
+              "value": "11.6099997"
+            }
+          }
+        ]
+      },
+      {
+        "header": {
+          "id": {
+            "level": 0,
+            "parametercode": "SA",
+            "parameterid": 112,
+            "sensor": 0,
+            "stationid": 58070,
+            "stationtype": "nationalnummer",
+            "typeid": 501
+          },
+          "extra": {
+            "element": {
+              "description": "The depth of the snow is measured in cm from the ground to the top of the snow cover. (Code=-1 means no snow and can be presented as .)",
+              "id": "surface_snow_thickness",
+              "name": "Snow depth",
+              "unit": "cm"
+            },
+            "station": {
+              "location": [
+                {
+                  "from": "1957-06-01T00:00:00Z",
+                  "to": "2017-12-31T00:00:00Z",
+                  "value": {
+                    "elevation(masl/hs)": "51",
+                    "latitude": "61.788000",
+                    "longitude": "6.183700"
+                  }
+                },
+                {
+                  "from": "2017-12-31T00:00:00Z",
+                  "to": "9999-01-01T00:00:00Z",
+                  "value": {
+                    "elevation(masl/hs)": "51",
+                    "latitude": "61.787300",
+                    "longitude": "6.183500"
+                  }
+                }
+              ],
+              "shortname": "Sandane"
+            },
+            "timeseries": {
+              "geometry": {
+                "level": {
+                  "value": "0"
+                }
+              },
+              "quality": {
+                "exposure": [
+                  {
+                    "from": "2020-10-30T01:00:00Z",
+                    "to": "9999-01-01T00:00:00Z",
+                    "value": "unknown"
+                  }
+                ],
+                "performance": [
+                  {
+                    "from": "2020-10-30T01:00:00Z",
+                    "to": "9999-01-01T00:00:00Z",
+                    "value": "unknown"
+                  }
+                ]
+              },
+              "timeoffset": "PT0H",
+              "timeresolution": "PT1H"
+            }
+          },
+          "available": {
+            "from": "2020-10-30T01:00:00Z"
+          }
+        },
+        "observations": [
+          {
+            "time": "2025-10-02T00:00:00Z",
+            "body": {
+              "qualitycode": "1",
+              "value": "-1"
+            }
+          }
+        ]
+      },
+      {
+        "header": {
+          "id": {
+            "level": 5,
+            "parametercode": "TJ",
+            "parameterid": 226,
+            "sensor": 0,
+            "stationid": 58070,
+            "stationtype": "nationalnummer",
+            "typeid": 501
+          },
+          "extra": {
+            "element": {
+              "description": "Soil temperature at given depth (default 10 cm)",
+              "id": "soil_temperature",
+              "name": "Soil temperature",
+              "unit": "degC"
+            },
+            "station": {
+              "location": [
+                {
+                  "from": "1957-06-01T00:00:00Z",
+                  "to": "2017-12-31T00:00:00Z",
+                  "value": {
+                    "elevation(masl/hs)": "51",
+                    "latitude": "61.788000",
+                    "longitude": "6.183700"
+                  }
+                },
+                {
+                  "from": "2017-12-31T00:00:00Z",
+                  "to": "9999-01-01T00:00:00Z",
+                  "value": {
+                    "elevation(masl/hs)": "51",
+                    "latitude": "61.787300",
+                    "longitude": "6.183500"
+                  }
+                }
+              ],
+              "shortname": "Sandane"
+            },
+            "timeseries": {
+              "geometry": {
+                "level": {
+                  "unit": "cm",
+                  "value": "5"
+                }
+              },
+              "quality": {
+                "exposure": [
+                  {
+                    "from": "2020-11-02T08:00:00Z",
+                    "to": "9999-01-01T00:00:00Z",
+                    "value": "unknown"
+                  }
+                ],
+                "performance": [
+                  {
+                    "from": "2020-11-02T08:00:00Z",
+                    "to": "9999-01-01T00:00:00Z",
+                    "value": "unknown"
+                  }
+                ]
+              },
+              "timeoffset": "PT0H",
+              "timeresolution": "PT1H"
+            }
+          },
+          "available": {
+            "from": "2020-11-02T08:00:00Z"
+          }
+        },
+        "observations": [
+          {
+            "time": "2025-10-02T00:00:00Z",
+            "body": {
+              "qualitycode": "0",
+              "value": "11.29"
+            }
+          }
+        ]
+      },
+      {
+        "header": {
+          "id": {
+            "level": 5,
+            "parametercode": "SW",
+            "parameterid": 340,
+            "sensor": 0,
+            "stationid": 58070,
+            "stationtype": "nationalnummer",
+            "typeid": 501
+          },
+          "extra": {
+            "element": {
+              "description": "Soil moisture content at different depths (default 10 cm)",
+              "id": "volume_fraction_of_water_in_soil",
+              "name": "Soil moisture ",
+              "unit": "1/100"
+            },
+            "station": {
+              "location": [
+                {
+                  "from": "1957-06-01T00:00:00Z",
+                  "to": "2017-12-31T00:00:00Z",
+                  "value": {
+                    "elevation(masl/hs)": "51",
+                    "latitude": "61.788000",
+                    "longitude": "6.183700"
+                  }
+                },
+                {
+                  "from": "2017-12-31T00:00:00Z",
+                  "to": "9999-01-01T00:00:00Z",
+                  "value": {
+                    "elevation(masl/hs)": "51",
+                    "latitude": "61.787300",
+                    "longitude": "6.183500"
+                  }
+                }
+              ],
+              "shortname": "Sandane"
+            },
+            "timeseries": {
+              "geometry": {
+                "level": {
+                  "unit": "cm",
+                  "value": "5"
+                }
+              },
+              "quality": {
+                "exposure": [
+                  {
+                    "from": "2020-11-02T08:00:00Z",
+                    "to": "9999-01-01T00:00:00Z",
+                    "value": "unknown"
+                  }
+                ],
+                "performance": [
+                  {
+                    "from": "2020-11-02T08:00:00Z",
+                    "to": "9999-01-01T00:00:00Z",
+                    "value": "unknown"
+                  }
+                ]
+              },
+              "timeoffset": "PT0H",
+              "timeresolution": "PT1H"
+            }
+          },
+          "available": {
+            "from": "2020-11-02T08:00:00Z"
+          }
+        },
+        "observations": [
+          {
+            "time": "2025-10-02T00:00:00Z",
+            "body": {
+              "qualitycode": "0",
+              "value": "31.4395008"
+            }
+          }
+        ]
+      },
+      {
+        "header": {
+          "id": {
+            "level": 40,
+            "parametercode": "SW",
+            "parameterid": 340,
+            "sensor": 0,
+            "stationid": 58070,
+            "stationtype": "nationalnummer",
+            "typeid": 501
+          },
+          "extra": {
+            "element": {
+              "description": "Soil moisture content at different depths (default 10 cm)",
+              "id": "volume_fraction_of_water_in_soil",
+              "name": "Soil moisture ",
+              "unit": "1/100"
+            },
+            "station": {
+              "location": [
+                {
+                  "from": "1957-06-01T00:00:00Z",
+                  "to": "2017-12-31T00:00:00Z",
+                  "value": {
+                    "elevation(masl/hs)": "51",
+                    "latitude": "61.788000",
+                    "longitude": "6.183700"
+                  }
+                },
+                {
+                  "from": "2017-12-31T00:00:00Z",
+                  "to": "9999-01-01T00:00:00Z",
+                  "value": {
+                    "elevation(masl/hs)": "51",
+                    "latitude": "61.787300",
+                    "longitude": "6.183500"
+                  }
+                }
+              ],
+              "shortname": "Sandane"
+            },
+            "timeseries": {
+              "geometry": {
+                "level": {
+                  "unit": "cm",
+                  "value": "40"
+                }
+              },
+              "quality": {
+                "exposure": [
+                  {
+                    "from": "2020-11-02T08:00:00Z",
+                    "to": "9999-01-01T00:00:00Z",
+                    "value": "unknown"
+                  }
+                ],
+                "performance": [
+                  {
+                    "from": "2020-11-02T08:00:00Z",
+                    "to": "9999-01-01T00:00:00Z",
+                    "value": "unknown"
+                  }
+                ]
+              },
+              "timeoffset": "PT0H",
+              "timeresolution": "PT1H"
+            }
+          },
+          "available": {
+            "from": "2020-11-02T08:00:00Z"
+          }
+        },
+        "observations": [
+          {
+            "time": "2025-10-02T00:00:00Z",
+            "body": {
+              "qualitycode": "0",
+              "value": "0"
+            }
+          }
+        ]
+      },
+      {
+        "header": {
+          "id": {
+            "level": 2,
+            "parametercode": "FF",
+            "parameterid": 81,
+            "sensor": 0,
+            "stationid": 58070,
+            "stationtype": "nationalnummer",
+            "typeid": 501
+          },
+          "extra": {
+            "element": {
+              "description": "Mean wind speed is registered as a mean value of the wind speed over the last ten minutes before the observation time. (default: 10 meters above ground, some stations have measurements at 2 meters)",
+              "id": "wind_speed",
+              "name": "Mean wind speed",
+              "unit": "m/s"
+            },
+            "station": {
+              "location": [
+                {
+                  "from": "1957-06-01T00:00:00Z",
+                  "to": "2017-12-31T00:00:00Z",
+                  "value": {
+                    "elevation(masl/hs)": "51",
+                    "latitude": "61.788000",
+                    "longitude": "6.183700"
+                  }
+                },
+                {
+                  "from": "2017-12-31T00:00:00Z",
+                  "to": "9999-01-01T00:00:00Z",
+                  "value": {
+                    "elevation(masl/hs)": "51",
+                    "latitude": "61.787300",
+                    "longitude": "6.183500"
+                  }
+                }
+              ],
+              "shortname": "Sandane"
+            },
+            "timeseries": {
+              "geometry": {
+                "level": {
+                  "unit": "m",
+                  "value": "2"
+                }
+              },
+              "quality": {
+                "exposure": [
+                  {
+                    "from": "2020-11-02T08:00:00Z",
+                    "to": "9999-01-01T00:00:00Z",
+                    "value": "unknown"
+                  }
+                ],
+                "performance": [
+                  {
+                    "from": "2020-11-02T08:00:00Z",
+                    "to": "9999-01-01T00:00:00Z",
+                    "value": "unknown"
+                  }
+                ]
+              },
+              "timeoffset": "PT0H",
+              "timeresolution": "PT1H"
+            }
+          },
+          "available": {
+            "from": "2020-11-02T08:00:00Z"
+          }
+        },
+        "observations": [
+          {
+            "time": "2025-10-02T00:00:00Z",
+            "body": {
+              "qualitycode": "2",
+              "value": "1.39999998"
+            }
+          }
+        ]
+      },
+      {
+        "header": {
+          "id": {
+            "level": 0,
+            "parametercode": "TAX",
+            "parameterid": 215,
+            "sensor": 0,
+            "stationid": 58070,
+            "stationtype": "nationalnummer",
+            "typeid": 501
+          },
+          "extra": {
+            "element": {
+              "description": "Highest recorded air temperature per hour",
+              "id": "max(air_temperature PT1H)",
+              "name": "Maximum air temperature (1 h)",
+              "unit": "degC"
+            },
+            "station": {
+              "location": [
+                {
+                  "from": "1957-06-01T00:00:00Z",
+                  "to": "2017-12-31T00:00:00Z",
+                  "value": {
+                    "elevation(masl/hs)": "51",
+                    "latitude": "61.788000",
+                    "longitude": "6.183700"
+                  }
+                },
+                {
+                  "from": "2017-12-31T00:00:00Z",
+                  "to": "9999-01-01T00:00:00Z",
+                  "value": {
+                    "elevation(masl/hs)": "51",
+                    "latitude": "61.787300",
+                    "longitude": "6.183500"
+                  }
+                }
+              ],
+              "shortname": "Sandane"
+            },
+            "timeseries": {
+              "geometry": {
+                "level": {
+                  "unit": "m",
+                  "value": "2"
+                }
+              },
+              "quality": {
+                "exposure": [
+                  {
+                    "from": "2020-04-25T00:00:00Z",
+                    "to": "9999-01-01T00:00:00Z",
+                    "value": "1"
+                  }
+                ],
+                "performance": [
+                  {
+                    "from": "2020-10-30T01:00:00Z",
+                    "to": "9999-01-01T00:00:00Z",
+                    "value": "unknown"
+                  }
+                ]
+              },
+              "timeoffset": "PT0H",
+              "timeresolution": "PT1H"
+            }
+          },
+          "available": {
+            "from": "2020-10-30T01:00:00Z"
+          }
+        },
+        "observations": [
+          {
+            "time": "2025-10-02T00:00:00Z",
+            "body": {
+              "qualitycode": "0",
+              "value": "14.5"
+            }
+          }
+        ]
+      },
+      {
+        "header": {
+          "id": {
+            "level": 50,
+            "parametercode": "TJ",
+            "parameterid": 226,
+            "sensor": 0,
+            "stationid": 58070,
+            "stationtype": "nationalnummer",
+            "typeid": 501
+          },
+          "extra": {
+            "element": {
+              "description": "Soil temperature at given depth (default 10 cm)",
+              "id": "soil_temperature",
+              "name": "Soil temperature",
+              "unit": "degC"
+            },
+            "station": {
+              "location": [
+                {
+                  "from": "1957-06-01T00:00:00Z",
+                  "to": "2017-12-31T00:00:00Z",
+                  "value": {
+                    "elevation(masl/hs)": "51",
+                    "latitude": "61.788000",
+                    "longitude": "6.183700"
+                  }
+                },
+                {
+                  "from": "2017-12-31T00:00:00Z",
+                  "to": "9999-01-01T00:00:00Z",
+                  "value": {
+                    "elevation(masl/hs)": "51",
+                    "latitude": "61.787300",
+                    "longitude": "6.183500"
+                  }
+                }
+              ],
+              "shortname": "Sandane"
+            },
+            "timeseries": {
+              "geometry": {
+                "level": {
+                  "unit": "cm",
+                  "value": "50"
+                }
+              },
+              "quality": {
+                "exposure": [
+                  {
+                    "from": "2020-11-02T08:00:00Z",
+                    "to": "9999-01-01T00:00:00Z",
+                    "value": "unknown"
+                  }
+                ],
+                "performance": [
+                  {
+                    "from": "2020-11-02T08:00:00Z",
+                    "to": "9999-01-01T00:00:00Z",
+                    "value": "unknown"
+                  }
+                ]
+              },
+              "timeoffset": "PT0H",
+              "timeresolution": "PT1H"
+            }
+          },
+          "available": {
+            "from": "2020-11-02T08:00:00Z"
+          }
+        },
+        "observations": [
+          {
+            "time": "2025-10-02T00:00:00Z",
+            "body": {
+              "qualitycode": "0",
+              "value": "11.5799999"
+            }
+          }
+        ]
+      },
+      {
+        "header": {
+          "id": {
+            "level": 2,
+            "parametercode": "DX_1",
+            "parameterid": 73,
+            "sensor": 0,
+            "stationid": 58070,
+            "stationtype": "nationalnummer",
+            "typeid": 501
+          },
+          "extra": {
+            "element": {
+              "description": "Wind direction at maximum mean wind speed over the last hour",
+              "id": "max_wind_speed(wind_from_direction PT1H)",
+              "name": "Wind direction of maximum mean wind speed (1 h)",
+              "unit": "degrees"
+            },
+            "station": {
+              "location": [
+                {
+                  "from": "1957-06-01T00:00:00Z",
+                  "to": "2017-12-31T00:00:00Z",
+                  "value": {
+                    "elevation(masl/hs)": "51",
+                    "latitude": "61.788000",
+                    "longitude": "6.183700"
+                  }
+                },
+                {
+                  "from": "2017-12-31T00:00:00Z",
+                  "to": "9999-01-01T00:00:00Z",
+                  "value": {
+                    "elevation(masl/hs)": "51",
+                    "latitude": "61.787300",
+                    "longitude": "6.183500"
+                  }
+                }
+              ],
+              "shortname": "Sandane"
+            },
+            "timeseries": {
+              "geometry": {
+                "level": {
+                  "unit": "m",
+                  "value": "2"
+                }
+              },
+              "quality": {
+                "exposure": [
+                  {
+                    "from": "2020-11-02T08:00:00Z",
+                    "to": "9999-01-01T00:00:00Z",
+                    "value": "unknown"
+                  }
+                ],
+                "performance": [
+                  {
+                    "from": "2020-11-02T08:00:00Z",
+                    "to": "9999-01-01T00:00:00Z",
+                    "value": "unknown"
+                  }
+                ]
+              },
+              "timeoffset": "PT0H",
+              "timeresolution": "PT1H"
+            }
+          },
+          "available": {
+            "from": "2020-11-02T08:00:00Z"
+          }
+        },
+        "observations": [
+          {
+            "time": "2025-10-02T00:00:00Z",
+            "body": {
+              "qualitycode": "2",
+              "value": "88"
+            }
+          }
+        ]
+      },
+      {
+        "header": {
+          "id": {
+            "level": 0,
+            "parametercode": "BT",
+            "parameterid": 3,
+            "sensor": 0,
+            "stationid": 58070,
+            "stationtype": "nationalnummer",
+            "typeid": 501
+          },
+          "extra": {
+            "element": {
+              "description": "Number of minutes where leaf wetness have been measured during the last hour. Leaf wetness is the presence of free water on the surface of ancrop canopy.",
+              "id": "sum(duration_of_leaf_wetness PT1H)",
+              "name": "Leaf wetness duration",
+              "unit": "minutes"
+            },
+            "station": {
+              "location": [
+                {
+                  "from": "1957-06-01T00:00:00Z",
+                  "to": "2017-12-31T00:00:00Z",
+                  "value": {
+                    "elevation(masl/hs)": "51",
+                    "latitude": "61.788000",
+                    "longitude": "6.183700"
+                  }
+                },
+                {
+                  "from": "2017-12-31T00:00:00Z",
+                  "to": "9999-01-01T00:00:00Z",
+                  "value": {
+                    "elevation(masl/hs)": "51",
+                    "latitude": "61.787300",
+                    "longitude": "6.183500"
+                  }
+                }
+              ],
+              "shortname": "Sandane"
+            },
+            "timeseries": {
+              "geometry": {
+                "level": {
+                  "value": "200"
+                }
+              },
+              "quality": {
+                "exposure": [
+                  {
+                    "from": "2020-11-02T08:00:00Z",
+                    "to": "9999-01-01T00:00:00Z",
+                    "value": "unknown"
+                  }
+                ],
+                "performance": [
+                  {
+                    "from": "2020-11-02T08:00:00Z",
+                    "to": "9999-01-01T00:00:00Z",
+                    "value": "unknown"
+                  }
+                ]
+              },
+              "timeoffset": "PT0H",
+              "timeresolution": "PT1H"
+            }
+          },
+          "available": {
+            "from": "2020-11-02T08:00:00Z"
+          }
+        },
+        "observations": [
+          {
+            "time": "2025-10-02T00:00:00Z",
+            "body": {
+              "qualitycode": "0",
+              "value": "0"
+            }
+          }
+        ]
+      },
+      {
+        "header": {
+          "id": {
+            "level": 0,
+            "parametercode": "TAM",
+            "parameterid": 212,
+            "sensor": 0,
+            "stationid": 58070,
+            "stationtype": "nationalnummer",
+            "typeid": 501
+          },
+          "extra": {
+            "element": {
+              "description": "Hourly mean temperature. The mean is an arithmetic mean of minute values.",
+              "id": "mean(air_temperature PT1H)",
+              "name": "Mean air temperature (1 h)",
+              "unit": "degC"
+            },
+            "station": {
+              "location": [
+                {
+                  "from": "1957-06-01T00:00:00Z",
+                  "to": "2017-12-31T00:00:00Z",
+                  "value": {
+                    "elevation(masl/hs)": "51",
+                    "latitude": "61.788000",
+                    "longitude": "6.183700"
+                  }
+                },
+                {
+                  "from": "2017-12-31T00:00:00Z",
+                  "to": "9999-01-01T00:00:00Z",
+                  "value": {
+                    "elevation(masl/hs)": "51",
+                    "latitude": "61.787300",
+                    "longitude": "6.183500"
+                  }
+                }
+              ],
+              "shortname": "Sandane"
+            },
+            "timeseries": {
+              "geometry": {
+                "level": {
+                  "unit": "m",
+                  "value": "2"
+                }
+              },
+              "quality": {
+                "exposure": [
+                  {
+                    "from": "2020-04-25T00:00:00Z",
+                    "to": "9999-01-01T00:00:00Z",
+                    "value": "1"
+                  }
+                ],
+                "performance": [
+                  {
+                    "from": "2021-04-09T09:00:00Z",
+                    "to": "9999-01-01T00:00:00Z",
+                    "value": "unknown"
+                  }
+                ]
+              },
+              "timeoffset": "PT0H",
+              "timeresolution": "PT1H"
+            }
+          },
+          "available": {
+            "from": "2021-04-09T09:00:00Z"
+          }
+        },
+        "observations": [
+          {
+            "time": "2025-10-02T00:00:00Z",
+            "body": {
+              "qualitycode": "0",
+              "value": "14.1499996"
+            }
+          }
+        ]
+      },
+      {
+        "header": {
+          "id": {
+            "level": 40,
+            "parametercode": "TJ",
+            "parameterid": 226,
+            "sensor": 0,
+            "stationid": 58070,
+            "stationtype": "nationalnummer",
+            "typeid": 501
+          },
+          "extra": {
+            "element": {
+              "description": "Soil temperature at given depth (default 10 cm)",
+              "id": "soil_temperature",
+              "name": "Soil temperature",
+              "unit": "degC"
+            },
+            "station": {
+              "location": [
+                {
+                  "from": "1957-06-01T00:00:00Z",
+                  "to": "2017-12-31T00:00:00Z",
+                  "value": {
+                    "elevation(masl/hs)": "51",
+                    "latitude": "61.788000",
+                    "longitude": "6.183700"
+                  }
+                },
+                {
+                  "from": "2017-12-31T00:00:00Z",
+                  "to": "9999-01-01T00:00:00Z",
+                  "value": {
+                    "elevation(masl/hs)": "51",
+                    "latitude": "61.787300",
+                    "longitude": "6.183500"
+                  }
+                }
+              ],
+              "shortname": "Sandane"
+            },
+            "timeseries": {
+              "geometry": {
+                "level": {
+                  "unit": "cm",
+                  "value": "40"
+                }
+              },
+              "quality": {
+                "exposure": [
+                  {
+                    "from": "2020-11-02T08:00:00Z",
+                    "to": "9999-01-01T00:00:00Z",
+                    "value": "unknown"
+                  }
+                ],
+                "performance": [
+                  {
+                    "from": "2020-11-02T08:00:00Z",
+                    "to": "9999-01-01T00:00:00Z",
+                    "value": "unknown"
+                  }
+                ]
+              },
+              "timeoffset": "PT0H",
+              "timeresolution": "PT1H"
+            }
+          },
+          "available": {
+            "from": "2020-11-02T08:00:00Z"
+          }
+        },
+        "observations": [
+          {
+            "time": "2025-10-02T00:00:00Z",
+            "body": {
+              "qualitycode": "2",
+              "value": "11.4300003"
+            }
+          }
+        ]
+      },
+      {
+        "header": {
+          "id": {
+            "level": 2,
+            "parametercode": "FX_1",
+            "parameterid": 87,
+            "sensor": 0,
+            "stationid": 58070,
+            "stationtype": "nationalnummer",
+            "typeid": 501
+          },
+          "extra": {
+            "element": {
+              "description": "Hourly maximum mean wind speed",
+              "id": "max(wind_speed PT1H)",
+              "name": "Maximum mean wind speed (1 h)",
+              "unit": "m/s"
+            },
+            "station": {
+              "location": [
+                {
+                  "from": "1957-06-01T00:00:00Z",
+                  "to": "2017-12-31T00:00:00Z",
+                  "value": {
+                    "elevation(masl/hs)": "51",
+                    "latitude": "61.788000",
+                    "longitude": "6.183700"
+                  }
+                },
+                {
+                  "from": "2017-12-31T00:00:00Z",
+                  "to": "9999-01-01T00:00:00Z",
+                  "value": {
+                    "elevation(masl/hs)": "51",
+                    "latitude": "61.787300",
+                    "longitude": "6.183500"
+                  }
+                }
+              ],
+              "shortname": "Sandane"
+            },
+            "timeseries": {
+              "geometry": {
+                "level": {
+                  "unit": "m",
+                  "value": "2"
+                }
+              },
+              "quality": {
+                "exposure": [
+                  {
+                    "from": "2020-11-02T08:00:00Z",
+                    "to": "9999-01-01T00:00:00Z",
+                    "value": "unknown"
+                  }
+                ],
+                "performance": [
+                  {
+                    "from": "2020-11-02T08:00:00Z",
+                    "to": "9999-01-01T00:00:00Z",
+                    "value": "unknown"
+                  }
+                ]
+              },
+              "timeoffset": "PT0H",
+              "timeresolution": "PT1H"
+            }
+          },
+          "available": {
+            "from": "2020-11-02T08:00:00Z"
+          }
+        },
+        "observations": [
+          {
+            "time": "2025-10-02T00:00:00Z",
+            "body": {
+              "qualitycode": "2",
+              "value": "1.5"
+            }
+          }
+        ]
+      },
+      {
+        "header": {
+          "id": {
+            "level": 0,
+            "parametercode": "FF",
+            "parameterid": 81,
+            "sensor": 0,
+            "stationid": 58070,
+            "stationtype": "nationalnummer",
+            "typeid": 501
+          },
+          "extra": {
+            "element": {
+              "description": "Mean wind speed is registered as a mean value of the wind speed over the last ten minutes before the observation time. (default: 10 meters above ground, some stations have measurements at 2 meters)",
+              "id": "wind_speed",
+              "name": "Mean wind speed",
+              "unit": "m/s"
+            },
+            "station": {
+              "location": [
+                {
+                  "from": "1957-06-01T00:00:00Z",
+                  "to": "2017-12-31T00:00:00Z",
+                  "value": {
+                    "elevation(masl/hs)": "51",
+                    "latitude": "61.788000",
+                    "longitude": "6.183700"
+                  }
+                },
+                {
+                  "from": "2017-12-31T00:00:00Z",
+                  "to": "9999-01-01T00:00:00Z",
+                  "value": {
+                    "elevation(masl/hs)": "51",
+                    "latitude": "61.787300",
+                    "longitude": "6.183500"
+                  }
+                }
+              ],
+              "shortname": "Sandane"
+            },
+            "timeseries": {
+              "geometry": {
+                "level": {
+                  "unit": "m",
+                  "value": "10"
+                }
+              },
+              "quality": {
+                "exposure": [
+                  {
+                    "from": "2020-10-30T01:00:00Z",
+                    "to": "9999-01-01T00:00:00Z",
+                    "value": "unknown"
+                  }
+                ],
+                "performance": [
+                  {
+                    "from": "2020-10-30T01:00:00Z",
+                    "to": "9999-01-01T00:00:00Z",
+                    "value": "unknown"
+                  }
+                ]
+              },
+              "timeoffset": "PT0H",
+              "timeresolution": "PT1H"
+            }
+          },
+          "available": {
+            "from": "2020-10-30T01:00:00Z"
+          }
+        },
+        "observations": [
+          {
+            "time": "2025-10-02T00:00:00Z",
+            "body": {
+              "qualitycode": "0",
+              "value": "1.79999995"
+            }
+          }
+        ]
+      },
+      {
+        "header": {
+          "id": {
+            "level": 0,
+            "parametercode": "UN",
+            "parameterid": 264,
+            "sensor": 0,
+            "stationid": 58070,
+            "stationtype": "nationalnummer",
+            "typeid": 501
+          },
+          "extra": {
+            "element": {
+              "description": "Minimum relative humidity per hour",
+              "id": "min(relative_humidity PT1H)",
+              "name": "Minimum relative humidity (1 h)",
+              "unit": "1/100"
+            },
+            "station": {
+              "location": [
+                {
+                  "from": "1957-06-01T00:00:00Z",
+                  "to": "2017-12-31T00:00:00Z",
+                  "value": {
+                    "elevation(masl/hs)": "51",
+                    "latitude": "61.788000",
+                    "longitude": "6.183700"
+                  }
+                },
+                {
+                  "from": "2017-12-31T00:00:00Z",
+                  "to": "9999-01-01T00:00:00Z",
+                  "value": {
+                    "elevation(masl/hs)": "51",
+                    "latitude": "61.787300",
+                    "longitude": "6.183500"
+                  }
+                }
+              ],
+              "shortname": "Sandane"
+            },
+            "timeseries": {
+              "geometry": {
+                "level": {
+                  "unit": "m",
+                  "value": "2"
+                }
+              },
+              "quality": {
+                "exposure": [
+                  {
+                    "from": "2021-04-09T00:00:00Z",
+                    "to": "9999-01-01T00:00:00Z",
+                    "value": "1"
+                  }
+                ],
+                "performance": [
+                  {
+                    "from": "2021-04-09T09:00:00Z",
+                    "to": "9999-01-01T00:00:00Z",
+                    "value": "unknown"
+                  }
+                ]
+              },
+              "timeoffset": "PT0H",
+              "timeresolution": "PT1H"
+            }
+          },
+          "available": {
+            "from": "2021-04-09T09:00:00Z"
+          }
+        },
+        "observations": [
+          {
+            "time": "2025-10-02T00:00:00Z",
+            "body": {
+              "qualitycode": "0",
+              "value": "48"
+            }
+          }
+        ]
+      },
+      {
+        "header": {
+          "id": {
+            "level": 2,
+            "parametercode": "FG_1",
+            "parameterid": 90,
+            "sensor": 0,
+            "stationid": 58070,
+            "stationtype": "nationalnummer",
+            "typeid": 501
+          },
+          "extra": {
+            "element": {
+              "description": "Hourly maximum wind gust",
+              "id": "max(wind_speed_of_gust PT1H)",
+              "name": "Maximum wind gust (1 h)",
+              "unit": "m/s"
+            },
+            "station": {
+              "location": [
+                {
+                  "from": "1957-06-01T00:00:00Z",
+                  "to": "2017-12-31T00:00:00Z",
+                  "value": {
+                    "elevation(masl/hs)": "51",
+                    "latitude": "61.788000",
+                    "longitude": "6.183700"
+                  }
+                },
+                {
+                  "from": "2017-12-31T00:00:00Z",
+                  "to": "9999-01-01T00:00:00Z",
+                  "value": {
+                    "elevation(masl/hs)": "51",
+                    "latitude": "61.787300",
+                    "longitude": "6.183500"
+                  }
+                }
+              ],
+              "shortname": "Sandane"
+            },
+            "timeseries": {
+              "geometry": {
+                "level": {
+                  "unit": "m",
+                  "value": "2"
+                }
+              },
+              "quality": {
+                "exposure": [
+                  {
+                    "from": "2020-11-02T08:00:00Z",
+                    "to": "9999-01-01T00:00:00Z",
+                    "value": "unknown"
+                  }
+                ],
+                "performance": [
+                  {
+                    "from": "2020-11-02T08:00:00Z",
+                    "to": "9999-01-01T00:00:00Z",
+                    "value": "unknown"
+                  }
+                ]
+              },
+              "timeoffset": "PT0H",
+              "timeresolution": "PT1H"
+            }
+          },
+          "available": {
+            "from": "2020-11-02T08:00:00Z"
+          }
+        },
+        "observations": [
+          {
+            "time": "2025-10-02T00:00:00Z",
+            "body": {
+              "qualitycode": "2",
+              "value": "4.4000001"
+            }
+          }
+        ]
+      },
+      {
+        "header": {
+          "id": {
+            "level": 10,
+            "parametercode": "SW",
+            "parameterid": 340,
+            "sensor": 0,
+            "stationid": 58070,
+            "stationtype": "nationalnummer",
+            "typeid": 501
+          },
+          "extra": {
+            "element": {
+              "description": "Soil moisture content at different depths (default 10 cm)",
+              "id": "volume_fraction_of_water_in_soil",
+              "name": "Soil moisture ",
+              "unit": "1/100"
+            },
+            "station": {
+              "location": [
+                {
+                  "from": "1957-06-01T00:00:00Z",
+                  "to": "2017-12-31T00:00:00Z",
+                  "value": {
+                    "elevation(masl/hs)": "51",
+                    "latitude": "61.788000",
+                    "longitude": "6.183700"
+                  }
+                },
+                {
+                  "from": "2017-12-31T00:00:00Z",
+                  "to": "9999-01-01T00:00:00Z",
+                  "value": {
+                    "elevation(masl/hs)": "51",
+                    "latitude": "61.787300",
+                    "longitude": "6.183500"
+                  }
+                }
+              ],
+              "shortname": "Sandane"
+            },
+            "timeseries": {
+              "geometry": {
+                "level": {
+                  "unit": "cm",
+                  "value": "10"
+                }
+              },
+              "quality": {
+                "exposure": [
+                  {
+                    "from": "2020-11-02T08:00:00Z",
+                    "to": "9999-01-01T00:00:00Z",
+                    "value": "unknown"
+                  }
+                ],
+                "performance": [
+                  {
+                    "from": "2020-11-02T08:00:00Z",
+                    "to": "9999-01-01T00:00:00Z",
+                    "value": "unknown"
+                  }
+                ]
+              },
+              "timeoffset": "PT0H",
+              "timeresolution": "PT1H"
+            }
+          },
+          "available": {
+            "from": "2020-11-02T08:00:00Z"
+          }
+        },
+        "observations": [
+          {
+            "time": "2025-10-02T00:00:00Z",
+            "body": {
+              "qualitycode": "0",
+              "value": "22.3348007"
+            }
+          }
+        ]
+      },
+      {
+        "header": {
+          "id": {
+            "level": 30,
+            "parametercode": "TJ",
+            "parameterid": 226,
+            "sensor": 0,
+            "stationid": 58070,
+            "stationtype": "nationalnummer",
+            "typeid": 501
+          },
+          "extra": {
+            "element": {
+              "description": "Soil temperature at given depth (default 10 cm)",
+              "id": "soil_temperature",
+              "name": "Soil temperature",
+              "unit": "degC"
+            },
+            "station": {
+              "location": [
+                {
+                  "from": "1957-06-01T00:00:00Z",
+                  "to": "2017-12-31T00:00:00Z",
+                  "value": {
+                    "elevation(masl/hs)": "51",
+                    "latitude": "61.788000",
+                    "longitude": "6.183700"
+                  }
+                },
+                {
+                  "from": "2017-12-31T00:00:00Z",
+                  "to": "9999-01-01T00:00:00Z",
+                  "value": {
+                    "elevation(masl/hs)": "51",
+                    "latitude": "61.787300",
+                    "longitude": "6.183500"
+                  }
+                }
+              ],
+              "shortname": "Sandane"
+            },
+            "timeseries": {
+              "geometry": {
+                "level": {
+                  "unit": "cm",
+                  "value": "30"
+                }
+              },
+              "quality": {
+                "exposure": [
+                  {
+                    "from": "2020-11-02T08:00:00Z",
+                    "to": "9999-01-01T00:00:00Z",
+                    "value": "unknown"
+                  }
+                ],
+                "performance": [
+                  {
+                    "from": "2020-11-02T08:00:00Z",
+                    "to": "9999-01-01T00:00:00Z",
+                    "value": "unknown"
+                  }
+                ]
+              },
+              "timeoffset": "PT0H",
+              "timeresolution": "PT1H"
+            }
+          },
+          "available": {
+            "from": "2020-11-02T08:00:00Z"
+          }
+        },
+        "observations": [
+          {
+            "time": "2025-10-02T00:00:00Z",
+            "body": {
+              "qualitycode": "2",
+              "value": "11.3599997"
+            }
+          }
+        ]
+      },
+      {
+        "header": {
+          "id": {
+            "level": 0,
+            "parametercode": "RR_1",
+            "parameterid": 106,
+            "sensor": 0,
+            "stationid": 58070,
+            "stationtype": "nationalnummer",
+            "typeid": 501
+          },
+          "extra": {
+            "element": {
+              "description": "Amount of precipitation per hour",
+              "id": "sum(precipitation_amount PT1H)",
+              "name": "Precipitation (1 h)",
+              "unit": "mm"
+            },
+            "station": {
+              "location": [
+                {
+                  "from": "1957-06-01T00:00:00Z",
+                  "to": "2017-12-31T00:00:00Z",
+                  "value": {
+                    "elevation(masl/hs)": "51",
+                    "latitude": "61.788000",
+                    "longitude": "6.183700"
+                  }
+                },
+                {
+                  "from": "2017-12-31T00:00:00Z",
+                  "to": "9999-01-01T00:00:00Z",
+                  "value": {
+                    "elevation(masl/hs)": "51",
+                    "latitude": "61.787300",
+                    "longitude": "6.183500"
+                  }
+                }
+              ],
+              "shortname": "Sandane"
+            },
+            "timeseries": {
+              "geometry": {
+                "level": {
+                  "value": "2"
+                }
+              },
+              "quality": {
+                "exposure": [
+                  {
+                    "from": "2020-10-30T01:00:00Z",
+                    "to": "9999-01-01T00:00:00Z",
+                    "value": "unknown"
+                  }
+                ],
+                "performance": [
+                  {
+                    "from": "2020-10-30T01:00:00Z",
+                    "to": "9999-01-01T00:00:00Z",
+                    "value": "unknown"
+                  }
+                ]
+              },
+              "timeoffset": "PT0H",
+              "timeresolution": "PT1H"
+            }
+          },
+          "available": {
+            "from": "2020-10-30T01:00:00Z"
+          }
+        },
+        "observations": [
+          {
+            "time": "2025-10-02T00:00:00Z",
+            "body": {
+              "qualitycode": "0",
+              "value": "0"
+            }
+          }
+        ]
+      },
+      {
+        "header": {
+          "id": {
+            "level": 10,
+            "parametercode": "TJ",
+            "parameterid": 226,
+            "sensor": 0,
+            "stationid": 58070,
+            "stationtype": "nationalnummer",
+            "typeid": 501
+          },
+          "extra": {
+            "element": {
+              "description": "Soil temperature at given depth (default 10 cm)",
+              "id": "soil_temperature",
+              "name": "Soil temperature",
+              "unit": "degC"
+            },
+            "station": {
+              "location": [
+                {
+                  "from": "1957-06-01T00:00:00Z",
+                  "to": "2017-12-31T00:00:00Z",
+                  "value": {
+                    "elevation(masl/hs)": "51",
+                    "latitude": "61.788000",
+                    "longitude": "6.183700"
+                  }
+                },
+                {
+                  "from": "2017-12-31T00:00:00Z",
+                  "to": "9999-01-01T00:00:00Z",
+                  "value": {
+                    "elevation(masl/hs)": "51",
+                    "latitude": "61.787300",
+                    "longitude": "6.183500"
+                  }
+                }
+              ],
+              "shortname": "Sandane"
+            },
+            "timeseries": {
+              "geometry": {
+                "level": {
+                  "unit": "cm",
+                  "value": "10"
+                }
+              },
+              "quality": {
+                "exposure": [
+                  {
+                    "from": "2020-11-02T08:00:00Z",
+                    "to": "9999-01-01T00:00:00Z",
+                    "value": "unknown"
+                  }
+                ],
+                "performance": [
+                  {
+                    "from": "2020-11-02T08:00:00Z",
+                    "to": "9999-01-01T00:00:00Z",
+                    "value": "unknown"
+                  }
+                ]
+              },
+              "timeoffset": "PT0H",
+              "timeresolution": "PT1H"
+            }
+          },
+          "available": {
+            "from": "2020-11-02T08:00:00Z"
+          }
+        },
+        "observations": [
+          {
+            "time": "2025-10-02T00:00:00Z",
+            "body": {
+              "qualitycode": "0",
+              "value": "11.3400002"
+            }
+          }
+        ]
+      },
+      {
+        "header": {
+          "id": {
+            "level": 20,
+            "parametercode": "SW",
+            "parameterid": 340,
+            "sensor": 0,
+            "stationid": 58070,
+            "stationtype": "nationalnummer",
+            "typeid": 501
+          },
+          "extra": {
+            "element": {
+              "description": "Soil moisture content at different depths (default 10 cm)",
+              "id": "volume_fraction_of_water_in_soil",
+              "name": "Soil moisture ",
+              "unit": "1/100"
+            },
+            "station": {
+              "location": [
+                {
+                  "from": "1957-06-01T00:00:00Z",
+                  "to": "2017-12-31T00:00:00Z",
+                  "value": {
+                    "elevation(masl/hs)": "51",
+                    "latitude": "61.788000",
+                    "longitude": "6.183700"
+                  }
+                },
+                {
+                  "from": "2017-12-31T00:00:00Z",
+                  "to": "9999-01-01T00:00:00Z",
+                  "value": {
+                    "elevation(masl/hs)": "51",
+                    "latitude": "61.787300",
+                    "longitude": "6.183500"
+                  }
+                }
+              ],
+              "shortname": "Sandane"
+            },
+            "timeseries": {
+              "geometry": {
+                "level": {
+                  "unit": "cm",
+                  "value": "20"
+                }
+              },
+              "quality": {
+                "exposure": [
+                  {
+                    "from": "2020-11-02T08:00:00Z",
+                    "to": "9999-01-01T00:00:00Z",
+                    "value": "unknown"
+                  }
+                ],
+                "performance": [
+                  {
+                    "from": "2020-11-02T08:00:00Z",
+                    "to": "9999-01-01T00:00:00Z",
+                    "value": "unknown"
+                  }
+                ]
+              },
+              "timeoffset": "PT0H",
+              "timeresolution": "PT1H"
+            }
+          },
+          "available": {
+            "from": "2020-11-02T08:00:00Z"
+          }
+        },
+        "observations": [
+          {
+            "time": "2025-10-02T00:00:00Z",
+            "body": {
+              "qualitycode": "0",
+              "value": "13.3184996"
+            }
+          }
+        ]
+      },
+      {
+        "header": {
+          "id": {
+            "level": 50,
+            "parametercode": "SW",
+            "parameterid": 340,
+            "sensor": 0,
+            "stationid": 58070,
+            "stationtype": "nationalnummer",
+            "typeid": 501
+          },
+          "extra": {
+            "element": {
+              "description": "Soil moisture content at different depths (default 10 cm)",
+              "id": "volume_fraction_of_water_in_soil",
+              "name": "Soil moisture ",
+              "unit": "1/100"
+            },
+            "station": {
+              "location": [
+                {
+                  "from": "1957-06-01T00:00:00Z",
+                  "to": "2017-12-31T00:00:00Z",
+                  "value": {
+                    "elevation(masl/hs)": "51",
+                    "latitude": "61.788000",
+                    "longitude": "6.183700"
+                  }
+                },
+                {
+                  "from": "2017-12-31T00:00:00Z",
+                  "to": "9999-01-01T00:00:00Z",
+                  "value": {
+                    "elevation(masl/hs)": "51",
+                    "latitude": "61.787300",
+                    "longitude": "6.183500"
+                  }
+                }
+              ],
+              "shortname": "Sandane"
+            },
+            "timeseries": {
+              "geometry": {
+                "level": {
+                  "unit": "cm",
+                  "value": "50"
+                }
+              },
+              "quality": {
+                "exposure": [
+                  {
+                    "from": "2020-11-02T08:00:00Z",
+                    "to": "9999-01-01T00:00:00Z",
+                    "value": "unknown"
+                  }
+                ],
+                "performance": [
+                  {
+                    "from": "2020-11-02T08:00:00Z",
+                    "to": "9999-01-01T00:00:00Z",
+                    "value": "unknown"
+                  }
+                ]
+              },
+              "timeoffset": "PT0H",
+              "timeresolution": "PT1H"
+            }
+          },
+          "available": {
+            "from": "2020-11-02T08:00:00Z"
+          }
+        },
+        "observations": [
+          {
+            "time": "2025-10-02T00:00:00Z",
+            "body": {
+              "qualitycode": "0",
+              "value": "0"
+            }
+          }
+        ]
+      },
+      {
+        "header": {
+          "id": {
+            "level": 20,
+            "parametercode": "TJ",
+            "parameterid": 226,
+            "sensor": 0,
+            "stationid": 58070,
+            "stationtype": "nationalnummer",
+            "typeid": 501
+          },
+          "extra": {
+            "element": {
+              "description": "Soil temperature at given depth (default 10 cm)",
+              "id": "soil_temperature",
+              "name": "Soil temperature",
+              "unit": "degC"
+            },
+            "station": {
+              "location": [
+                {
+                  "from": "1957-06-01T00:00:00Z",
+                  "to": "2017-12-31T00:00:00Z",
+                  "value": {
+                    "elevation(masl/hs)": "51",
+                    "latitude": "61.788000",
+                    "longitude": "6.183700"
+                  }
+                },
+                {
+                  "from": "2017-12-31T00:00:00Z",
+                  "to": "9999-01-01T00:00:00Z",
+                  "value": {
+                    "elevation(masl/hs)": "51",
+                    "latitude": "61.787300",
+                    "longitude": "6.183500"
+                  }
+                }
+              ],
+              "shortname": "Sandane"
+            },
+            "timeseries": {
+              "geometry": {
+                "level": {
+                  "unit": "cm",
+                  "value": "20"
+                }
+              },
+              "quality": {
+                "exposure": [
+                  {
+                    "from": "2020-11-02T08:00:00Z",
+                    "to": "9999-01-01T00:00:00Z",
+                    "value": "unknown"
+                  }
+                ],
+                "performance": [
+                  {
+                    "from": "2020-11-02T08:00:00Z",
+                    "to": "9999-01-01T00:00:00Z",
+                    "value": "unknown"
+                  }
+                ]
+              },
+              "timeoffset": "PT0H",
+              "timeresolution": "PT1H"
+            }
+          },
+          "available": {
+            "from": "2020-11-02T08:00:00Z"
+          }
+        },
+        "observations": [
+          {
+            "time": "2025-10-02T00:00:00Z",
+            "body": {
+              "qualitycode": "0",
+              "value": "11.4700003"
+            }
+          }
+        ]
+      },
+      {
+        "header": {
+          "id": {
+            "level": 0,
+            "parametercode": "RT_1",
+            "parameterid": 123,
+            "sensor": 0,
+            "stationid": 58070,
+            "stationtype": "nationalnummer",
+            "typeid": 501
+          },
+          "extra": {
+            "element": {
+              "description": "Number of minutes where precipitation has been detected during the last 10 minutes.",
+              "id": "sum(duration_of_precipitation PT1H)",
+              "name": "Number of minutes with precipitation during the last hour",
+              "unit": "minutes"
+            },
+            "station": {
+              "location": [
+                {
+                  "from": "1957-06-01T00:00:00Z",
+                  "to": "2017-12-31T00:00:00Z",
+                  "value": {
+                    "elevation(masl/hs)": "51",
+                    "latitude": "61.788000",
+                    "longitude": "6.183700"
+                  }
+                },
+                {
+                  "from": "2017-12-31T00:00:00Z",
+                  "to": "9999-01-01T00:00:00Z",
+                  "value": {
+                    "elevation(masl/hs)": "51",
+                    "latitude": "61.787300",
+                    "longitude": "6.183500"
+                  }
+                }
+              ],
+              "shortname": "Sandane"
+            },
+            "timeseries": {
+              "geometry": {
+                "level": {
+                  "value": "2"
+                }
+              },
+              "quality": {
+                "exposure": [
+                  {
+                    "from": "2020-10-30T01:00:00Z",
+                    "to": "9999-01-01T00:00:00Z",
+                    "value": "unknown"
+                  }
+                ],
+                "performance": [
+                  {
+                    "from": "2020-10-30T01:00:00Z",
+                    "to": "9999-01-01T00:00:00Z",
+                    "value": "unknown"
+                  }
+                ]
+              },
+              "timeoffset": "PT0H",
+              "timeresolution": "PT1H"
+            }
+          },
+          "available": {
+            "from": "2020-10-30T01:00:00Z"
+          }
+        },
+        "observations": [
+          {
+            "time": "2025-10-02T00:00:00Z",
+            "body": {
+              "qualitycode": "0",
+              "value": "0"
+            }
+          }
+        ]
+      },
+      {
+        "header": {
+          "id": {
+            "level": 0,
+            "parametercode": "FX_1",
+            "parameterid": 87,
+            "sensor": 0,
+            "stationid": 58070,
+            "stationtype": "nationalnummer",
+            "typeid": 501
+          },
+          "extra": {
+            "element": {
+              "description": "Hourly maximum mean wind speed",
+              "id": "max(wind_speed PT1H)",
+              "name": "Maximum mean wind speed (1 h)",
+              "unit": "m/s"
+            },
+            "station": {
+              "location": [
+                {
+                  "from": "1957-06-01T00:00:00Z",
+                  "to": "2017-12-31T00:00:00Z",
+                  "value": {
+                    "elevation(masl/hs)": "51",
+                    "latitude": "61.788000",
+                    "longitude": "6.183700"
+                  }
+                },
+                {
+                  "from": "2017-12-31T00:00:00Z",
+                  "to": "9999-01-01T00:00:00Z",
+                  "value": {
+                    "elevation(masl/hs)": "51",
+                    "latitude": "61.787300",
+                    "longitude": "6.183500"
+                  }
+                }
+              ],
+              "shortname": "Sandane"
+            },
+            "timeseries": {
+              "geometry": {
+                "level": {
+                  "unit": "m",
+                  "value": "10"
+                }
+              },
+              "quality": {
+                "exposure": [
+                  {
+                    "from": "2020-10-30T01:00:00Z",
+                    "to": "9999-01-01T00:00:00Z",
+                    "value": "unknown"
+                  }
+                ],
+                "performance": [
+                  {
+                    "from": "2020-10-30T01:00:00Z",
+                    "to": "9999-01-01T00:00:00Z",
+                    "value": "unknown"
+                  }
+                ]
+              },
+              "timeoffset": "PT0H",
+              "timeresolution": "PT1H"
+            }
+          },
+          "available": {
+            "from": "2020-10-30T01:00:00Z"
+          }
+        },
+        "observations": [
+          {
+            "time": "2025-10-02T00:00:00Z",
+            "body": {
+              "qualitycode": "0",
+              "value": "3.29999995"
+            }
+          }
+        ]
+      },
+      {
+        "header": {
+          "id": {
+            "level": 0,
+            "parametercode": "UU",
+            "parameterid": 262,
+            "sensor": 0,
+            "stationid": 58070,
+            "stationtype": "nationalnummer",
+            "typeid": 501
+          },
+          "extra": {
+            "element": {
+              "description": "Relative humidity ",
+              "id": "relative_humidity",
+              "name": "Relative air humidity",
+              "unit": "1/100"
+            },
+            "station": {
+              "location": [
+                {
+                  "from": "1957-06-01T00:00:00Z",
+                  "to": "2017-12-31T00:00:00Z",
+                  "value": {
+                    "elevation(masl/hs)": "51",
+                    "latitude": "61.788000",
+                    "longitude": "6.183700"
+                  }
+                },
+                {
+                  "from": "2017-12-31T00:00:00Z",
+                  "to": "9999-01-01T00:00:00Z",
+                  "value": {
+                    "elevation(masl/hs)": "51",
+                    "latitude": "61.787300",
+                    "longitude": "6.183500"
+                  }
+                }
+              ],
+              "shortname": "Sandane"
+            },
+            "timeseries": {
+              "geometry": {
+                "level": {
+                  "unit": "m",
+                  "value": "2"
+                }
+              },
+              "quality": {
+                "exposure": [
+                  {
+                    "from": "2020-10-30T00:00:00Z",
+                    "to": "9999-01-01T00:00:00Z",
+                    "value": "1"
+                  }
+                ],
+                "performance": [
+                  {
+                    "from": "2020-10-30T01:00:00Z",
+                    "to": "9999-01-01T00:00:00Z",
+                    "value": "unknown"
+                  }
+                ]
+              },
+              "timeoffset": "PT0H",
+              "timeresolution": "PT1H"
+            }
+          },
+          "available": {
+            "from": "2020-10-30T01:00:00Z"
+          }
+        },
+        "observations": [
+          {
+            "time": "2025-10-02T00:00:00Z",
+            "body": {
+              "qualitycode": "0",
+              "value": "49"
+            }
+          }
+        ]
+      },
+      {
+        "header": {
+          "id": {
+            "level": 100,
+            "parametercode": "SW",
+            "parameterid": 340,
+            "sensor": 0,
+            "stationid": 58070,
+            "stationtype": "nationalnummer",
+            "typeid": 501
+          },
+          "extra": {
+            "element": {
+              "description": "Soil moisture content at different depths (default 10 cm)",
+              "id": "volume_fraction_of_water_in_soil",
+              "name": "Soil moisture ",
+              "unit": "1/100"
+            },
+            "station": {
+              "location": [
+                {
+                  "from": "1957-06-01T00:00:00Z",
+                  "to": "2017-12-31T00:00:00Z",
+                  "value": {
+                    "elevation(masl/hs)": "51",
+                    "latitude": "61.788000",
+                    "longitude": "6.183700"
+                  }
+                },
+                {
+                  "from": "2017-12-31T00:00:00Z",
+                  "to": "9999-01-01T00:00:00Z",
+                  "value": {
+                    "elevation(masl/hs)": "51",
+                    "latitude": "61.787300",
+                    "longitude": "6.183500"
+                  }
+                }
+              ],
+              "shortname": "Sandane"
+            },
+            "timeseries": {
+              "geometry": {
+                "level": {
+                  "unit": "cm",
+                  "value": "100"
+                }
+              },
+              "quality": {
+                "exposure": [
+                  {
+                    "from": "2020-11-02T08:00:00Z",
+                    "to": "9999-01-01T00:00:00Z",
+                    "value": "unknown"
+                  }
+                ],
+                "performance": [
+                  {
+                    "from": "2020-11-02T08:00:00Z",
+                    "to": "9999-01-01T00:00:00Z",
+                    "value": "unknown"
+                  }
+                ]
+              },
+              "timeoffset": "PT0H",
+              "timeresolution": "PT1H"
+            }
+          },
+          "available": {
+            "from": "2020-11-02T08:00:00Z"
+          }
+        },
+        "observations": [
+          {
+            "time": "2025-10-02T00:00:00Z",
+            "body": {
+              "qualitycode": "0",
+              "value": "29.5907001"
+            }
+          }
+        ]
+      },
+      {
+        "header": {
+          "id": {
+            "level": 75,
+            "parametercode": "TJ",
+            "parameterid": 226,
+            "sensor": 0,
+            "stationid": 58070,
+            "stationtype": "nationalnummer",
+            "typeid": 501
+          },
+          "extra": {
+            "element": {
+              "description": "Soil temperature at given depth (default 10 cm)",
+              "id": "soil_temperature",
+              "name": "Soil temperature",
+              "unit": "degC"
+            },
+            "station": {
+              "location": [
+                {
+                  "from": "1957-06-01T00:00:00Z",
+                  "to": "2017-12-31T00:00:00Z",
+                  "value": {
+                    "elevation(masl/hs)": "51",
+                    "latitude": "61.788000",
+                    "longitude": "6.183700"
+                  }
+                },
+                {
+                  "from": "2017-12-31T00:00:00Z",
+                  "to": "9999-01-01T00:00:00Z",
+                  "value": {
+                    "elevation(masl/hs)": "51",
+                    "latitude": "61.787300",
+                    "longitude": "6.183500"
+                  }
+                }
+              ],
+              "shortname": "Sandane"
+            },
+            "timeseries": {
+              "geometry": {
+                "level": {
+                  "unit": "cm",
+                  "value": "75"
+                }
+              },
+              "quality": {
+                "exposure": [
+                  {
+                    "from": "2020-11-02T08:00:00Z",
+                    "to": "9999-01-01T00:00:00Z",
+                    "value": "unknown"
+                  }
+                ],
+                "performance": [
+                  {
+                    "from": "2020-11-02T08:00:00Z",
+                    "to": "9999-01-01T00:00:00Z",
+                    "value": "unknown"
+                  }
+                ]
+              },
+              "timeoffset": "PT0H",
+              "timeresolution": "PT1H"
+            }
+          },
+          "available": {
+            "from": "2020-11-02T08:00:00Z"
+          }
+        },
+        "observations": [
+          {
+            "time": "2025-10-02T00:00:00Z",
+            "body": {
+              "qualitycode": "2",
+              "value": "11.54"
+            }
+          }
+        ]
+      },
+      {
+        "header": {
+          "id": {
+            "level": 0,
+            "parametercode": "UX",
+            "parameterid": 265,
+            "sensor": 0,
+            "stationid": 58070,
+            "stationtype": "nationalnummer",
+            "typeid": 501
+          },
+          "extra": {
+            "element": {
+              "description": "Maximum relative humidity per hour",
+              "id": "max(relative_humidity PT1H)",
+              "name": "Maximum relative humidity (1 h)",
+              "unit": "1/100"
+            },
+            "station": {
+              "location": [
+                {
+                  "from": "1957-06-01T00:00:00Z",
+                  "to": "2017-12-31T00:00:00Z",
+                  "value": {
+                    "elevation(masl/hs)": "51",
+                    "latitude": "61.788000",
+                    "longitude": "6.183700"
+                  }
+                },
+                {
+                  "from": "2017-12-31T00:00:00Z",
+                  "to": "9999-01-01T00:00:00Z",
+                  "value": {
+                    "elevation(masl/hs)": "51",
+                    "latitude": "61.787300",
+                    "longitude": "6.183500"
+                  }
+                }
+              ],
+              "shortname": "Sandane"
+            },
+            "timeseries": {
+              "geometry": {
+                "level": {
+                  "unit": "m",
+                  "value": "2"
+                }
+              },
+              "quality": {
+                "exposure": [
+                  {
+                    "from": "2020-04-25T00:00:00Z",
+                    "to": "9999-01-01T00:00:00Z",
+                    "value": "1"
+                  }
+                ],
+                "performance": [
+                  {
+                    "from": "2021-04-09T09:00:00Z",
+                    "to": "9999-01-01T00:00:00Z",
+                    "value": "unknown"
+                  }
+                ]
+              },
+              "timeoffset": "PT0H",
+              "timeresolution": "PT1H"
+            }
+          },
+          "available": {
+            "from": "2021-04-09T09:00:00Z"
+          }
+        },
+        "observations": [
+          {
+            "time": "2025-10-02T00:00:00Z",
+            "body": {
+              "qualitycode": "0",
+              "value": "53"
+            }
+          }
+        ]
+      },
+      {
+        "header": {
+          "id": {
+            "level": 75,
+            "parametercode": "SW",
+            "parameterid": 340,
+            "sensor": 0,
+            "stationid": 58070,
+            "stationtype": "nationalnummer",
+            "typeid": 501
+          },
+          "extra": {
+            "element": {
+              "description": "Soil moisture content at different depths (default 10 cm)",
+              "id": "volume_fraction_of_water_in_soil",
+              "name": "Soil moisture ",
+              "unit": "1/100"
+            },
+            "station": {
+              "location": [
+                {
+                  "from": "1957-06-01T00:00:00Z",
+                  "to": "2017-12-31T00:00:00Z",
+                  "value": {
+                    "elevation(masl/hs)": "51",
+                    "latitude": "61.788000",
+                    "longitude": "6.183700"
+                  }
+                },
+                {
+                  "from": "2017-12-31T00:00:00Z",
+                  "to": "9999-01-01T00:00:00Z",
+                  "value": {
+                    "elevation(masl/hs)": "51",
+                    "latitude": "61.787300",
+                    "longitude": "6.183500"
+                  }
+                }
+              ],
+              "shortname": "Sandane"
+            },
+            "timeseries": {
+              "geometry": {
+                "level": {
+                  "unit": "cm",
+                  "value": "75"
+                }
+              },
+              "quality": {
+                "exposure": [
+                  {
+                    "from": "2020-11-02T08:00:00Z",
+                    "to": "9999-01-01T00:00:00Z",
+                    "value": "unknown"
+                  }
+                ],
+                "performance": [
+                  {
+                    "from": "2020-11-02T08:00:00Z",
+                    "to": "9999-01-01T00:00:00Z",
+                    "value": "unknown"
+                  }
+                ]
+              },
+              "timeoffset": "PT0H",
+              "timeresolution": "PT1H"
+            }
+          },
+          "available": {
+            "from": "2020-11-02T08:00:00Z"
+          }
+        },
+        "observations": [
+          {
+            "time": "2025-10-02T00:00:00Z",
+            "body": {
+              "qualitycode": "0",
+              "value": "7.39869022"
+            }
+          }
+        ]
+      },
+      {
+        "header": {
+          "id": {
+            "level": 30,
+            "parametercode": "SW",
+            "parameterid": 340,
+            "sensor": 0,
+            "stationid": 58070,
+            "stationtype": "nationalnummer",
+            "typeid": 501
+          },
+          "extra": {
+            "element": {
+              "description": "Soil moisture content at different depths (default 10 cm)",
+              "id": "volume_fraction_of_water_in_soil",
+              "name": "Soil moisture ",
+              "unit": "1/100"
+            },
+            "station": {
+              "location": [
+                {
+                  "from": "1957-06-01T00:00:00Z",
+                  "to": "2017-12-31T00:00:00Z",
+                  "value": {
+                    "elevation(masl/hs)": "51",
+                    "latitude": "61.788000",
+                    "longitude": "6.183700"
+                  }
+                },
+                {
+                  "from": "2017-12-31T00:00:00Z",
+                  "to": "9999-01-01T00:00:00Z",
+                  "value": {
+                    "elevation(masl/hs)": "51",
+                    "latitude": "61.787300",
+                    "longitude": "6.183500"
+                  }
+                }
+              ],
+              "shortname": "Sandane"
+            },
+            "timeseries": {
+              "geometry": {
+                "level": {
+                  "unit": "cm",
+                  "value": "30"
+                }
+              },
+              "quality": {
+                "exposure": [
+                  {
+                    "from": "2020-11-02T08:00:00Z",
+                    "to": "9999-01-01T00:00:00Z",
+                    "value": "unknown"
+                  }
+                ],
+                "performance": [
+                  {
+                    "from": "2020-11-02T08:00:00Z",
+                    "to": "9999-01-01T00:00:00Z",
+                    "value": "unknown"
+                  }
+                ]
+              },
+              "timeoffset": "PT0H",
+              "timeresolution": "PT1H"
+            }
+          },
+          "available": {
+            "from": "2020-11-02T08:00:00Z"
+          }
+        },
+        "observations": [
+          {
+            "time": "2025-10-02T00:00:00Z",
+            "body": {
+              "qualitycode": "0",
+              "value": "0"
+            }
+          }
+        ]
+      },
+      {
+        "header": {
+          "id": {
+            "level": 60,
+            "parametercode": "TJ",
+            "parameterid": 226,
+            "sensor": 0,
+            "stationid": 58070,
+            "stationtype": "nationalnummer",
+            "typeid": 501
+          },
+          "extra": {
+            "element": {
+              "description": "Soil temperature at given depth (default 10 cm)",
+              "id": "soil_temperature",
+              "name": "Soil temperature",
+              "unit": "degC"
+            },
+            "station": {
+              "location": [
+                {
+                  "from": "1957-06-01T00:00:00Z",
+                  "to": "2017-12-31T00:00:00Z",
+                  "value": {
+                    "elevation(masl/hs)": "51",
+                    "latitude": "61.788000",
+                    "longitude": "6.183700"
+                  }
+                },
+                {
+                  "from": "2017-12-31T00:00:00Z",
+                  "to": "9999-01-01T00:00:00Z",
+                  "value": {
+                    "elevation(masl/hs)": "51",
+                    "latitude": "61.787300",
+                    "longitude": "6.183500"
+                  }
+                }
+              ],
+              "shortname": "Sandane"
+            },
+            "timeseries": {
+              "geometry": {
+                "level": {
+                  "unit": "cm",
+                  "value": "60"
+                }
+              },
+              "quality": {
+                "exposure": [
+                  {
+                    "from": "2020-11-02T08:00:00Z",
+                    "to": "9999-01-01T00:00:00Z",
+                    "value": "unknown"
+                  }
+                ],
+                "performance": [
+                  {
+                    "from": "2020-11-02T08:00:00Z",
+                    "to": "9999-01-01T00:00:00Z",
+                    "value": "unknown"
+                  }
+                ]
+              },
+              "timeoffset": "PT0H",
+              "timeresolution": "PT1H"
+            }
+          },
+          "available": {
+            "from": "2020-11-02T08:00:00Z"
+          }
+        },
+        "observations": [
+          {
+            "time": "2025-10-02T00:00:00Z",
+            "body": {
+              "qualitycode": "2",
+              "value": "11.5600004"
+            }
+          }
+        ]
+      },
+      {
+        "header": {
+          "id": {
+            "level": 0,
+            "parametercode": "UM",
+            "parameterid": 263,
+            "sensor": 0,
+            "stationid": 58070,
+            "stationtype": "nationalnummer",
+            "typeid": 501
+          },
+          "extra": {
+            "element": {
+              "description": "Hourly mean relative humidity.",
+              "id": "mean(relative_humidity PT1H)",
+              "name": "Mean relative humidity (1 h)",
+              "unit": "1/100"
+            },
+            "station": {
+              "location": [
+                {
+                  "from": "1957-06-01T00:00:00Z",
+                  "to": "2017-12-31T00:00:00Z",
+                  "value": {
+                    "elevation(masl/hs)": "51",
+                    "latitude": "61.788000",
+                    "longitude": "6.183700"
+                  }
+                },
+                {
+                  "from": "2017-12-31T00:00:00Z",
+                  "to": "9999-01-01T00:00:00Z",
+                  "value": {
+                    "elevation(masl/hs)": "51",
+                    "latitude": "61.787300",
+                    "longitude": "6.183500"
+                  }
+                }
+              ],
+              "shortname": "Sandane"
+            },
+            "timeseries": {
+              "geometry": {
+                "level": {
+                  "unit": "m",
+                  "value": "2"
+                }
+              },
+              "quality": {
+                "exposure": [
+                  {
+                    "from": "2020-04-25T00:00:00Z",
+                    "to": "9999-01-01T00:00:00Z",
+                    "value": "1"
+                  }
+                ],
+                "performance": [
+                  {
+                    "from": "2021-04-09T09:00:00Z",
+                    "to": "9999-01-01T00:00:00Z",
+                    "value": "unknown"
+                  }
+                ]
+              },
+              "timeoffset": "PT0H",
+              "timeresolution": "PT1H"
+            }
+          },
+          "available": {
+            "from": "2021-04-09T09:00:00Z"
+          }
+        },
+        "observations": [
+          {
+            "time": "2025-10-02T00:00:00Z",
+            "body": {
+              "qualitycode": "0",
+              "value": "50.5800018"
+            }
+          }
+        ]
+      },
+      {
+        "header": {
+          "id": {
+            "level": 0,
+            "parametercode": "FG_1",
+            "parameterid": 90,
+            "sensor": 0,
+            "stationid": 58070,
+            "stationtype": "nationalnummer",
+            "typeid": 501
+          },
+          "extra": {
+            "element": {
+              "description": "Hourly maximum wind gust",
+              "id": "max(wind_speed_of_gust PT1H)",
+              "name": "Maximum wind gust (1 h)",
+              "unit": "m/s"
+            },
+            "station": {
+              "location": [
+                {
+                  "from": "1957-06-01T00:00:00Z",
+                  "to": "2017-12-31T00:00:00Z",
+                  "value": {
+                    "elevation(masl/hs)": "51",
+                    "latitude": "61.788000",
+                    "longitude": "6.183700"
+                  }
+                },
+                {
+                  "from": "2017-12-31T00:00:00Z",
+                  "to": "9999-01-01T00:00:00Z",
+                  "value": {
+                    "elevation(masl/hs)": "51",
+                    "latitude": "61.787300",
+                    "longitude": "6.183500"
+                  }
+                }
+              ],
+              "shortname": "Sandane"
+            },
+            "timeseries": {
+              "geometry": {
+                "level": {
+                  "unit": "m",
+                  "value": "10"
+                }
+              },
+              "quality": {
+                "exposure": [
+                  {
+                    "from": "2020-10-30T01:00:00Z",
+                    "to": "9999-01-01T00:00:00Z",
+                    "value": "unknown"
+                  }
+                ],
+                "performance": [
+                  {
+                    "from": "2020-10-30T01:00:00Z",
+                    "to": "9999-01-01T00:00:00Z",
+                    "value": "unknown"
+                  }
+                ]
+              },
+              "timeoffset": "PT0H",
+              "timeresolution": "PT1H"
+            }
+          },
+          "available": {
+            "from": "2020-10-30T01:00:00Z"
+          }
+        },
+        "observations": [
+          {
+            "time": "2025-10-02T00:00:00Z",
+            "body": {
+              "qualitycode": "0",
+              "value": "7"
+            }
+          }
+        ]
+      },
+      {
+        "header": {
+          "id": {
+            "level": 0,
+            "parametercode": "QSI",
+            "parameterid": 2070,
+            "sensor": 0,
+            "stationid": 58070,
+            "stationtype": "nationalnummer",
+            "typeid": 501
+          },
+          "extra": {
+            "element": {
+              "description": "Hourly mean global radiation. Global radiation is the total downwelling shortwave radiation from the sun. Shortwave radiation have wavelengths in the area 295-2800 nm and therefore includes ultraviolet, visible and infrared light. The instrument measures the radiation flux through a horizontal surface (W/m2).",
+              "id": "mean(surface_downwelling_shortwave_flux_in_air PT1H)",
+              "name": "Mean global radiation (1 t)",
+              "unit": "W/m2"
+            },
+            "station": {
+              "location": [
+                {
+                  "from": "1957-06-01T00:00:00Z",
+                  "to": "2017-12-31T00:00:00Z",
+                  "value": {
+                    "elevation(masl/hs)": "51",
+                    "latitude": "61.788000",
+                    "longitude": "6.183700"
+                  }
+                },
+                {
+                  "from": "2017-12-31T00:00:00Z",
+                  "to": "9999-01-01T00:00:00Z",
+                  "value": {
+                    "elevation(masl/hs)": "51",
+                    "latitude": "61.787300",
+                    "longitude": "6.183500"
+                  }
+                }
+              ],
+              "shortname": "Sandane"
+            },
+            "timeseries": {
+              "geometry": {
+                "level": {
+                  "value": "2"
+                }
+              },
+              "quality": {
+                "exposure": [
+                  {
+                    "from": "2020-11-02T08:00:00Z",
+                    "to": "9999-01-01T00:00:00Z",
+                    "value": "unknown"
+                  }
+                ],
+                "performance": [
+                  {
+                    "from": "2020-11-02T08:00:00Z",
+                    "to": "9999-01-01T00:00:00Z",
+                    "value": "unknown"
+                  }
+                ]
+              },
+              "timeoffset": "PT0H",
+              "timeresolution": "PT1H"
+            }
+          },
+          "available": {
+            "from": "2020-11-02T08:00:00Z"
+          }
+        },
+        "observations": [
+          {
+            "time": "2025-10-02T00:00:00Z",
+            "body": {
+              "qualitycode": "1",
+              "value": "0"
+            }
+          }
+        ]
+      },
+      {
+        "header": {
+          "id": {
+            "level": 0,
+            "parametercode": "RA",
+            "parameterid": 104,
+            "sensor": 0,
+            "stationid": 58070,
+            "stationtype": "nationalnummer",
+            "typeid": 501
+          },
+          "extra": {
+            "element": {
+              "description": "Total precipitation amount in gauge (accumulated since last emptying). Timing for emptying and algoritm for calculating the precipitation amount depends on sensortype",
+              "id": "accumulated(precipitation_amount)",
+              "name": "Precipitation in gauge",
+              "unit": "mm"
+            },
+            "station": {
+              "location": [
+                {
+                  "from": "1957-06-01T00:00:00Z",
+                  "to": "2017-12-31T00:00:00Z",
+                  "value": {
+                    "elevation(masl/hs)": "51",
+                    "latitude": "61.788000",
+                    "longitude": "6.183700"
+                  }
+                },
+                {
+                  "from": "2017-12-31T00:00:00Z",
+                  "to": "9999-01-01T00:00:00Z",
+                  "value": {
+                    "elevation(masl/hs)": "51",
+                    "latitude": "61.787300",
+                    "longitude": "6.183500"
+                  }
+                }
+              ],
+              "shortname": "Sandane"
+            },
+            "timeseries": {
+              "geometry": {
+                "level": {
+                  "value": "2"
+                }
+              },
+              "quality": {
+                "exposure": [
+                  {
+                    "from": "2020-10-30T01:00:00Z",
+                    "to": "9999-01-01T00:00:00Z",
+                    "value": "unknown"
+                  }
+                ],
+                "performance": [
+                  {
+                    "from": "2020-10-30T01:00:00Z",
+                    "to": "9999-01-01T00:00:00Z",
+                    "value": "unknown"
+                  }
+                ]
+              },
+              "timeoffset": "PT0H",
+              "timeresolution": "PT1H"
+            }
+          },
+          "available": {
+            "from": "2020-10-30T01:00:00Z"
+          }
+        },
+        "observations": [
+          {
+            "time": "2025-10-02T00:00:00Z",
+            "body": {
+              "qualitycode": "0",
+              "value": "492.048004"
+            }
+          }
+        ]
+      },
+      {
+        "header": {
+          "id": {
+            "level": 60,
+            "parametercode": "SW",
+            "parameterid": 340,
+            "sensor": 0,
+            "stationid": 58070,
+            "stationtype": "nationalnummer",
+            "typeid": 501
+          },
+          "extra": {
+            "element": {
+              "description": "Soil moisture content at different depths (default 10 cm)",
+              "id": "volume_fraction_of_water_in_soil",
+              "name": "Soil moisture ",
+              "unit": "1/100"
+            },
+            "station": {
+              "location": [
+                {
+                  "from": "1957-06-01T00:00:00Z",
+                  "to": "2017-12-31T00:00:00Z",
+                  "value": {
+                    "elevation(masl/hs)": "51",
+                    "latitude": "61.788000",
+                    "longitude": "6.183700"
+                  }
+                },
+                {
+                  "from": "2017-12-31T00:00:00Z",
+                  "to": "9999-01-01T00:00:00Z",
+                  "value": {
+                    "elevation(masl/hs)": "51",
+                    "latitude": "61.787300",
+                    "longitude": "6.183500"
+                  }
+                }
+              ],
+              "shortname": "Sandane"
+            },
+            "timeseries": {
+              "geometry": {
+                "level": {
+                  "unit": "cm",
+                  "value": "60"
+                }
+              },
+              "quality": {
+                "exposure": [
+                  {
+                    "from": "2020-11-02T08:00:00Z",
+                    "to": "9999-01-01T00:00:00Z",
+                    "value": "unknown"
+                  }
+                ],
+                "performance": [
+                  {
+                    "from": "2020-11-02T08:00:00Z",
+                    "to": "9999-01-01T00:00:00Z",
+                    "value": "unknown"
+                  }
+                ]
+              },
+              "timeoffset": "PT0H",
+              "timeresolution": "PT1H"
+            }
+          },
+          "available": {
+            "from": "2020-11-02T08:00:00Z"
+          }
+        },
+        "observations": [
+          {
+            "time": "2025-10-02T00:00:00Z",
+            "body": {
+              "qualitycode": "0",
+              "value": "6.85172987"
+            }
+          }
+        ]
+      },
+      {
+        "header": {
+          "id": {
+            "level": 0,
+            "parametercode": "DX_1",
+            "parameterid": 73,
+            "sensor": 0,
+            "stationid": 58070,
+            "stationtype": "nationalnummer",
+            "typeid": 501
+          },
+          "extra": {
+            "element": {
+              "description": "Wind direction at maximum mean wind speed over the last hour",
+              "id": "max_wind_speed(wind_from_direction PT1H)",
+              "name": "Wind direction of maximum mean wind speed (1 h)",
+              "unit": "degrees"
+            },
+            "station": {
+              "location": [
+                {
+                  "from": "1957-06-01T00:00:00Z",
+                  "to": "2017-12-31T00:00:00Z",
+                  "value": {
+                    "elevation(masl/hs)": "51",
+                    "latitude": "61.788000",
+                    "longitude": "6.183700"
+                  }
+                },
+                {
+                  "from": "2017-12-31T00:00:00Z",
+                  "to": "9999-01-01T00:00:00Z",
+                  "value": {
+                    "elevation(masl/hs)": "51",
+                    "latitude": "61.787300",
+                    "longitude": "6.183500"
+                  }
+                }
+              ],
+              "shortname": "Sandane"
+            },
+            "timeseries": {
+              "geometry": {
+                "level": {
+                  "unit": "m",
+                  "value": "10"
+                }
+              },
+              "quality": {
+                "exposure": [
+                  {
+                    "from": "2020-10-30T01:00:00Z",
+                    "to": "9999-01-01T00:00:00Z",
+                    "value": "unknown"
+                  }
+                ],
+                "performance": [
+                  {
+                    "from": "2020-10-30T01:00:00Z",
+                    "to": "9999-01-01T00:00:00Z",
+                    "value": "unknown"
+                  }
+                ]
+              },
+              "timeoffset": "PT0H",
+              "timeresolution": "PT1H"
+            }
+          },
+          "available": {
+            "from": "2020-10-30T01:00:00Z"
+          }
+        },
+        "observations": [
+          {
+            "time": "2025-10-02T00:00:00Z",
+            "body": {
+              "qualitycode": "0",
+              "value": "88"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,592 @@
+{
+  "data": {
+    "tstype": "met.no/kvkafka",
+    "tseries": [
+      {
+        "header": {
+          "id": {
+            "level": 2,
+            "parametercode": "DD",
+            "parameterid": 61,
+            "sensor": 0,
+            "stationid": 58070,
+            "stationtype": "nationalnummer",
+            "typeid": 506
+          },
+          "extra": {
+            "element": {
+              "description": "Mean wind direction over the last ten minutes before the observation time. Wind direction is defined as the direction from which the wind blows and is registered in degrees, where 360 degrees is north and 90 degrees is east. ",
+              "id": "wind_from_direction",
+              "name": "Wind direction",
+              "unit": "degrees"
+            },
+            "station": {
+              "location": [
+                {
+                  "from": "1957-06-01T00:00:00Z",
+                  "to": "2017-12-31T00:00:00Z",
+                  "value": {
+                    "elevation(masl/hs)": "51",
+                    "latitude": "61.788000",
+                    "longitude": "6.183700"
+                  }
+                },
+                {
+                  "from": "2017-12-31T00:00:00Z",
+                  "to": "9999-01-01T00:00:00Z",
+                  "value": {
+                    "elevation(masl/hs)": "51",
+                    "latitude": "61.787300",
+                    "longitude": "6.183500"
+                  }
+                }
+              ],
+              "shortname": "Sandane"
+            },
+            "timeseries": {
+              "geometry": {
+                "level": {
+                  "unit": "m",
+                  "value": "2"
+                }
+              },
+              "quality": {
+                "exposure": [
+                  {
+                    "from": "2020-11-02T08:50:00Z",
+                    "to": "9999-01-01T00:00:00Z",
+                    "value": "unknown"
+                  }
+                ],
+                "performance": [
+                  {
+                    "from": "2020-11-02T08:50:00Z",
+                    "to": "9999-01-01T00:00:00Z",
+                    "value": "unknown"
+                  }
+                ]
+              },
+              "timeoffset": "PT0H",
+              "timeresolution": "PT10M"
+            }
+          },
+          "available": {
+            "from": "2020-11-02T08:50:00Z"
+          }
+        },
+        "observations": [
+          {
+            "time": "2025-10-02T00:00:00Z",
+            "body": {
+              "qualitycode": "2",
+              "value": "107"
+            }
+          },
+          {
+            "time": "2025-10-02T00:10:00Z",
+            "body": {
+              "qualitycode": "2",
+              "value": "143"
+            }
+          },
+          {
+            "time": "2025-10-02T00:20:00Z",
+            "body": {
+              "qualitycode": "2",
+              "value": "105"
+            }
+          },
+          {
+            "time": "2025-10-02T00:30:00Z",
+            "body": {
+              "qualitycode": "2",
+              "value": "87"
+            }
+          },
+          {
+            "time": "2025-10-02T00:40:00Z",
+            "body": {
+              "qualitycode": "2",
+              "value": "50"
+            }
+          },
+          {
+            "time": "2025-10-02T00:50:00Z",
+            "body": {
+              "qualitycode": "2",
+              "value": "41"
+            }
+          }
+        ]
+      },
+      {
+        "header": {
+          "id": {
+            "level": 2,
+            "parametercode": "FF",
+            "parameterid": 81,
+            "sensor": 0,
+            "stationid": 58070,
+            "stationtype": "nationalnummer",
+            "typeid": 506
+          },
+          "extra": {
+            "element": {
+              "description": "Mean wind speed is registered as a mean value of the wind speed over the last ten minutes before the observation time. (default: 10 meters above ground, some stations have measurements at 2 meters)",
+              "id": "wind_speed",
+              "name": "Mean wind speed",
+              "unit": "m/s"
+            },
+            "station": {
+              "location": [
+                {
+                  "from": "1957-06-01T00:00:00Z",
+                  "to": "2017-12-31T00:00:00Z",
+                  "value": {
+                    "elevation(masl/hs)": "51",
+                    "latitude": "61.788000",
+                    "longitude": "6.183700"
+                  }
+                },
+                {
+                  "from": "2017-12-31T00:00:00Z",
+                  "to": "9999-01-01T00:00:00Z",
+                  "value": {
+                    "elevation(masl/hs)": "51",
+                    "latitude": "61.787300",
+                    "longitude": "6.183500"
+                  }
+                }
+              ],
+              "shortname": "Sandane"
+            },
+            "timeseries": {
+              "geometry": {
+                "level": {
+                  "unit": "m",
+                  "value": "2"
+                }
+              },
+              "quality": {
+                "exposure": [
+                  {
+                    "from": "2020-11-02T08:50:00Z",
+                    "to": "9999-01-01T00:00:00Z",
+                    "value": "unknown"
+                  }
+                ],
+                "performance": [
+                  {
+                    "from": "2020-11-02T08:50:00Z",
+                    "to": "9999-01-01T00:00:00Z",
+                    "value": "unknown"
+                  }
+                ]
+              },
+              "timeoffset": "PT0H",
+              "timeresolution": "PT10M"
+            }
+          },
+          "available": {
+            "from": "2020-11-02T08:50:00Z"
+          }
+        },
+        "observations": [
+          {
+            "time": "2025-10-02T00:00:00Z",
+            "body": {
+              "qualitycode": "2",
+              "value": "1.39999998"
+            }
+          },
+          {
+            "time": "2025-10-02T00:10:00Z",
+            "body": {
+              "qualitycode": "2",
+              "value": "0.899999976"
+            }
+          },
+          {
+            "time": "2025-10-02T00:20:00Z",
+            "body": {
+              "qualitycode": "2",
+              "value": "1.10000002"
+            }
+          },
+          {
+            "time": "2025-10-02T00:30:00Z",
+            "body": {
+              "qualitycode": "2",
+              "value": "0.800000012"
+            }
+          },
+          {
+            "time": "2025-10-02T00:40:00Z",
+            "body": {
+              "qualitycode": "2",
+              "value": "1.20000005"
+            }
+          },
+          {
+            "time": "2025-10-02T00:50:00Z",
+            "body": {
+              "qualitycode": "2",
+              "value": "1.70000005"
+            }
+          }
+        ]
+      },
+      {
+        "header": {
+          "id": {
+            "level": 0,
+            "parametercode": "UU",
+            "parameterid": 262,
+            "sensor": 0,
+            "stationid": 58070,
+            "stationtype": "nationalnummer",
+            "typeid": 506
+          },
+          "extra": {
+            "element": {
+              "description": "Relative humidity ",
+              "id": "relative_humidity",
+              "name": "Relative air humidity",
+              "unit": "1/100"
+            },
+            "station": {
+              "location": [
+                {
+                  "from": "1957-06-01T00:00:00Z",
+                  "to": "2017-12-31T00:00:00Z",
+                  "value": {
+                    "elevation(masl/hs)": "51",
+                    "latitude": "61.788000",
+                    "longitude": "6.183700"
+                  }
+                },
+                {
+                  "from": "2017-12-31T00:00:00Z",
+                  "to": "9999-01-01T00:00:00Z",
+                  "value": {
+                    "elevation(masl/hs)": "51",
+                    "latitude": "61.787300",
+                    "longitude": "6.183500"
+                  }
+                }
+              ],
+              "shortname": "Sandane"
+            },
+            "timeseries": {
+              "geometry": {
+                "level": {
+                  "unit": "m",
+                  "value": "2"
+                }
+              },
+              "quality": {
+                "exposure": [
+                  {
+                    "from": "2020-10-30T00:00:00Z",
+                    "to": "9999-01-01T00:00:00Z",
+                    "value": "1"
+                  }
+                ],
+                "performance": [
+                  {
+                    "from": "2021-04-09T08:40:00Z",
+                    "to": "9999-01-01T00:00:00Z",
+                    "value": "unknown"
+                  }
+                ]
+              },
+              "timeoffset": "PT0H",
+              "timeresolution": "PT10M"
+            }
+          },
+          "available": {
+            "from": "2021-04-09T08:40:00Z"
+          }
+        },
+        "observations": [
+          {
+            "time": "2025-10-02T00:00:00Z",
+            "body": {
+              "qualitycode": "0",
+              "value": "49"
+            }
+          },
+          {
+            "time": "2025-10-02T00:10:00Z",
+            "body": {
+              "qualitycode": "0",
+              "value": "51"
+            }
+          },
+          {
+            "time": "2025-10-02T00:20:00Z",
+            "body": {
+              "qualitycode": "0",
+              "value": "50"
+            }
+          },
+          {
+            "time": "2025-10-02T00:30:00Z",
+            "body": {
+              "qualitycode": "0",
+              "value": "55"
+            }
+          },
+          {
+            "time": "2025-10-02T00:40:00Z",
+            "body": {
+              "qualitycode": "0",
+              "value": "71"
+            }
+          },
+          {
+            "time": "2025-10-02T00:50:00Z",
+            "body": {
+              "qualitycode": "0",
+              "value": "74"
+            }
+          }
+        ]
+      },
+      {
+        "header": {
+          "id": {
+            "level": 0,
+            "parametercode": "FF",
+            "parameterid": 81,
+            "sensor": 0,
+            "stationid": 58070,
+            "stationtype": "nationalnummer",
+            "typeid": 506
+          },
+          "extra": {
+            "element": {
+              "description": "Mean wind speed is registered as a mean value of the wind speed over the last ten minutes before the observation time. (default: 10 meters above ground, some stations have measurements at 2 meters)",
+              "id": "wind_speed",
+              "name": "Mean wind speed",
+              "unit": "m/s"
+            },
+            "station": {
+              "location": [
+                {
+                  "from": "1957-06-01T00:00:00Z",
+                  "to": "2017-12-31T00:00:00Z",
+                  "value": {
+                    "elevation(masl/hs)": "51",
+                    "latitude": "61.788000",
+                    "longitude": "6.183700"
+                  }
+                },
+                {
+                  "from": "2017-12-31T00:00:00Z",
+                  "to": "9999-01-01T00:00:00Z",
+                  "value": {
+                    "elevation(masl/hs)": "51",
+                    "latitude": "61.787300",
+                    "longitude": "6.183500"
+                  }
+                }
+              ],
+              "shortname": "Sandane"
+            },
+            "timeseries": {
+              "geometry": {
+                "level": {
+                  "unit": "m",
+                  "value": "10"
+                }
+              },
+              "quality": {
+                "exposure": [
+                  {
+                    "from": "2020-10-31T01:00:00Z",
+                    "to": "9999-01-01T00:00:00Z",
+                    "value": "unknown"
+                  }
+                ],
+                "performance": [
+                  {
+                    "from": "2020-10-31T01:00:00Z",
+                    "to": "9999-01-01T00:00:00Z",
+                    "value": "unknown"
+                  }
+                ]
+              },
+              "timeoffset": "PT0H",
+              "timeresolution": "PT10M"
+            }
+          },
+          "available": {
+            "from": "2020-10-31T01:00:00Z"
+          }
+        },
+        "observations": [
+          {
+            "time": "2025-10-02T00:00:00Z",
+            "body": {
+              "qualitycode": "0",
+              "value": "1.79999995"
+            }
+          },
+          {
+            "time": "2025-10-02T00:10:00Z",
+            "body": {
+              "qualitycode": "0",
+              "value": "1.60000002"
+            }
+          },
+          {
+            "time": "2025-10-02T00:20:00Z",
+            "body": {
+              "qualitycode": "0",
+              "value": "1.89999998"
+            }
+          },
+          {
+            "time": "2025-10-02T00:30:00Z",
+            "body": {
+              "qualitycode": "0",
+              "value": "1.5"
+            }
+          },
+          {
+            "time": "2025-10-02T00:40:00Z",
+            "body": {
+              "qualitycode": "0",
+              "value": "1.39999998"
+            }
+          },
+          {
+            "time": "2025-10-02T00:50:00Z",
+            "body": {
+              "qualitycode": "0",
+              "value": "1.89999998"
+            }
+          }
+        ]
+      },
+      {
+        "header": {
+          "id": {
+            "level": 0,
+            "parametercode": "DD",
+            "parameterid": 61,
+            "sensor": 0,
+            "stationid": 58070,
+            "stationtype": "nationalnummer",
+            "typeid": 506
+          },
+          "extra": {
+            "element": {
+              "description": "Mean wind direction over the last ten minutes before the observation time. Wind direction is defined as the direction from which the wind blows and is registered in degrees, where 360 degrees is north and 90 degrees is east. ",
+              "id": "wind_from_direction",
+              "name": "Wind direction",
+              "unit": "degrees"
+            },
+            "station": {
+              "location": [
+                {
+                  "from": "1957-06-01T00:00:00Z",
+                  "to": "2017-12-31T00:00:00Z",
+                  "value": {
+                    "elevation(masl/hs)": "51",
+                    "latitude": "61.788000",
+                    "longitude": "6.183700"
+                  }
+                },
+                {
+                  "from": "2017-12-31T00:00:00Z",
+                  "to": "9999-01-01T00:00:00Z",
+                  "value": {
+                    "elevation(masl/hs)": "51",
+                    "latitude": "61.787300",
+                    "longitude": "6.183500"
+                  }
+                }
+              ],
+              "shortname": "Sandane"
+            },
+            "timeseries": {
+              "geometry": {
+                "level": {
+                  "unit": "m",
+                  "value": "10"
+                }
+              },
+              "quality": {
+                "exposure": [
+                  {
+                    "from": "2020-10-31T01:00:00Z",
+                    "to": "9999-01-01T00:00:00Z",
+                    "value": "unknown"
+                  }
+                ],
+                "performance": [
+                  {
+                    "from": "2020-10-31T01:00:00Z",
+                    "to": "9999-01-01T00:00:00Z",
+                    "value": "unknown"
+                  }
+                ]
+              },
+              "timeoffset": "PT0H",
+              "timeresolution": "PT10M"
+            }
+          },
+          "available": {
+            "from": "2020-10-31T01:00:00Z"
+          }
+        },
+        "observations": [
+          {
+            "time": "2025-10-02T00:00:00Z",
+            "body": {
+              "qualitycode": "0",
+              "value": "107"
+            }
+          },
+          {
+            "time": "2025-10-02T00:10:00Z",
+            "body": {
+              "qualitycode": "0",
+              "value": "136"
+            }
+          },
+          {
+            "time": "2025-10-02T00:20:00Z",
+            "body": {
+              "qualitycode": "0",
+              "value": "107"
+            }
+          },
+          {
+            "time": "2025-10-02T00:30:00Z",
+            "body": {
+              "qualitycode": "0",
+              "value": "115"
+            }
+          },
+          {
+            "time": "2025-10-02T00:40:00Z",
+            "body": {
+              "qualitycode": "0",
+              "value": "59"
+            }
+          },
+          {
+            "time": "2025-10-02T00:50:00Z",
+            "body": {
+              "qualitycode": "0",
+              "value": "45"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

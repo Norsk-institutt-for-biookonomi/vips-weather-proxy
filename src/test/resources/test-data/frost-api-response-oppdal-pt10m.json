@@ -1,0 +1,439 @@
+{
+  "data": {
+    "tstype": "met.no/kvkafka",
+    "tseries": [
+      {
+        "header": {
+          "id": {
+            "level": 0,
+            "parametercode": "UU",
+            "parameterid": 262,
+            "sensor": 0,
+            "stationid": 63705,
+            "stationtype": "nationalnummer",
+            "typeid": 506
+          },
+          "extra": {
+            "element": {
+              "description": "Relative humidity ",
+              "id": "relative_humidity",
+              "name": "Relative air humidity",
+              "unit": "1/100"
+            },
+            "station": {
+              "location": [
+                {
+                  "from": "1999-12-01T00:00:00Z",
+                  "to": "9999-01-01T00:00:00Z",
+                  "value": {
+                    "elevation(masl/hs)": "604",
+                    "latitude": "62.602700",
+                    "longitude": "9.666000"
+                  }
+                }
+              ],
+              "shortname": "Oppdal"
+            },
+            "timeseries": {
+              "geometry": {
+                "level": {
+                  "unit": "m",
+                  "value": "2"
+                }
+              },
+              "quality": {
+                "exposure": [
+                  {
+                    "from": "1999-12-01T06:00:00Z",
+                    "to": "9999-01-01T00:00:00Z",
+                    "value": "1"
+                  }
+                ],
+                "performance": [
+                  {
+                    "from": "2025-05-28T12:00:00Z",
+                    "to": "9999-01-01T00:00:00Z",
+                    "value": "unknown"
+                  }
+                ]
+              },
+              "timeoffset": "PT0H",
+              "timeresolution": "PT10M"
+            }
+          },
+          "available": {
+            "from": "2025-05-28T12:00:00Z"
+          }
+        },
+        "observations": [
+          {
+            "time": "2025-10-02T00:00:00Z",
+            "body": {
+              "qualitycode": "0",
+              "value": "64"
+            }
+          },
+          {
+            "time": "2025-10-02T00:10:00Z",
+            "body": {
+              "qualitycode": "0",
+              "value": "66"
+            }
+          },
+          {
+            "time": "2025-10-02T00:20:00Z",
+            "body": {
+              "qualitycode": "0",
+              "value": "65"
+            }
+          },
+          {
+            "time": "2025-10-02T00:30:00Z",
+            "body": {
+              "qualitycode": "0",
+              "value": "65"
+            }
+          },
+          {
+            "time": "2025-10-02T00:40:00Z",
+            "body": {
+              "qualitycode": "0",
+              "value": "66"
+            }
+          },
+          {
+            "time": "2025-10-02T00:50:00Z",
+            "body": {
+              "qualitycode": "0",
+              "value": "66"
+            }
+          }
+        ]
+      },
+      {
+        "header": {
+          "id": {
+            "level": 0,
+            "parametercode": "TA",
+            "parameterid": 211,
+            "sensor": 0,
+            "stationid": 63705,
+            "stationtype": "nationalnummer",
+            "typeid": 506
+          },
+          "extra": {
+            "element": {
+              "description": "Air temperature (default 2 m above ground), present value",
+              "id": "air_temperature",
+              "name": "Air temperature",
+              "unit": "degC"
+            },
+            "station": {
+              "location": [
+                {
+                  "from": "1999-12-01T00:00:00Z",
+                  "to": "9999-01-01T00:00:00Z",
+                  "value": {
+                    "elevation(masl/hs)": "604",
+                    "latitude": "62.602700",
+                    "longitude": "9.666000"
+                  }
+                }
+              ],
+              "shortname": "Oppdal"
+            },
+            "timeseries": {
+              "geometry": {
+                "level": {
+                  "unit": "m",
+                  "value": "2"
+                }
+              },
+              "quality": {
+                "exposure": [
+                  {
+                    "from": "1999-12-01T06:00:00Z",
+                    "to": "9999-01-01T00:00:00Z",
+                    "value": "1"
+                  }
+                ],
+                "performance": [
+                  {
+                    "from": "2016-03-04T11:00:00Z",
+                    "to": "9999-01-01T00:00:00Z",
+                    "value": "unknown"
+                  }
+                ]
+              },
+              "timeoffset": "PT0H",
+              "timeresolution": "PT10M"
+            }
+          },
+          "available": {
+            "from": "2016-03-04T11:00:00Z"
+          }
+        },
+        "observations": [
+          {
+            "time": "2025-10-02T00:00:00Z",
+            "body": {
+              "qualitycode": "0",
+              "value": "7.5"
+            }
+          },
+          {
+            "time": "2025-10-02T00:10:00Z",
+            "body": {
+              "qualitycode": "0",
+              "value": "7.19999981"
+            }
+          },
+          {
+            "time": "2025-10-02T00:20:00Z",
+            "body": {
+              "qualitycode": "0",
+              "value": "7.30000019"
+            }
+          },
+          {
+            "time": "2025-10-02T00:30:00Z",
+            "body": {
+              "qualitycode": "0",
+              "value": "7.4000001"
+            }
+          },
+          {
+            "time": "2025-10-02T00:40:00Z",
+            "body": {
+              "qualitycode": "0",
+              "value": "7.30000019"
+            }
+          },
+          {
+            "time": "2025-10-02T00:50:00Z",
+            "body": {
+              "qualitycode": "0",
+              "value": "7.4000001"
+            }
+          }
+        ]
+      },
+      {
+        "header": {
+          "id": {
+            "level": 0,
+            "parametercode": "DD",
+            "parameterid": 61,
+            "sensor": 0,
+            "stationid": 63705,
+            "stationtype": "nationalnummer",
+            "typeid": 506
+          },
+          "extra": {
+            "element": {
+              "description": "Mean wind direction over the last ten minutes before the observation time. Wind direction is defined as the direction from which the wind blows and is registered in degrees, where 360 degrees is north and 90 degrees is east. ",
+              "id": "wind_from_direction",
+              "name": "Wind direction",
+              "unit": "degrees"
+            },
+            "station": {
+              "location": [
+                {
+                  "from": "1999-12-01T00:00:00Z",
+                  "to": "9999-01-01T00:00:00Z",
+                  "value": {
+                    "elevation(masl/hs)": "604",
+                    "latitude": "62.602700",
+                    "longitude": "9.666000"
+                  }
+                }
+              ],
+              "shortname": "Oppdal"
+            },
+            "timeseries": {
+              "geometry": {
+                "level": {
+                  "unit": "m",
+                  "value": "10"
+                }
+              },
+              "quality": {
+                "exposure": [
+                  {
+                    "from": "2016-03-03T13:20:00Z",
+                    "to": "9999-01-01T00:00:00Z",
+                    "value": "unknown"
+                  }
+                ],
+                "performance": [
+                  {
+                    "from": "2016-03-03T13:20:00Z",
+                    "to": "9999-01-01T00:00:00Z",
+                    "value": "unknown"
+                  }
+                ]
+              },
+              "timeoffset": "PT0H",
+              "timeresolution": "PT10M"
+            }
+          },
+          "available": {
+            "from": "2016-03-03T13:20:00Z"
+          }
+        },
+        "observations": [
+          {
+            "time": "2025-10-02T00:00:00Z",
+            "body": {
+              "qualitycode": "0",
+              "value": "309"
+            }
+          },
+          {
+            "time": "2025-10-02T00:10:00Z",
+            "body": {
+              "qualitycode": "0",
+              "value": "338"
+            }
+          },
+          {
+            "time": "2025-10-02T00:20:00Z",
+            "body": {
+              "qualitycode": "0",
+              "value": "324"
+            }
+          },
+          {
+            "time": "2025-10-02T00:30:00Z",
+            "body": {
+              "qualitycode": "0",
+              "value": "269"
+            }
+          },
+          {
+            "time": "2025-10-02T00:40:00Z",
+            "body": {
+              "qualitycode": "0",
+              "value": "266"
+            }
+          },
+          {
+            "time": "2025-10-02T00:50:00Z",
+            "body": {
+              "qualitycode": "0",
+              "value": "259"
+            }
+          }
+        ]
+      },
+      {
+        "header": {
+          "id": {
+            "level": 0,
+            "parametercode": "FF",
+            "parameterid": 81,
+            "sensor": 0,
+            "stationid": 63705,
+            "stationtype": "nationalnummer",
+            "typeid": 506
+          },
+          "extra": {
+            "element": {
+              "description": "Mean wind speed is registered as a mean value of the wind speed over the last ten minutes before the observation time. (default: 10 meters above ground, some stations have measurements at 2 meters)",
+              "id": "wind_speed",
+              "name": "Mean wind speed",
+              "unit": "m/s"
+            },
+            "station": {
+              "location": [
+                {
+                  "from": "1999-12-01T00:00:00Z",
+                  "to": "9999-01-01T00:00:00Z",
+                  "value": {
+                    "elevation(masl/hs)": "604",
+                    "latitude": "62.602700",
+                    "longitude": "9.666000"
+                  }
+                }
+              ],
+              "shortname": "Oppdal"
+            },
+            "timeseries": {
+              "geometry": {
+                "level": {
+                  "unit": "m",
+                  "value": "10"
+                }
+              },
+              "quality": {
+                "exposure": [
+                  {
+                    "from": "2016-03-03T13:20:00Z",
+                    "to": "9999-01-01T00:00:00Z",
+                    "value": "unknown"
+                  }
+                ],
+                "performance": [
+                  {
+                    "from": "2016-03-03T13:20:00Z",
+                    "to": "9999-01-01T00:00:00Z",
+                    "value": "unknown"
+                  }
+                ]
+              },
+              "timeoffset": "PT0H",
+              "timeresolution": "PT10M"
+            }
+          },
+          "available": {
+            "from": "2016-03-03T13:20:00Z"
+          }
+        },
+        "observations": [
+          {
+            "time": "2025-10-02T00:00:00Z",
+            "body": {
+              "qualitycode": "0",
+              "value": "1.5"
+            }
+          },
+          {
+            "time": "2025-10-02T00:10:00Z",
+            "body": {
+              "qualitycode": "0",
+              "value": "1.39999998"
+            }
+          },
+          {
+            "time": "2025-10-02T00:20:00Z",
+            "body": {
+              "qualitycode": "0",
+              "value": "1.20000005"
+            }
+          },
+          {
+            "time": "2025-10-02T00:30:00Z",
+            "body": {
+              "qualitycode": "0",
+              "value": "2"
+            }
+          },
+          {
+            "time": "2025-10-02T00:40:00Z",
+            "body": {
+              "qualitycode": "0",
+              "value": "2"
+            }
+          },
+          {
+            "time": "2025-10-02T00:50:00Z",
+            "body": {
+              "qualitycode": "0",
+              "value": "2.5"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

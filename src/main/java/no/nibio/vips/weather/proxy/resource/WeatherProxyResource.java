@@ -24,14 +24,14 @@ import java.net.URLDecoder;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
-import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
 
-import org.apache.ws.commons.schema.constants.Constants.SystemConstants;
+import no.nibio.vips.weather.proxy.parsers.*;
+import no.nibio.vips.weather.proxy.parsers.frost.service.FrostWeatherObservationService;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.media.Content;
@@ -42,6 +42,7 @@ import org.slf4j.LoggerFactory;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.inject.Inject;
+import jakarta.ws.rs.DefaultValue;
 import jakarta.ws.rs.FormParam;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
@@ -53,18 +54,6 @@ import no.nibio.vips.entity.WeatherObservation;
 import no.nibio.vips.util.InvalidAggregationTypeException;
 import no.nibio.vips.util.WeatherObservationListException;
 import no.nibio.vips.util.XDate;
-import no.nibio.vips.weather.proxy.parsers.ALabDataParser;
-import no.nibio.vips.weather.proxy.parsers.FruitWebDavisDataParser;
-import no.nibio.vips.weather.proxy.parsers.MetNoLocationForecastProvider;
-import no.nibio.vips.weather.proxy.parsers.MetNoSubSeasonalForecastProvider;
-import no.nibio.vips.weather.proxy.parsers.MeteobotAPIDataParser;
-import no.nibio.vips.weather.proxy.parsers.MetosAPIDataParser;
-import no.nibio.vips.weather.proxy.parsers.OpenMeteoParser;
-import no.nibio.vips.weather.proxy.parsers.OutOfAreaException;
-import no.nibio.vips.weather.proxy.parsers.ParseWeatherDataException;
-import no.nibio.vips.weather.proxy.parsers.TahmoDataParser;
-import no.nibio.vips.weather.proxy.parsers.USPestDataParser;
-import no.nibio.vips.weather.proxy.parsers.VitiMeteoParser;
 import no.nibio.vips.weather.proxy.parsers.dnmipointweb.DMIPointWebDataParser;
 import no.nibio.vips.weather.proxy.parsers.fmi.FmiIntermediator;
 import no.nibio.vips.weather.proxy.parsers.fmi.FmiOpenDataAccess;
@@ -87,6 +76,9 @@ public class WeatherProxyResource {
 
     @Inject
     VitiMeteoParser vitiMeteoParser;
+
+    @Inject
+    FrostWeatherObservationService frostWeatherObservationService;
 
     @Inject
     @ConfigProperty(name = "no.nibio.vips.logic.weather.TAHMOOPEN_CREDENTIALS")
@@ -706,6 +698,32 @@ public class WeatherProxyResource {
         } catch (NullPointerException ex) {
             return Response.serverError().entity(ex).build();
         }
+        return Response.ok().entity(observations).build();
+    }
+
+    @GET
+    @Path("frostbeta/{stationId}")
+    @Produces("application/json;charset=UTF-8")
+    public Response getFrostBetaAPIWeatherData(
+            @PathParam("stationId") String stationId,
+            @QueryParam("startDate") String startDate,
+            @QueryParam("endDate") String endDate,
+            @QueryParam("elementMeasurementTypes[]") String[] elementMeasurementTypesInput,
+            @QueryParam("enable10MinAggregation") @DefaultValue("false") boolean enable10MinAggregation
+    ) {
+
+        List<WeatherObservation> observations;
+        try {
+
+            ZonedDateTime start = ZonedDateTime.parse(startDate);
+            ZonedDateTime end = ZonedDateTime.parse(endDate);
+
+            observations = frostWeatherObservationService.getWeatherObservations(stationId, start, end, elementMeasurementTypesInput, enable10MinAggregation);
+
+        } catch (Exception ex) {
+            return Response.serverError().entity("Error: " + ex.getMessage()).build();
+        }
+
         return Response.ok().entity(observations).build();
     }
 }
