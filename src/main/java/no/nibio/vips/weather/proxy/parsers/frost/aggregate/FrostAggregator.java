@@ -44,7 +44,6 @@ public class FrostAggregator {
                 WeatherObservation template = bucket.get(0);
 
                 if (rule == null) {
-                    result.add(clone(template, element, arithmeticMean, hourDate));
                     continue;
                 }
 

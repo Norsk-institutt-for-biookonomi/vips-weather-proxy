@@ -252,6 +252,7 @@
                             <skipValidateSpec>true</skipValidateSpec>
                             <useBeanValidation>false</useBeanValidation>
                             <library>okhttp-gson</library>
+                            <output>${project.build.directory}/generated-sources/openapi</output>
                             <configOptions>
                                 <dateLibrary>java8</dateLibrary>
                                 <java8>true</java8>

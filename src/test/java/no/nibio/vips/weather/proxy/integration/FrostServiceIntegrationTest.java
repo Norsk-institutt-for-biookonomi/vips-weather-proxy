@@ -91,6 +91,8 @@ public class FrostServiceIntegrationTest {
         WeatherObservation fm2 = obs.stream().filter(o -> "FM2".equals(o.getElementMeasurementTypeId())).findFirst().orElse(null);
         WeatherObservation dm2 = obs.stream().filter(o -> "DM2".equals(o.getElementMeasurementTypeId())).findFirst().orElse(null);
         WeatherObservation dm = obs.stream().filter(o -> "DM".equals(o.getElementMeasurementTypeId())).findFirst().orElse(null);
+        WeatherObservation uu = obs.stream().filter(o -> "UU".equals(o.getElementMeasurementTypeId())).findFirst().orElse(null);
+        WeatherObservation tx = obs.stream().filter(o -> "TX".equals(o.getElementMeasurementTypeId())).findFirst().orElse(null);
 
         assertAll(
                 () -> assertNotNull(fm),
@@ -100,7 +102,9 @@ public class FrostServiceIntegrationTest {
                 () -> assertEquals(1.6833333183333332, fm.getValue()),
                 () -> assertEquals(1.1833333480000001, fm2.getValue()),
                 () -> assertEquals(88.83333333333333, dm2.getValue()),
-                () -> assertEquals(94.83333333333333, dm.getValue())
+                () -> assertEquals(94.83333333333333, dm.getValue()),
+                () -> assertNull(uu),
+                () -> assertNull(tx)
         );
     }
 
