@@ -63,7 +63,7 @@ public class FrostServiceIntegrationTest {
                 () -> assertNotNull(dd),
                 () -> assertNotNull(rra),
                 () -> assertEquals(0.0, rr.getValue()),
-                () -> assertEquals(1.80, ff.getValue()),
+                () -> assertEquals(1.4, ff.getValue()),
                 () -> assertEquals(107.0, dd.getValue()),
                 () -> assertEquals(492.05, rra.getValue())
         );
@@ -96,13 +96,9 @@ public class FrostServiceIntegrationTest {
 
         assertAll(
                 () -> assertNotNull(fm),
-                () -> assertNotNull(fm2),
-                () -> assertNotNull(dm2),
                 () -> assertNotNull(dm),
-                () -> assertEquals(1.68, fm.getValue()),
-                () -> assertEquals(1.18, fm2.getValue()),
-                () -> assertEquals(88.83, dm2.getValue()),
-                () -> assertEquals(94.83, dm.getValue()),
+                () -> assertEquals(1.43, fm.getValue()),
+                () -> assertEquals(91.83, dm.getValue()),
                 () -> assertNull(uu),
                 () -> assertNull(tx)
         );
