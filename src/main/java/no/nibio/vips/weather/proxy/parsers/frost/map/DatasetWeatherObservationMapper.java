@@ -4,6 +4,8 @@ import jakarta.enterprise.context.ApplicationScoped;
 import no.nibio.vips.entity.WeatherObservation;
 import no.nibio.vips.weather.proxy.parsers.frost.model.*;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.OffsetDateTime;
 import java.time.ZonedDateTime;
 import java.util.*;
@@ -90,7 +92,9 @@ public class DatasetWeatherObservationMapper {
         String t = s.trim();
         if (t.isEmpty() || "NaN".equalsIgnoreCase(t) || "-".equals(t)) return null;
         try {
-            return Double.parseDouble(t);
+            BigDecimal bd = new BigDecimal(t);
+            bd = bd.setScale(2, RoundingMode.HALF_UP); // round to 2 decimals
+            return bd.doubleValue();
         } catch (NumberFormatException e) {
             return null;
         }

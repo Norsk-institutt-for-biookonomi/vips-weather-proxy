@@ -42,6 +42,7 @@ public class FrostObservationsClient {
                     .elementids(elementIds)
                     .incobs(includeObservations)
                     .levels("all")
+                    .performancecategories("all")
                     .execute();
         } catch (ApiException e) {
             throw new RuntimeException("Fetch failed: HTTP " + e.getCode() + " " + e.getMessage(), e);

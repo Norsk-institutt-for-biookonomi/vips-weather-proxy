@@ -63,9 +63,9 @@ public class FrostServiceIntegrationTest {
                 () -> assertNotNull(dd),
                 () -> assertNotNull(rra),
                 () -> assertEquals(0.0, rr.getValue()),
-                () -> assertEquals(1.79999995, ff.getValue()),
+                () -> assertEquals(1.80, ff.getValue()),
                 () -> assertEquals(107.0, dd.getValue()),
-                () -> assertEquals(492.048004, rra.getValue())
+                () -> assertEquals(492.05, rra.getValue())
         );
     }
 
@@ -99,10 +99,10 @@ public class FrostServiceIntegrationTest {
                 () -> assertNotNull(fm2),
                 () -> assertNotNull(dm2),
                 () -> assertNotNull(dm),
-                () -> assertEquals(1.6833333183333332, fm.getValue()),
-                () -> assertEquals(1.1833333480000001, fm2.getValue()),
-                () -> assertEquals(88.83333333333333, dm2.getValue()),
-                () -> assertEquals(94.83333333333333, dm.getValue()),
+                () -> assertEquals(1.68, fm.getValue()),
+                () -> assertEquals(1.18, fm2.getValue()),
+                () -> assertEquals(88.83, dm2.getValue()),
+                () -> assertEquals(94.83, dm.getValue()),
                 () -> assertNull(uu),
                 () -> assertNull(tx)
         );
@@ -138,10 +138,10 @@ public class FrostServiceIntegrationTest {
             () -> assertNotNull(tm),
             () -> assertNotNull(um),
             () -> assertNotNull(ux),
-            () -> assertEquals(1.7666666716666668, fm.getValue()), // updated expected
-            () -> assertEquals(294.1666666666667, dm.getValue()), // updated expected
-            () -> assertEquals(7.350000065, tm.getValue()), // updated expected
-            () -> assertEquals(65.33333333333333, um.getValue()), // updated expected
+            () -> assertEquals(1.77, fm.getValue()), // updated expected
+            () -> assertEquals(294.17, dm.getValue()), // updated expected
+            () -> assertEquals(7.35, tm.getValue()), // updated expected
+            () -> assertEquals(65.33, um.getValue()), // updated expected
             () -> assertEquals(66.0, ux.getValue()) // updated expected
         );
     }
