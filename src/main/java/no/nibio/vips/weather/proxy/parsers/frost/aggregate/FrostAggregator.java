@@ -3,6 +3,8 @@ package no.nibio.vips.weather.proxy.parsers.frost.aggregate;
 import jakarta.enterprise.context.ApplicationScoped;
 import no.nibio.vips.entity.WeatherObservation;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.temporal.ChronoUnit;
@@ -38,8 +40,13 @@ public class FrostAggregator {
                 String element = elementEntry.getKey();
                 FrostAggregationRule rule = RULES.get(element);
 
-                double arithmeticMean = mean(bucket);
-                double maxValue = max(bucket);
+                double arithmeticMean = new BigDecimal(mean(bucket))
+                        .setScale(2, RoundingMode.HALF_UP)
+                        .doubleValue();
+
+                double maxValue = new BigDecimal(max(bucket))
+                        .setScale(2, RoundingMode.HALF_UP)
+                        .doubleValue();
 
                 WeatherObservation template = bucket.get(0);
 

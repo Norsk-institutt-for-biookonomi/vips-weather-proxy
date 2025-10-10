@@ -16,6 +16,7 @@ public class APIStubs {
                         .withQueryParam("timeresolutions", matching("PT1H"))
                         .withQueryParam("incobs", equalTo("true"))
                         .withQueryParam("levels", equalTo("all"))
+                        .withQueryParam("performancecategories", equalTo("all"))
         );
     }
 
@@ -30,6 +31,7 @@ public class APIStubs {
                         .withQueryParam("timeresolutions", matching("PT10M"))
                         .withQueryParam("incobs", equalTo("true"))
                         .withQueryParam("levels", equalTo("all"))
+                        .withQueryParam("performancecategories", equalTo("all"))
         );
     }
 
@@ -44,6 +46,7 @@ public class APIStubs {
                         .withQueryParam("timeresolutions", matching("PT10M"))
                         .withQueryParam("incobs", equalTo("true"))
                         .withQueryParam("levels", equalTo("all"))
+                        .withQueryParam("performancecategories", equalTo("all"))
         );
     }
 }
