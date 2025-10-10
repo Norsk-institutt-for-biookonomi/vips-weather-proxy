@@ -112,7 +112,14 @@ public class DatasetWeatherObservationMapper {
 
     private Integer extractLevel(Header header) {
         if (header == null) return null;
-        return header.getId().getLevel();
+        if (header.getExtra().getTimeseries() == null) return null;
+        if (header.getExtra().getTimeseries().getGeometry() == null) return null;
+        if (header.getExtra().getTimeseries().getGeometry().getLevel() == null) return null;
+        try {
+            return Integer.parseInt(header.getExtra().getTimeseries().getGeometry().getLevel().toString());
+        } catch (NumberFormatException e) {
+            return null;
+        }
     }
 
     private Integer extractSensor(Header header) {
