@@ -17,6 +17,7 @@ public class APIStubs {
                         .withQueryParam("incobs", equalTo("true"))
                         .withQueryParam("levels", equalTo("all"))
                         .withQueryParam("performancecategories", equalTo("all"))
+                        .withQueryParam("sensors", equalTo("all"))
         );
     }
 
@@ -32,6 +33,7 @@ public class APIStubs {
                         .withQueryParam("incobs", equalTo("true"))
                         .withQueryParam("levels", equalTo("all"))
                         .withQueryParam("performancecategories", equalTo("all"))
+                        .withQueryParam("sensors", equalTo("all"))
         );
     }
 
@@ -47,6 +49,7 @@ public class APIStubs {
                         .withQueryParam("incobs", equalTo("true"))
                         .withQueryParam("levels", equalTo("all"))
                         .withQueryParam("performancecategories", equalTo("all"))
+                        .withQueryParam("sensors", equalTo("all"))
         );
     }
 }
