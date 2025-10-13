@@ -116,7 +116,7 @@ public class DatasetWeatherObservationMapper {
         if (header.getExtra().getTimeseries().getGeometry() == null) return null;
         if (header.getExtra().getTimeseries().getGeometry().getLevel() == null) return null;
         try {
-            return Integer.parseInt(header.getExtra().getTimeseries().getGeometry().getLevel().toString());
+            return Integer.parseInt(header.getExtra().getTimeseries().getGeometry().getLevel().getValue());
         } catch (NumberFormatException e) {
             return null;
         }
