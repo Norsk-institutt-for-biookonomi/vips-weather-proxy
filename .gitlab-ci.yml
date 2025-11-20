@@ -1,8 +1,3 @@
-# Allow manual and branch-based pipeline runs
-workflow:
-  rules:
-    - if: $CI_COMMIT_BRANCH
-      when: always
 # https://java.testcontainers.org/supported_docker_environment/continuous_integration/gitlab_ci/
 
 # (Still no luck in running) <--- Comment from LMTAdminServices. Update when fixed there
@@ -59,11 +54,8 @@ test:
     - ./mvnw $MAVEN_CLI_OPTS $MAVEN_OPTS test
   tags:
     - java
-  rules:
-    - if: $CI_PIPELINE_SOURCE == "web"
-      when: manual
-    - if: $CI_COMMIT_BRANCH
-      when: always
+  only:
+    - main
 
 build-docker:
   stage: build
