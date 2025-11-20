@@ -51,7 +51,8 @@ before_script:
 test:
   stage: test
   script:
-    - ./mvnw $MAVEN_CLI_OPTS $MAVEN_OPTS test
+    #- ./mvnw $MAVEN_CLI_OPTS $MAVEN_OPTS test
+    - ./mvnw $MAVEN_CLI_OPTS $MAVEN_OPTS verify
   tags:
     - java
   only:
