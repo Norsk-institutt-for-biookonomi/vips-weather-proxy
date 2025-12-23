@@ -49,22 +49,6 @@ public class FmiOpenDataAccess {
 
     }
 
-    //"http://data.fmi.fi/fmi-apikey/insert-your-apikey-here/wfs?request=getFeature&storedquery_id=fmi::forecast::hirlam::surface::point::multipointcoverage&place=[PLACE_NAME]&endtime=yyyy-MM-ddTHH:mm:ssZ"
-    public String get24hrsForecast() {
-        String response = "";
-
-        DateTimeFunctions dateTime = new DateTimeFunctions();
-        String fmiDateTime = dateTime.getNowPlusDays("yyyy-MM-dd HH:mm:ss", "UTC", 1);
-        fmiDateTime = fmiDateTime.replace(" ", "T");
-        fmiDateTime += "Z";
-        //System.out.println(fmiDateTime);
-        //String url = "http://data.fmi.fi/fmi-apikey/49804794-1f38-46f0-adad-bb3d1aae5ffa/wfs?request=getFeature&storedquery_id=fmi::forecast::hirlam::surface::point::multipointcoverage&place=Vihti&endtime" + fmiDateTime;
-        String url =
-            "http://opendata.fmi.fi/wfs?request=getFeature&storedquery_id=fmi::forecast::hirlam::surface::point::multipointcoverage&place=Vihti&endtime" + fmiDateTime;
-        response = restGet(url);
-        return response;
-    }
-
     public String getTemporalData_prototype(String siteID, String startDateTime, String endDateTime) {
         String response = "";
         String url;
