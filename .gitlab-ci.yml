@@ -3,7 +3,7 @@
 # (Still no luck in running) <--- Comment from LMTAdminServices. Update when fixed there
 # https://www.docker.com/blog/running-testcontainers-tests-on-gitlab-ci/
 
-image: docker:27.4.1
+image: docker:27.5.0
 
 stages:
   - test
@@ -12,7 +12,7 @@ stages:
   - deploy-prod
 
 services:
-  - docker:27.4.1-dind
+  - docker:27.5.0-dind
 
 variables:
   COMMON_CONFIG_REMOTE: https://oauth2:$CICD_ACCESS_TOKEN@$CI_SERVER_HOST/VIPS/vips-common-config.git
