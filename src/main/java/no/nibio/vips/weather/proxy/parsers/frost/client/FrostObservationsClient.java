@@ -13,7 +13,7 @@ import org.eclipse.microprofile.config.inject.ConfigProperty;
 @NoArgsConstructor
 public class FrostObservationsClient {
 
-    @ConfigProperty(name = "frost.base-url", defaultValue = "https://frost-beta.met.no")
+    @ConfigProperty(name = "frost.base-url", defaultValue = "https://frost-rc.met.no")
     String baseUrl;
 
     @ConfigProperty(name = "frost.client-id")
