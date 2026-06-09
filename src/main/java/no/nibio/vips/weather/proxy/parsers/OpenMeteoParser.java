@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015 NIBIO <http://www.nibio.no/>. 
+ * Copyright (c) 2026 NIBIO <http://www.nibio.no/>. 
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -56,6 +56,7 @@ import okhttp3.Response;
  * 
  * @copyright 2017 <a href="http://www.nibio.no/">NIBIO</a>
  * @author Brita Linnestad <brita.linnestad@nibio.no>
+ * @author Tor-Einar Skog <tor-einar.skog@nibio.no>
  */
 
 public class OpenMeteoParser {
@@ -65,6 +66,8 @@ public class OpenMeteoParser {
     private String HISTORIC_ENDPOINT_TPL = "https://historical-forecast-api.open-meteo.com/v1/forecast?format=flatbuffers&latitude=%1$s&longitude=%2$s&start_date=%3$s&end_date=%4$s&%5$s&timezone=%6$s";
     private String FORECAST_ENDPOINT_TPL = "https://api.open-meteo.com/v1/forecast?format=flatbuffers&latitude=%1$s&longitude=%2$s&%3$s&timezone=%4$s";
     private Integer minimumObservationsPerDay = 15; 
+
+    private TimeZone openMeteoTimeZone = TimeZone.getTimeZone("UTC");
     
     OkHttpClient httpClient = new OkHttpClient();
     
@@ -145,13 +148,13 @@ public class OpenMeteoParser {
         Boolean needHistoric = timeStart.before(today);
          
         SimpleDateFormat dFormat = new SimpleDateFormat("yyyy-MM-dd");
-        dFormat.setTimeZone(timeZone);
-        
+        dFormat.setTimeZone(this.openMeteoTimeZone);
+        // Converting to UTC for OpenMeteo.
         String startDate = dFormat.format(timeStart);
         String endDate = dFormat.format(needForecasts ? today : timeEnd);
         
         String encodedTimeZone;
-        encodedTimeZone = timeZone.getID(); 
+        encodedTimeZone = this.openMeteoTimeZone.getID(); 
         
         // if elementMeasurementTypes is NULL/empty, then return all Open-Meteo provided parameters
         if(elementMeasurementTypes == null || elementMeasurementTypes.isEmpty())
@@ -210,6 +213,11 @@ public class OpenMeteoParser {
             for (TreeMap<Date, WeatherObservation> map : weatherDataMap.values()) {
                 weatherDataHourly.addAll(map.values());
             }
+
+            // Filter out all values outside of timeStart and timeEnd
+            weatherDataHourly = weatherDataHourly.stream()
+                    .filter(obs -> !obs.getTimeMeasured().before(timeStart) && obs.getTimeMeasured().compareTo(timeEnd) < 0)
+                    .collect(Collectors.toList());
             
             
             // Sort the final list by date
