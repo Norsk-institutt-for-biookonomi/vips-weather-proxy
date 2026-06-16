@@ -63,8 +63,8 @@ public class OpenMeteoParser {
     
     private static Logger LOGGER = LoggerFactory.getLogger(OpenMeteoParser.class);
     
-    private String HISTORIC_ENDPOINT_TPL = "https://historical-forecast-api.open-meteo.com/v1/forecast?format=flatbuffers&latitude=%1$s&longitude=%2$s&start_date=%3$s&end_date=%4$s&%5$s&timezone=%6$s";
-    private String FORECAST_ENDPOINT_TPL = "https://api.open-meteo.com/v1/forecast?format=flatbuffers&latitude=%1$s&longitude=%2$s&%3$s&timezone=%4$s";
+    private String HISTORIC_ENDPOINT_TPL = "https://historical-forecast-api.open-meteo.com/v1/forecast?format=flatbuffers&wind_speed_unit=ms&latitude=%1$s&longitude=%2$s&start_date=%3$s&end_date=%4$s&%5$s&timezone=%6$s";
+    private String FORECAST_ENDPOINT_TPL = "https://api.open-meteo.com/v1/forecast?format=flatbuffers&wind_speed_unit=ms&latitude=%1$s&longitude=%2$s&%3$s&timezone=%4$s";
     private Integer minimumObservationsPerDay = 15; 
 
     private TimeZone openMeteoTimeZone = TimeZone.getTimeZone("UTC");
