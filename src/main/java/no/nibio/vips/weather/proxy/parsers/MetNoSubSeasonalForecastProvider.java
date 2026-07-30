@@ -58,7 +58,6 @@ public class MetNoSubSeasonalForecastProvider {
             conn.setRequestProperty("User-Agent", "lmt.nibio.no lmt@nibio.no");
             conn.addRequestProperty("accept", "application/json");
             conn.connect();
-            System.out.println("Status = " + conn.getResponseCode());
             if(conn.getResponseCode() == 422)
             {
                 throw new OutOfAreaException("The requested location is outside of the service's area. See this link for details: https://api.met.no/weatherapi/subseasonal/1.0/documentation");
