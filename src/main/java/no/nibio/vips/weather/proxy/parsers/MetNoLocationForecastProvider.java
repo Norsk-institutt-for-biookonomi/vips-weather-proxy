@@ -20,11 +20,14 @@ package no.nibio.vips.weather.proxy.parsers;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.text.MessageFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
@@ -56,6 +59,7 @@ public class MetNoLocationForecastProvider {
     //private final static String YR_API_URL = "https://api.met.no/weatherapi/locationforecast/1.9/?lat={0};lon={1}";
     private final static String YR_API_URLXML = "https://api.met.no/weatherapi/locationforecast/2.0/classic?lat={0}&lon={1}";
     private final static String YR_API_URLJSON = "https://api.met.no/weatherapi/locationforecast/2.0/complete?lat={0}&lon={1}";
+    private final static String YR_API_URLJSON_WITH_ALTITUDE = "https://api.met.no/weatherapi/locationforecast/2.0/complete?lat={0}&lon={1}&altitude={2}";
 
     private final static String[][] elementMeasurementTypes = {
         {"precipitation_amount", "RR", "SUM"},
@@ -66,120 +70,109 @@ public class MetNoLocationForecastProvider {
         {"wind_speed", "FF", "AVG"},
         {"wind_speed_of_gust", "FG", "AVG"}
     };
-    
-    public List<WeatherObservation> getWeatherForecastsXML(Double longitude, Double latitude, Double altitude) throws ParseWeatherDataException {
-        List<WeatherObservation> yrValues = new ArrayList<>();
-        URL yrURL;
 
+
+    /**
+     * Get weather forecasts as daily values. Approximately 9 days ahead.
+     * @param longitude
+     * @param latitude
+     * @param altitude
+     * @return
+     */
+    public List<WeatherObservation> getWeatherForecastsDaily(Double longitude, Double latitude, Double altitude) throws ParseWeatherDataException {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getWeatherForecastsDaily'");
+    }
+
+    /**
+     * Get weather forecasts as hourly values. Shorter timespan than daily values approximately 54 hours into the future
+     * @param longitude
+     * @param latitude
+     * @param altitude
+     * @return
+     */
+    public List<WeatherObservation> getWeatherForecastsHourly(Double longitude, Double latitude, Double altitude) throws ParseWeatherDataException {
+        JsonNode timeseries = this.getTimeSeries(longitude, latitude, altitude);       
+        return this.getWeatherForecastsHourlyFromMetnoData(timeseries);
+    }
+
+    public List<WeatherObservation> getWeatherForecastsHourlyFromMetnoData(JsonNode timeseries) throws ParseWeatherDataException {
+        List<WeatherObservation> weatherForecastObservations = new ArrayList<>();
+
+        for (JsonNode timeSeriesElement : timeseries) {
+                // If the node contains a next_1_hours node, it is an hourly value. Skip otherwise.
+                JsonNode next1hours = timeSeriesElement.findValue("next_1_hours");
+                if (next1hours == null) {
+                    continue;
+                }
+                JsonNode timeSeriesInstant = timeSeriesElement.findValue("instant");
+                Instant instant = Instant.parse(timeSeriesElement.findValue("time").asText());
+                if (instant != null) {
+                    String element;
+                Double elementValue;
+                for (int j = 0; j < elementMeasurementTypes.length - 1; j++) {
+                    element = MetNoLocationForecastProvider.elementMeasurementTypes[j][0];
+                    JsonNode elementNode = timeSeriesInstant.findValue(element);
+                    elementValue = elementNode != null ? elementNode.asDouble() : null;
+                    // Precipitation is not an instantaneous value, but a sum over the last hour. Therefore, we need to get it from the next_1_hours node.
+                    if(elementValue == null) {
+                        JsonNode next1hoursElementNode = next1hours.findValue(element);
+                        elementValue = next1hoursElementNode != null ? next1hoursElementNode.asDouble() : null;
+                    }
+
+                        if (elementValue != null) {
+                            WeatherObservation obs = new WeatherObservation();
+                            Double value = elementValue;
+                            obs.setElementMeasurementTypeId(MetNoLocationForecastProvider.elementMeasurementTypes[j][1]);
+                            obs.setTimeMeasured(Date.from(instant));
+                            obs.setValue(value);
+                            obs.setLogIntervalId(WeatherObservation.LOG_INTERVAL_ID_1H);
+                            weatherForecastObservations.add(obs);
+                        }
+                    }
+                }
+
+        }
+        return weatherForecastObservations;
+    }
+
+
+    public JsonNode getTimeSeries(Double longitude, Double latitude, Double altitude) throws ParseWeatherDataException {
+        JsonNode timeseries = null;
         try {
-            yrURL = new URL(MessageFormat.format(
-                    MetNoLocationForecastProvider.YR_API_URLXML,
-                    String.valueOf(latitude.floatValue()),
-                    String.valueOf(longitude.floatValue())));
+            URI yrURI = altitude != null ? new URI(MessageFormat.format(MetNoLocationForecastProvider.YR_API_URLJSON_WITH_ALTITUDE,
+            latitude.toString(),
+            longitude.toString(),
+            altitude.toString())) 
+            : new URI(MessageFormat.format(MetNoLocationForecastProvider.YR_API_URLJSON,
+            latitude,
+            longitude.toString()));
 
-            URLConnection connection = yrURL.openConnection();
+            URLConnection connection = yrURI.toURL().openConnection();
             connection.setRequestProperty("User-Agent", "lmt.nibio.no lmt@nibio.no");
-            connection.addRequestProperty("accept", "application/xml");
+            connection.addRequestProperty("accept", "application/json");
             connection.connect();
 
-            //System.out.println("yrURL=" + yrURL.toString());
-            // TODO: Parse with DOM parser
-            DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-            DocumentBuilder db = dbf.newDocumentBuilder();
-            Document doc = db.parse(connection.getInputStream());
+            BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 
-            NodeList nodes = doc.getElementsByTagName("time");
-            Long hourDelta = 3600l * 1000l;
-            Long threeHoursDelta = 3 * hourDelta;
-            Long sixHoursDelta = 6 * hourDelta;
-            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssX");
-            Map<Date, WeatherObservation> RRMap = new HashMap<>();
-            Date earliestHourlyPrecipitationObservation = null;
+            String all = "";
+            String line;
 
-            for (int i = 0; i < nodes.getLength(); i++) {
-                Node node = nodes.item(i);
-                Date fromTime = format.parse(node.getAttributes().getNamedItem("from").getNodeValue());
-                Date toTime = format.parse(node.getAttributes().getNamedItem("to").getNodeValue());
-                Node node2 = DOMUtils.getNode("location", node.getChildNodes());
-
-                // TODO: Handle different kinds of elements and durations?
-                // The instantaneous measured values                
-                if (fromTime.compareTo(toTime) == 0 && DOMUtils.getNode("temperature", node2.getChildNodes()) != null) {
-                    WeatherObservation TT = new WeatherObservation();
-                    TT.setTimeMeasured(fromTime);
-                    TT.setElementMeasurementTypeId(WeatherElements.TEMPERATURE_INSTANTANEOUS);
-                    TT.setLogIntervalId(WeatherObservation.LOG_INTERVAL_ID_1H);
-                    TT.setValue(Double.parseDouble(DOMUtils.getNodeAttr("temperature", "value", node2.getChildNodes())));
-                    yrValues.add(TT);
-                }
-                if (fromTime.compareTo(toTime) == 0 && DOMUtils.getNode("humidity", node2.getChildNodes()) != null) {
-                    WeatherObservation UU = new WeatherObservation();
-                    UU.setTimeMeasured(fromTime);
-                    UU.setElementMeasurementTypeId(WeatherElements.RELATIVE_HUMIDITY_INSTANTANEOUS);
-                    UU.setLogIntervalId(WeatherObservation.LOG_INTERVAL_ID_1H);
-                    UU.setValue(Double.parseDouble(DOMUtils.getNodeAttr("humidity", "value", node2.getChildNodes())));
-                    yrValues.add(UU);
-                }
-                if (fromTime.compareTo(toTime) == 0 && DOMUtils.getNode("windSpeed", node2.getChildNodes()) != null) {
-                    WeatherObservation FF = new WeatherObservation();
-                    FF.setTimeMeasured(fromTime);
-                    FF.setElementMeasurementTypeId(WeatherElements.WIND_SPEED_10MIN_10M);
-                    FF.setLogIntervalId(WeatherObservation.LOG_INTERVAL_ID_1H);
-                    FF.setValue(Double.parseDouble(DOMUtils.getNodeAttr("windSpeed", "mps", node2.getChildNodes())));
-                    yrValues.add(FF);
-                }
-                // The aggregated values (duration known, but comes in parallel)
-                if (fromTime.compareTo(toTime) != 0 && DOMUtils.getNode("precipitation", node2.getChildNodes()) != null) {
-                    WeatherObservation RR = new WeatherObservation();
-                    RR.setTimeMeasured(fromTime);
-                    RR.setElementMeasurementTypeId(WeatherElements.PRECIPITATION);
-                    RR.setValue(Double.parseDouble(DOMUtils.getNodeAttr("precipitation", "value", node2.getChildNodes())));
-
-                    if (toTime.getTime() - fromTime.getTime() == hourDelta) {
-                        RR.setLogIntervalId(WeatherObservation.LOG_INTERVAL_ID_1H);
-                        if (earliestHourlyPrecipitationObservation == null) {
-                            earliestHourlyPrecipitationObservation = RR.getTimeMeasured();
-                        }
-                    } else if (toTime.getTime() - fromTime.getTime() == threeHoursDelta) {
-                        RR.setLogIntervalId(WeatherObservation.LOG_INTERVAL_ID_3H);
-                    } else if (toTime.getTime() - fromTime.getTime() == sixHoursDelta) {
-                        RR.setLogIntervalId(WeatherObservation.LOG_INTERVAL_ID_6H);
-                    } else {
-                        continue;
-                    }
-
-                    // The earliest observations may be with 6 or 3 hour resolution
-                    // In order to avoid overestimation of rain in the beginning,
-                    // We skip ahead until we find observations with 1 hour resolution
-                    if (!RR.getLogIntervalId().equals(WeatherObservation.LOG_INTERVAL_ID_1H)
-                            && (earliestHourlyPrecipitationObservation == null || earliestHourlyPrecipitationObservation.after(RR.getTimeMeasured()))) {
-                        continue;
-                    }
-
-                    // We keep the rain observation with the highest resolution
-                    WeatherObservation obsWithSameTimeStamp = RRMap.get(RR.getTimeMeasured());
-                    if (obsWithSameTimeStamp != null) {
-                        // Replace if better resolution
-                        if ((RR.getLogIntervalId().equals(WeatherObservation.LOG_INTERVAL_ID_3H) && obsWithSameTimeStamp.getLogIntervalId().equals(WeatherObservation.LOG_INTERVAL_ID_6H))
-                                || (RR.getLogIntervalId().equals(WeatherObservation.LOG_INTERVAL_ID_1H) && obsWithSameTimeStamp.getLogIntervalId().equals(WeatherObservation.LOG_INTERVAL_ID_3H))
-                                || (RR.getLogIntervalId().equals(WeatherObservation.LOG_INTERVAL_ID_1H) && obsWithSameTimeStamp.getLogIntervalId().equals(WeatherObservation.LOG_INTERVAL_ID_6H))) {
-                            RRMap.remove(RR.getTimeMeasured());
-                            RRMap.put(RR.getTimeMeasured(), RR);
-                        }
-                    } else {
-                        // No duplicate, so safely store
-                        RRMap.put(RR.getTimeMeasured(), RR);
-                    }
-                }
+            while ((line = in.readLine()) != null) {
+                all += line;
             }
-            yrValues.addAll(RRMap.values());
-        } catch (IOException | ParserConfigurationException | SAXException | ParseException ex) {
-            //ex.printStackTrace();
-            throw new ParseWeatherDataException(ex.getClass().getName() + ": " + ex.getMessage());
-        }
 
-        return this.createHourlyDataFromYr(yrValues);
+            ObjectMapper oMapper = new ObjectMapper();
+            JsonNode jNode = oMapper.readTree(all);
+
+            timeseries = jNode.findValue("timeseries");
+        } catch (URISyntaxException | IOException ex) {
+            ex.printStackTrace();
+            throw new ParseWeatherDataException("Failed to parse weather data. " + ex.getClass().getName() + ": " + ex.getMessage() + " for coordinates: " + latitude + ", " + longitude + ", " + altitude);
+        }
+        return timeseries;
     }
+    
 
     public List<WeatherObservation> getWeatherForecastsJSON(Double longitude, Double latitude, Double altitude) throws ParseException {
         List<WeatherObservation> yrValues = new ArrayList<>();
@@ -371,6 +364,120 @@ public class MetNoLocationForecastProvider {
         return hourlyData;
     }
 
+    public List<WeatherObservation> getWeatherForecastsXML(Double longitude, Double latitude, Double altitude) throws ParseWeatherDataException {
+        List<WeatherObservation> yrValues = new ArrayList<>();
+        URL yrURL;
+
+        try {
+            yrURL = new URL(MessageFormat.format(
+                    MetNoLocationForecastProvider.YR_API_URLXML,
+                    String.valueOf(latitude.floatValue()),
+                    String.valueOf(longitude.floatValue())));
+
+            URLConnection connection = yrURL.openConnection();
+            connection.setRequestProperty("User-Agent", "lmt.nibio.no lmt@nibio.no");
+            connection.addRequestProperty("accept", "application/xml");
+            connection.connect();
+
+            //System.out.println("yrURL=" + yrURL.toString());
+            // TODO: Parse with DOM parser
+            DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+            DocumentBuilder db = dbf.newDocumentBuilder();
+            Document doc = db.parse(connection.getInputStream());
+
+            NodeList nodes = doc.getElementsByTagName("time");
+            Long hourDelta = 3600l * 1000l;
+            Long threeHoursDelta = 3 * hourDelta;
+            Long sixHoursDelta = 6 * hourDelta;
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssX");
+            Map<Date, WeatherObservation> RRMap = new HashMap<>();
+            Date earliestHourlyPrecipitationObservation = null;
+
+            for (int i = 0; i < nodes.getLength(); i++) {
+                Node node = nodes.item(i);
+                Date fromTime = format.parse(node.getAttributes().getNamedItem("from").getNodeValue());
+                Date toTime = format.parse(node.getAttributes().getNamedItem("to").getNodeValue());
+                Node node2 = DOMUtils.getNode("location", node.getChildNodes());
+
+                // TODO: Handle different kinds of elements and durations?
+                // The instantaneous measured values                
+                if (fromTime.compareTo(toTime) == 0 && DOMUtils.getNode("temperature", node2.getChildNodes()) != null) {
+                    WeatherObservation TT = new WeatherObservation();
+                    TT.setTimeMeasured(fromTime);
+                    TT.setElementMeasurementTypeId(WeatherElements.TEMPERATURE_INSTANTANEOUS);
+                    TT.setLogIntervalId(WeatherObservation.LOG_INTERVAL_ID_1H);
+                    TT.setValue(Double.parseDouble(DOMUtils.getNodeAttr("temperature", "value", node2.getChildNodes())));
+                    yrValues.add(TT);
+                }
+                if (fromTime.compareTo(toTime) == 0 && DOMUtils.getNode("humidity", node2.getChildNodes()) != null) {
+                    WeatherObservation UU = new WeatherObservation();
+                    UU.setTimeMeasured(fromTime);
+                    UU.setElementMeasurementTypeId(WeatherElements.RELATIVE_HUMIDITY_INSTANTANEOUS);
+                    UU.setLogIntervalId(WeatherObservation.LOG_INTERVAL_ID_1H);
+                    UU.setValue(Double.parseDouble(DOMUtils.getNodeAttr("humidity", "value", node2.getChildNodes())));
+                    yrValues.add(UU);
+                }
+                if (fromTime.compareTo(toTime) == 0 && DOMUtils.getNode("windSpeed", node2.getChildNodes()) != null) {
+                    WeatherObservation FF = new WeatherObservation();
+                    FF.setTimeMeasured(fromTime);
+                    FF.setElementMeasurementTypeId(WeatherElements.WIND_SPEED_10MIN_10M);
+                    FF.setLogIntervalId(WeatherObservation.LOG_INTERVAL_ID_1H);
+                    FF.setValue(Double.parseDouble(DOMUtils.getNodeAttr("windSpeed", "mps", node2.getChildNodes())));
+                    yrValues.add(FF);
+                }
+                // The aggregated values (duration known, but comes in parallel)
+                if (fromTime.compareTo(toTime) != 0 && DOMUtils.getNode("precipitation", node2.getChildNodes()) != null) {
+                    WeatherObservation RR = new WeatherObservation();
+                    RR.setTimeMeasured(fromTime);
+                    RR.setElementMeasurementTypeId(WeatherElements.PRECIPITATION);
+                    RR.setValue(Double.parseDouble(DOMUtils.getNodeAttr("precipitation", "value", node2.getChildNodes())));
+
+                    if (toTime.getTime() - fromTime.getTime() == hourDelta) {
+                        RR.setLogIntervalId(WeatherObservation.LOG_INTERVAL_ID_1H);
+                        if (earliestHourlyPrecipitationObservation == null) {
+                            earliestHourlyPrecipitationObservation = RR.getTimeMeasured();
+                        }
+                    } else if (toTime.getTime() - fromTime.getTime() == threeHoursDelta) {
+                        RR.setLogIntervalId(WeatherObservation.LOG_INTERVAL_ID_3H);
+                    } else if (toTime.getTime() - fromTime.getTime() == sixHoursDelta) {
+                        RR.setLogIntervalId(WeatherObservation.LOG_INTERVAL_ID_6H);
+                    } else {
+                        continue;
+                    }
+
+                    // The earliest observations may be with 6 or 3 hour resolution
+                    // In order to avoid overestimation of rain in the beginning,
+                    // We skip ahead until we find observations with 1 hour resolution
+                    if (!RR.getLogIntervalId().equals(WeatherObservation.LOG_INTERVAL_ID_1H)
+                            && (earliestHourlyPrecipitationObservation == null || earliestHourlyPrecipitationObservation.after(RR.getTimeMeasured()))) {
+                        continue;
+                    }
+
+                    // We keep the rain observation with the highest resolution
+                    WeatherObservation obsWithSameTimeStamp = RRMap.get(RR.getTimeMeasured());
+                    if (obsWithSameTimeStamp != null) {
+                        // Replace if better resolution
+                        if ((RR.getLogIntervalId().equals(WeatherObservation.LOG_INTERVAL_ID_3H) && obsWithSameTimeStamp.getLogIntervalId().equals(WeatherObservation.LOG_INTERVAL_ID_6H))
+                                || (RR.getLogIntervalId().equals(WeatherObservation.LOG_INTERVAL_ID_1H) && obsWithSameTimeStamp.getLogIntervalId().equals(WeatherObservation.LOG_INTERVAL_ID_3H))
+                                || (RR.getLogIntervalId().equals(WeatherObservation.LOG_INTERVAL_ID_1H) && obsWithSameTimeStamp.getLogIntervalId().equals(WeatherObservation.LOG_INTERVAL_ID_6H))) {
+                            RRMap.remove(RR.getTimeMeasured());
+                            RRMap.put(RR.getTimeMeasured(), RR);
+                        }
+                    } else {
+                        // No duplicate, so safely store
+                        RRMap.put(RR.getTimeMeasured(), RR);
+                    }
+                }
+            }
+            yrValues.addAll(RRMap.values());
+        } catch (IOException | ParserConfigurationException | SAXException | ParseException ex) {
+            //ex.printStackTrace();
+            throw new ParseWeatherDataException(ex.getClass().getName() + ": " + ex.getMessage());
+        }
+
+        return this.createHourlyDataFromYr(yrValues);
+    }
+
     private List<WeatherObservation> getInterpolatedObservations(WeatherObservation start, WeatherObservation end, String elementMeasurementTypeId) {
         List<WeatherObservation> retVal = new ArrayList<>();
         Calendar cal = Calendar.getInstance();
@@ -391,4 +498,6 @@ public class MetNoLocationForecastProvider {
         }
         return retVal;
     }
+
+    
 }
