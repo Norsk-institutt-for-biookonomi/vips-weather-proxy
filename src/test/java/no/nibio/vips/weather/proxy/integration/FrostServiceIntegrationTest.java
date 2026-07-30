@@ -1,3 +1,20 @@
+/*
+ * Copyright (c) 2026 NIBIO <https://www.nibio.no/>. 
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ * 
+ */
 package no.nibio.vips.weather.proxy.integration;
 
 import io.quarkus.test.common.QuarkusTestResource;
@@ -6,6 +23,7 @@ import jakarta.inject.Inject;
 import no.nibio.vips.weather.proxy.integration.setup.APIStubs;
 import no.nibio.vips.weather.proxy.integration.setup.WireMockTestResource;
 import no.nibio.vips.weather.proxy.parsers.frost.service.FrostWeatherObservationService;
+import no.nibio.vips.weather.proxy.parsers.ParseWeatherDataException;
 import org.junit.jupiter.api.*;
 
 import java.time.ZonedDateTime;
