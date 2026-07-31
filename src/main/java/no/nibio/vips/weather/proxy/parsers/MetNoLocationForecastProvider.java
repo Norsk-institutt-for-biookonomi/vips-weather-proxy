@@ -50,13 +50,12 @@ import no.nibio.vips.util.WeatherElements;
 import no.nibio.vips.weather.proxy.util.DOMUtils;
 
 /**
- * @copyright 2015-2021 <a href="http://www.nibio.no/">NIBIO</a>
+ * @copyright 2015-2026 <a href="http://www.nibio.no/">NIBIO</a>
  * @author Tor-Einar Skog <tor-einar.skog@nibio.no>
  * @author Brita Linnestad <brita.linnestad@nibio.no>
  */
 public class MetNoLocationForecastProvider {
 
-    //private final static String YR_API_URL = "https://api.met.no/weatherapi/locationforecast/1.9/?lat={0};lon={1}";
     private final static String YR_API_URLXML = "https://api.met.no/weatherapi/locationforecast/2.0/classic?lat={0}&lon={1}";
     private final static String YR_API_URLJSON = "https://api.met.no/weatherapi/locationforecast/2.0/complete?lat={0}&lon={1}";
     private final static String YR_API_URLJSON_WITH_ALTITUDE = "https://api.met.no/weatherapi/locationforecast/2.0/complete?lat={0}&lon={1}&altitude={2}";
@@ -71,31 +70,182 @@ public class MetNoLocationForecastProvider {
         {"wind_speed_of_gust", "FG", "AVG"}
     };
 
-
     /**
-     * Get weather forecasts as daily values. Approximately 9 days ahead.
-     * @param longitude
-     * @param latitude
-     * @param altitude
-     * @return
-     */
-    public List<WeatherObservation> getWeatherForecastsDaily(Double longitude, Double latitude, Double altitude) throws ParseWeatherDataException {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getWeatherForecastsDaily'");
-    }
-
-    /**
-     * Get weather forecasts as hourly values. Shorter timespan than daily values approximately 54 hours into the future
+     * Get weather forecasts as hourly values. Approximately 54 hours into the future
      * @param longitude
      * @param latitude
      * @param altitude
      * @return
      */
     public List<WeatherObservation> getWeatherForecastsHourly(Double longitude, Double latitude, Double altitude) throws ParseWeatherDataException {
-        JsonNode timeseries = this.getTimeSeries(longitude, latitude, altitude);       
-        return this.getWeatherForecastsHourlyFromMetnoData(timeseries);
+
+        return this.getWeatherForecastsHourlyFromMetnoData(this.getTimeSeries(longitude, latitude, altitude));
+    }
+     
+    /**
+     * Get weather forecasts as hourly values. Approximately 9 days into the future, starti with tomorrow.
+     * @param longitude
+     * @param latitude
+     * @param altitude
+     * @return
+     */
+    public List<WeatherObservation> getWeatherForecastsDaily(Double longitude, Double latitude, Double altitude) throws ParseWeatherDataException {
+
+        return this.getWeatherForecastsDailyFromMetnoData(this.getTimeSeries(longitude, latitude, altitude));
     }
 
+      /**
+     * 
+     * @param timeseries
+     * @return
+     * @throws ParseWeatherDataException
+     */
+    public List<WeatherObservation> getWeatherForecastsDailyFromMetnoData(JsonNode timeseries) throws ParseWeatherDataException {
+        List<WeatherObservation> weatherForecastObservations = new ArrayList<>();
+
+        // Make sure the timeseries is sorted by time
+        List<JsonNode> sortedTimeSeries = this.sortTimeSeries(timeseries);
+
+        // If the first timestamp is within the first three hours of the day, we have enough data
+        // to calculate a daily average for that day. Otherwise, we skip the first day and start with the next day.
+        String firstTimestamp = sortedTimeSeries.get(0).findValue("time").asText();
+        Instant firstInstant = Instant.parse(firstTimestamp);
+        if(! firstTimestamp.endsWith("00:00:00Z") && ! firstTimestamp.endsWith("01:00:00Z") && ! firstTimestamp.endsWith("02:00:00Z") && ! firstTimestamp.endsWith("03:00:00Z")) {
+            // We don't have enough data to calculate a daily average for the first day
+            // Skip the first day and start with the next day
+            firstInstant = firstInstant.plus(24, java.time.temporal.ChronoUnit.HOURS);
+            // Set firstInstant to the next day at 00:00:00Z
+            firstInstant = firstInstant.minus(firstInstant.getEpochSecond() % 86400, java.time.temporal.ChronoUnit.SECONDS);
+        } 
+
+        // Assuming that the timeseries is sorted by time
+        Double RRSum = 0.0;
+        List<Double> POMValues = new ArrayList<>();
+        List<Double> TTValues = new ArrayList<>();
+        List<Double> UUValues = new ArrayList<>();
+        List<Double> DDValues = new ArrayList<>();
+        List<Double> FFValues = new ArrayList<>();
+        Instant currentInstant = firstInstant.minus(firstInstant.getEpochSecond() % 86400, java.time.temporal.ChronoUnit.SECONDS);
+        for (int i = 0; i < sortedTimeSeries.size(); i++) {
+            JsonNode timeSeriesElement = sortedTimeSeries.get(i);
+            // We calculate averages and sums based on the hourly and 6-hourly data that we have for a day.
+            Instant instant = Instant.parse(timeSeriesElement.findValue("time").asText());
+            if(instant.isBefore(firstInstant)) {
+                // Skip this timestamp, we don't have enough data to calculate a daily average for this day
+                continue;
+            }
+            Boolean hasNext1Hours = timeSeriesElement.findValue("next_1_hours") != null;
+            try {
+                RRSum += timeSeriesElement.findValue("next_" + (hasNext1Hours ? "1" : "6") + "_hours").findValue("precipitation_amount").asDouble();
+            }
+            catch(NullPointerException e) {
+                // When we're out of data, we will get a NullPointerException here. We end the iteration
+                break;
+            }
+      
+            // Need to add the 6-hour values and do it 6 times to get 24 hours in a day - to get the average for the day.
+            // Assuming constant values for the 6-hour period, which is not always the case, but we don't have better data to work with.
+            for(int j = 0; j < (hasNext1Hours ? 1 : 6); j++) {
+                POMValues.add(timeSeriesElement.findValue("instant").findValue("air_pressure_at_sea_level").asDouble());
+                UUValues.add(timeSeriesElement.findValue("instant").findValue("relative_humidity").asDouble());
+                DDValues.add(timeSeriesElement.findValue("instant").findValue("wind_from_direction").asDouble());
+                FFValues.add(timeSeriesElement.findValue("instant").findValue("wind_speed").asDouble());
+            }
+
+            
+            Double currentTTValue = timeSeriesElement.findValue("instant").findValue("air_temperature").asDouble();
+            TTValues.add(currentTTValue);
+            // Interpolate for TT if 6-hour values
+            if(! hasNext1Hours && i < sortedTimeSeries.size() - 1) {
+                Double nextTTValue = sortedTimeSeries.get(i + 1).findValue("instant").findValue("air_temperature").asDouble();
+                Double difference = nextTTValue - currentTTValue;
+                for(int j = 1; j < 6; j++) {
+                    TTValues.add((currentTTValue + (difference / 6) * j));
+                }
+            }
+
+            // When next timestamp is on a different day OR the current timestamp is the last one AND it ends the day (18:00:00Z), we calculate the daily averages and sums for the current day
+            if(
+                (i < sortedTimeSeries.size() - 1 && sortedTimeSeries.get(i + 1).findValue("time").asText().endsWith("00:00:00Z"))
+                || (i == sortedTimeSeries.size() - 1 && sortedTimeSeries.get(i).findValue("time").asText().endsWith("18:00:00Z"))
+            ) {
+                WeatherObservation obs = new WeatherObservation();
+                obs.setTimeMeasured(Date.from(currentInstant));
+                obs.setLogIntervalId(WeatherObservation.LOG_INTERVAL_ID_1D);
+                obs.setElementMeasurementTypeId(WeatherElements.PRECIPITATION);
+                obs.setValue(RRSum);
+                weatherForecastObservations.add(obs);
+
+                obs = new WeatherObservation();
+                obs.setTimeMeasured(Date.from(currentInstant));
+                obs.setLogIntervalId(WeatherObservation.LOG_INTERVAL_ID_1D);
+                obs.setElementMeasurementTypeId("POM"); // TODO: Add POM to WeatherElements
+                obs.setValue(POMValues.stream().mapToDouble(Double::doubleValue).average().orElse(Double.NaN));
+                weatherForecastObservations.add(obs);
+
+                obs = new WeatherObservation();
+                obs.setTimeMeasured(Date.from(currentInstant));
+                obs.setLogIntervalId(WeatherObservation.LOG_INTERVAL_ID_1D);
+                obs.setElementMeasurementTypeId(WeatherElements.TEMPERATURE_MEAN);
+                obs.setValue(TTValues.stream().mapToDouble(Double::doubleValue).average().orElse(Double.NaN));
+                weatherForecastObservations.add(obs);
+
+                obs = new WeatherObservation();
+                obs.setTimeMeasured(Date.from(currentInstant));
+                obs.setLogIntervalId(WeatherObservation.LOG_INTERVAL_ID_1D);
+                obs.setElementMeasurementTypeId(WeatherElements.RELATIVE_HUMIDITY_MEAN);
+                obs.setValue(UUValues.stream().mapToDouble(Double::doubleValue).average().orElse(Double.NaN));
+                weatherForecastObservations.add(obs);
+
+                obs = new WeatherObservation();
+                obs.setTimeMeasured(Date.from(currentInstant));
+                obs.setLogIntervalId(WeatherObservation.LOG_INTERVAL_ID_1D);
+                obs.setElementMeasurementTypeId(WeatherElements.WIND_DIR_10MIN_2M);
+                obs.setValue(DDValues.stream().mapToDouble(Double::doubleValue).average().orElse(Double.NaN));
+                weatherForecastObservations.add(obs);
+
+                obs = new WeatherObservation();
+                obs.setTimeMeasured(Date.from(currentInstant));
+                obs.setLogIntervalId(WeatherObservation.LOG_INTERVAL_ID_1D);
+                obs.setElementMeasurementTypeId(WeatherElements.WIND_SPEED_2M);
+                obs.setValue(FFValues.stream().mapToDouble(Double::doubleValue).average().orElse(Double.NaN));
+                weatherForecastObservations.add(obs);
+
+                // Reset the sums and averages for the next day
+                RRSum = 0.0;
+                POMValues.clear();
+                TTValues.clear();
+                UUValues.clear();               
+                DDValues.clear();
+                FFValues.clear();
+
+                // Move one day forward
+                currentInstant = currentInstant.plus(1, java.time.temporal.ChronoUnit.DAYS);
+            }
+                
+        }
+        return weatherForecastObservations;
+    }
+
+    private List<JsonNode> sortTimeSeries(JsonNode timeseries) {
+        // Sort the timeseries by time
+        List<JsonNode> timeSeriesList = new ArrayList<>();
+        timeseries.forEach(timeSeriesList::add);
+        Collections.sort(timeSeriesList, (a, b) -> {
+            Instant aInstant = Instant.parse(a.findValue("time").asText());
+            Instant bInstant = Instant.parse(b.findValue("time").asText());
+            return aInstant.compareTo(bInstant);
+        });
+        return timeSeriesList;
+    }
+
+
+    /**
+     * 
+     * @param timeseries
+     * @return
+     * @throws ParseWeatherDataException
+     */
     public List<WeatherObservation> getWeatherForecastsHourlyFromMetnoData(JsonNode timeseries) throws ParseWeatherDataException {
         List<WeatherObservation> weatherForecastObservations = new ArrayList<>();
 

@@ -82,4 +82,27 @@ public class MetNoLocationForecastProviderTest {
     }
 
 
+    /**
+     * Test of getWeatherForecastsDailyFromMetnoData method, of class MetNoLocationForecastProvider.
+     */
+    @Test
+    public void testGetWeatherForecastsDailyFromMetnoData() throws Exception {
+        System.out.println("getWeatherForecastsDailyFromMetnoData");
+        // Read the timeseries from a file, and pass it to the method to test
+        BufferedInputStream inputStream = new BufferedInputStream(this.getClass().getResourceAsStream("/metnolocationforecastresult.json"));
+        JsonFactory f = new MappingJsonFactory();
+        JsonParser jp = f.createParser(inputStream);
+        JsonNode all = jp.readValueAsTree();
+        // The file is located in src/test/resources/metnolocationforecastresult.json, and contains a sample response from the Met.no API for a location in Norway
+        JsonNode timeseries = all.get("properties").get("timeseries");
+        MetNoLocationForecastProvider instance = new MetNoLocationForecastProvider();
+        List<WeatherObservation> result = instance.getWeatherForecastsDailyFromMetnoData(timeseries);
+        assertNotNull(result);
+        //System.out.println(result);
+        assertEquals(54, result.size());
+        WeatherObservation lastObs = result.get(result.size() - 1);
+        assertEquals(lastObs.getElementMeasurementTypeId(), "FM2");
+        assertEquals(lastObs.getValue(), 1.75);
+        
+    }
 }

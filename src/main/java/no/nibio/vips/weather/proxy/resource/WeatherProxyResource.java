@@ -491,13 +491,13 @@ public class WeatherProxyResource {
             @QueryParam("longitude") Double longitude,
             @QueryParam("latitude") Double latitude,
             @QueryParam("altitude") Double altitude) {
-        return this.getMetNoLocationForecast(longitude, latitude, altitude);
+        return this.getMetNoLocationForecastUnreliable(longitude, latitude, altitude);
     }
 
     @GET
     @Path("forecasts/metnolocationforecast/")
     @Produces("application/json;charset=UTF-8")
-    public Response getMetNoLocationForecast(@QueryParam("longitude") Double longitude,
+    public Response getMetNoLocationForecastUnreliable(@QueryParam("longitude") Double longitude,
             @QueryParam("latitude") Double latitude,
             @QueryParam("altitude") Double altitude) {
         try {
@@ -505,6 +505,34 @@ public class WeatherProxyResource {
                     .entity(new MetNoLocationForecastProvider().getWeatherForecastsJSON(longitude, latitude, altitude))
                     .build();
         } catch (ParseException ex) {
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(ex.getMessage()).build();
+        }
+    }
+
+
+    @GET
+    @Path("forecasts/metnolocationforecast/reliable/")
+    @Produces("application/json;charset=UTF-8")
+    public Response getMetNoLocationForecast(@QueryParam("longitude") Double longitude,
+            @QueryParam("latitude") Double latitude,
+            @QueryParam("altitude") Double altitude,
+            @Parameter(description = "default is 1 (hourly). 2 (daily) is also supported. The forecast with daily values extends 9 days into the future, while the hourly forecast extends 54-66 hours into the future.",
+                    required = false) @QueryParam("logIntervalId") Integer logIntervalId) {
+        try {
+            logIntervalId = logIntervalId != null ? logIntervalId : 1; // Default to 1 hour interval
+            // Input check
+
+            if(logIntervalId != WeatherObservation.LOG_INTERVAL_ID_1H && logIntervalId != WeatherObservation.LOG_INTERVAL_ID_1D) {
+                return Response.status(Response.Status.BAD_REQUEST).entity("Invalid logIntervalId. Must be 1 (hourly) or 2 (daily).").build();
+            }
+
+            return Response.ok()
+                    .entity(
+                        logIntervalId == WeatherObservation.LOG_INTERVAL_ID_1D
+                            ? new MetNoLocationForecastProvider().getWeatherForecastsDaily(longitude, latitude, altitude)
+                            : new MetNoLocationForecastProvider().getWeatherForecastsHourly(longitude, latitude, altitude))
+                    .build();
+        } catch (ParseWeatherDataException ex) {
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(ex.getMessage()).build();
         }
     }
