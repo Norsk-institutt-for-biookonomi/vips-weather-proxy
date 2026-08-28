@@ -77,7 +77,7 @@ public class MetNoLocationForecastProvider {
      * @param altitude
      * @return
      */
-    public List<WeatherObservation> getWeatherForecastsHourly(Double longitude, Double latitude, Double altitude) throws ParseWeatherDataException {
+    public List<WeatherObservation> getWeatherForecastsHourly(Double longitude, Double latitude, Integer altitude) throws ParseWeatherDataException {
 
         return this.getWeatherForecastsHourlyFromMetnoData(this.getTimeSeries(longitude, latitude, altitude));
     }
@@ -89,7 +89,7 @@ public class MetNoLocationForecastProvider {
      * @param altitude
      * @return
      */
-    public List<WeatherObservation> getWeatherForecastsDaily(Double longitude, Double latitude, Double altitude) throws ParseWeatherDataException {
+    public List<WeatherObservation> getWeatherForecastsDaily(Double longitude, Double latitude, Integer altitude) throws ParseWeatherDataException {
 
         return this.getWeatherForecastsDailyFromMetnoData(this.getTimeSeries(longitude, latitude, altitude));
     }
@@ -287,7 +287,7 @@ public class MetNoLocationForecastProvider {
     }
 
 
-    public JsonNode getTimeSeries(Double longitude, Double latitude, Double altitude) throws ParseWeatherDataException {
+    public JsonNode getTimeSeries(Double longitude, Double latitude, Integer altitude) throws ParseWeatherDataException {
         JsonNode timeseries = null;
         try {
             URI yrURI = altitude != null ? new URI(MessageFormat.format(MetNoLocationForecastProvider.YR_API_URLJSON_WITH_ALTITUDE,
@@ -324,7 +324,7 @@ public class MetNoLocationForecastProvider {
     }
     
 
-    public List<WeatherObservation> getWeatherForecastsJSON(Double longitude, Double latitude, Double altitude) throws ParseException {
+    public List<WeatherObservation> getWeatherForecastsJSON(Double longitude, Double latitude, Integer altitude) throws ParseException {
         List<WeatherObservation> yrValues = new ArrayList<>();
 
         SimpleDateFormat dFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX");
@@ -514,7 +514,7 @@ public class MetNoLocationForecastProvider {
         return hourlyData;
     }
 
-    public List<WeatherObservation> getWeatherForecastsXML(Double longitude, Double latitude, Double altitude) throws ParseWeatherDataException {
+    public List<WeatherObservation> getWeatherForecastsXML(Double longitude, Double latitude, Integer altitude) throws ParseWeatherDataException {
         List<WeatherObservation> yrValues = new ArrayList<>();
         URL yrURL;
 
