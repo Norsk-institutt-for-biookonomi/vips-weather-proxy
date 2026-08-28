@@ -478,6 +478,9 @@ public class WeatherProxyResource {
     /**
      * 9-day forecasts from The Norwegian Met Office, using their locationforecast API
      * https://api.met.no/weatherapi/locationforecast/2.0/documentation
+     * 
+     * TODO: change to "forecasts/yr/ninedayhourly/". Add new default method for the old path, which uses the "reliable data"
+     * Wait for approval from clients
      *
      * @param longitude
      * @param latitude
@@ -490,16 +493,48 @@ public class WeatherProxyResource {
     public Response getMetNoLocationForecastYrPath(
             @QueryParam("longitude") Double longitude,
             @QueryParam("latitude") Double latitude,
-            @QueryParam("altitude") Double altitude) {
+            @QueryParam("altitude") Integer altitude) {
         return this.getMetNoLocationForecastUnreliable(longitude, latitude, altitude);
     }
 
+    /**
+     * 9-day hourly forecasts from The Norwegian Met Office, using their locationforecast API.
+     * The source API provides hourly values approximately 60 hours ahead in time. After that, 
+     * the interval increases to 6 hours. This has until now (2026) been solved using interpolation for 
+     * temperatures and wind, and by placing the six hours of precipitation in the first hour of the 
+     * interval. We have now (2026) decided to deprecate this adaptation, as we think it is not well 
+     * suited for risk models that require hourly models.
+     * 
+     * @param longitude
+     * @param latitude
+     * @param altitude
+     * @return
+     */
+    @GET
+    @Path("forecasts/yr/ninedayhourly/")
+    @Produces("application/json;charset=UTF-8")
+    public Response getMetNoLocationForecastYrPathUnreliable(
+            @QueryParam("longitude") Double longitude,
+            @QueryParam("latitude") Double latitude,
+            @QueryParam("altitude") Integer altitude) {
+        return this.getMetNoLocationForecastUnreliable(longitude, latitude, altitude);
+    }
+
+    /**
+     * TODO: Change path - add "ninedayhourly/"
+     * Wait for approval from current clients
+     * 
+     * @param longitude
+     * @param latitude
+     * @param altitude
+     * @return
+     */
     @GET
     @Path("forecasts/metnolocationforecast/")
     @Produces("application/json;charset=UTF-8")
     public Response getMetNoLocationForecastUnreliable(@QueryParam("longitude") Double longitude,
             @QueryParam("latitude") Double latitude,
-            @QueryParam("altitude") Double altitude) {
+            @QueryParam("altitude") Integer altitude) {
         try {
             return Response.ok()
                     .entity(new MetNoLocationForecastProvider().getWeatherForecastsJSON(longitude, latitude, altitude))
@@ -510,12 +545,21 @@ public class WeatherProxyResource {
     }
 
 
+    /**
+     * TODO: Change path - remove "reliable" to make it the default
+     * Wait for approval from current clients
+     * @param longitude
+     * @param latitude
+     * @param altitude
+     * @param logIntervalId
+     * @return
+     */
     @GET
     @Path("forecasts/metnolocationforecast/reliable/")
     @Produces("application/json;charset=UTF-8")
     public Response getMetNoLocationForecast(@QueryParam("longitude") Double longitude,
             @QueryParam("latitude") Double latitude,
-            @QueryParam("altitude") Double altitude,
+            @QueryParam("altitude") Integer altitude,
             @Parameter(description = "default is 1 (hourly). 2 (daily) is also supported. The forecast with daily values extends 9 days into the future, while the hourly forecast extends 54-66 hours into the future.",
                     required = false) @QueryParam("logIntervalId") Integer logIntervalId) {
         try {

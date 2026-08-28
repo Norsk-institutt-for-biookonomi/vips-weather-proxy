@@ -28,10 +28,37 @@ public class WeatherProxyResourceTest {
     }
 
     @Test
-    public void testMetNoLocationForecastResource()
+    public void testYrForecastResource()
     {
         given().when()
         .get("forecasts/yr?longitude=10.961&latitude=50.109&altitude=100")
+        .then().statusCode(OK.getStatusCode())
+        .body("$.size()", not(0));
+    }
+
+    @Test
+    public void testDeprecatedMetNoLocationForecastResource()
+    {
+        given().when()
+        .get("forecasts/yr/ninedayhourly/?longitude=10.961&latitude=50.109&altitude=100")
+        .then().statusCode(OK.getStatusCode())
+        .body("$.size()", not(0));
+    }
+
+    @Test
+    public void testHourlyMetNoLocationForecastResource()
+    {
+        given().when()
+        .get("forecasts/metnolocationforecast/reliable/?longitude=10.961&latitude=50.109&altitude=100&logIntervalId=1")
+        .then().statusCode(OK.getStatusCode())
+        .body("$.size()", not(0));
+    }
+
+    @Test
+    public void testDailyMetNoLocationForecastResource()
+    {
+        given().when()
+        .get("forecasts/metnolocationforecast/reliable/?longitude=10.961&latitude=50.109&altitude=100&logIntervalId=2")
         .then().statusCode(OK.getStatusCode())
         .body("$.size()", not(0));
     }
