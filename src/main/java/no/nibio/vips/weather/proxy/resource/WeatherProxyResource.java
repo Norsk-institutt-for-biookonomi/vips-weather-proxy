@@ -511,7 +511,7 @@ public class WeatherProxyResource {
      * @return
      */
     @GET
-    @Path("forecasts/yr/ninedayhourly/")
+    @Path("forecasts/yr/ninedayshourly/")
     @Produces("application/json;charset=UTF-8")
     public Response getMetNoLocationForecastYrPathUnreliable(
             @QueryParam("longitude") Double longitude,

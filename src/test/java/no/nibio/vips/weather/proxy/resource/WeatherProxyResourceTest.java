@@ -40,7 +40,7 @@ public class WeatherProxyResourceTest {
     public void testDeprecatedMetNoLocationForecastResource()
     {
         given().when()
-        .get("forecasts/yr/ninedayhourly/?longitude=10.961&latitude=50.109&altitude=100")
+        .get("forecasts/yr/ninedayshourly/?longitude=10.961&latitude=50.109&altitude=100")
         .then().statusCode(OK.getStatusCode())
         .body("$.size()", not(0));
     }
