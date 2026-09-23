@@ -32,7 +32,7 @@ cache:
 # Get ci_settings.xml from common config repo, in order to be able to use it for mvn builds
 before_script:
   - apk update
-  - apk add --no-cache openjdk17 maven git
+  - apk add --no-cache openjdk21 maven git
   - java -version
   - mvn -version
   - ifconfig

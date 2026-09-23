@@ -261,15 +261,16 @@ public class WeatherProxyResource {
     @GET
     @Path("tahmo")
     @Produces("application/json;charset=UTF-8")
+    @Operation (summary = "Get weather data from the TAHMO API (https://tahmo.org)", description = "Retrieves weather observations from the TAHMO API for the specified station and time range.")
     public Response getTahmoAPIWeatherData(
-            @QueryParam("stationId") String stationId,
-            @FormParam("timeZone") String timeZonePOST,
-            @QueryParam("timeZone") String timeZoneGET,
-            @QueryParam("startDate") String startDateStr,
-            @QueryParam("startTime") String startTimeStr,
-            @QueryParam("endDate") String endDateStr,
-            @QueryParam("endTime") String endTimeStr,
-            @QueryParam("variable") String variable)
+            @Parameter(description = "The ID of the weather station, including credentials, on the format: stationId;;username;;password") @QueryParam("stationId") String stationId,
+            @Parameter(description = "The time zone for startDate and endDate (POST). Defaults to UTC") @FormParam("timeZone") String timeZonePOST,
+            @Parameter(description = "The time zone for startDate and endDate (GET). Defaults to UTC") @QueryParam("timeZone") String timeZoneGET,
+            @Parameter(description = "The start date for the requested weather data in yyyy-MM-dd format (GET)") @QueryParam("startDate") String startDateStr,
+            @Parameter(description = "The start time for the requested weather data in HH format (GET). Defaults to 00") @QueryParam("startTime") String startTimeStr,
+            @Parameter(description = "The end date for the requested weather data in yyyy-MM-dd format (GET)") @QueryParam("endDate") String endDateStr,
+            @Parameter(description = "The end time for the requested weather data in HH format (GET). Defaults to 23") @QueryParam("endTime") String endTimeStr,
+            @Parameter(description = "The weather variable to retrieve (GET)") @QueryParam("variable") String variable)
             throws ParseException, WeatherObservationListException, InvalidAggregationTypeException {
         List<WeatherObservation> observations;
         try {
