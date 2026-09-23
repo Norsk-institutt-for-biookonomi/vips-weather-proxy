@@ -16,7 +16,7 @@
 
     <properties>
         <compiler-plugin.version>3.13.0</compiler-plugin.version>
-        <maven.compiler.release>17</maven.compiler.release>
+        <maven.compiler.release>21</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <quarkus.platform.artifact-id>quarkus-bom</quarkus.platform.artifact-id>
@@ -98,7 +98,7 @@
         <dependency>
             <groupId>no.nibio.vips</groupId>
             <artifactId>VIPSCommon</artifactId>
-            <version>3.0.4</version>
+            <version>3.0.5</version>
         </dependency>
        
         <dependency>
@@ -141,9 +141,8 @@
             <version>2.13.2</version>
         </dependency>
         <dependency>
-            <groupId>javax.annotation</groupId>
-            <artifactId>javax.annotation-api</artifactId>
-            <version>1.3.2</version>
+            <groupId>jakarta.annotation</groupId>
+            <artifactId>jakarta.annotation-api</artifactId>
         </dependency>
         <dependency>
             <groupId>io.gsonfire</groupId>
@@ -266,6 +265,7 @@
                                 <useGzipFeature>false</useGzipFeature>
                                 <sourceFolder>src/gen/java/main</sourceFolder>
                                 <useSingleRequestParameter>true</useSingleRequestParameter>
+                                <useJakartaEe>true</useJakartaEe>
                             </configOptions>
                         </configuration>
                     </execution>

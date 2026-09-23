@@ -64,7 +64,7 @@ import no.nibio.vips.weather.proxy.parsers.fmi.FmiOpenDataRadiationParser;
 /**
  * @author Tor-Einar Skog <tor-einar.skog@nibio.no>
  * @author Brita Linnestad <brita.linnestad@nibio.no>
- * @copyright 2019 <a href="http://www.nibio.no/">NIBIO</a>
+ * @copyright 2026 <a href="http://www.nibio.no/">NIBIO</a>
  */
 @Path("rest/")
 public class WeatherProxyResource {
@@ -109,16 +109,29 @@ public class WeatherProxyResource {
     @GET
     @Path("fmi/{stationId}")
     @Produces("application/json;charset=UTF-8")
+    @Operation (
+        summary = "Get FMI VIPS Weather Data",
+        description = "Retrieve weather data from the Finnish Meteorological Institute's open data API (https://en.ilmatieteenlaitos.fi/open-data) for a specific station."
+    )
     public Response getFMIVIPSWeatherData(
-            @PathParam("stationId") String stationId,
-            @FormParam("timeZone") String timeZonePOST,
-            @QueryParam("timeZone") String timeZoneGET,
-            @FormParam("startDate") String startDatePOST,
-            @QueryParam("startDate") String startDateGET,
-            @FormParam("endDate") String endDatePOST,
-            @QueryParam("endDate") String endDateGET,
-            @FormParam("elementMeasurementTypes[]") String[] elementMeasurementTypesPOST,
-            @QueryParam("elementMeasurementTypes[]") String[] elementMeasurementTypesGET) {
+            @Parameter(description = "The ID of the weather station for which to retrieve data.",
+                    required = true) @PathParam("stationId") String stationId,
+            @Parameter(description = "The time zone for startDate and endDate. Defaults to UTC",
+                    required = false) @FormParam("timeZone") String timeZonePOST,
+            @Parameter(description = "The time zone for startDate and endDate. Defaults to UTC",
+                    required = false) @QueryParam("timeZone") String timeZoneGET,
+            @Parameter(description = "The start date for the requested weather data in yyyy-MM-dd format",
+                    required = true) @FormParam("startDate") String startDatePOST,
+            @Parameter(description = "The start date for the requested weather data in yyyy-MM-dd format.",
+                    required = true) @QueryParam("startDate") String startDateGET,
+            @Parameter(description = "The end date for the requested weather data in yyyy-MM-dd format.",
+                    required = true) @FormParam("endDate") String endDatePOST,
+            @Parameter(description = "The end date for the requested weather data in yyyy-MM-dd format.",
+                    required = true) @QueryParam("endDate") String endDateGET,
+            @Parameter(description = "The element measurement types for the requested weather data.",
+                    required = false) @FormParam("elementMeasurementTypes[]") String[] elementMeasurementTypesPOST,
+            @Parameter(description = "The element measurement types for the requested weather data.",
+                    required = false) @QueryParam("elementMeasurementTypes[]") String[] elementMeasurementTypesGET) {
         try {
             String timeZoneParam = timeZonePOST != null ? timeZonePOST : timeZoneGET != null ? timeZoneGET : "UTC";
             TimeZone timeZone = TimeZone.getTimeZone(timeZoneParam);
@@ -218,14 +231,16 @@ public class WeatherProxyResource {
          @GET
          @Path("meteobotapi/Index")
          @Produces("application/json;charset=UTF-8")
+         @Operation(summary = "Get MeteoBot API weather data",
+                    description = "Retrieves weather data from the MeteoBot API for the specified station and date range.")
          public Response getMeteobotAPIWeatherData(
-                 @QueryParam("stationId") String stationId,
-                 @FormParam("startDate") String startDatePOST,
-                 @QueryParam("startDate") String startDateGET,
-                 @FormParam("endDate") String endDatePOST,
-                 @QueryParam("endDate") String endDateGET,
-                 @FormParam("timeZone") String timeZonePOST,
-                 @QueryParam("timeZone") String timeZoneGET
+                 @Parameter(description = "The ID of the weather station, including credentials, on the format: stationId;;username;;password") @QueryParam("stationId") String stationId,
+                 @Parameter(description = "The start date for the requested weather data in yyyy-MM-dd format (POST)") @FormParam("startDate") String startDatePOST,
+                 @Parameter(description = "The start date for the requested weather data in yyyy-MM-dd format (GET)") @QueryParam("startDate") String startDateGET,
+                 @Parameter(description = "The end date for the requested weather data in yyyy-MM-dd format (POST)") @FormParam("endDate") String endDatePOST,
+                 @Parameter(description = "The end date for the requested weather data in yyyy-MM-dd format (GET)") @QueryParam("endDate") String endDateGET,
+                 @Parameter(description = "The time zone for startDate and endDate (POST). Defaults to UTC") @FormParam("timeZone") String timeZonePOST,
+                 @Parameter(description = "The time zone for startDate and endDate (GET). Defaults to UTC") @QueryParam("timeZone") String timeZoneGET
                  ) throws ParseException {
         List<WeatherObservation> observations;
         try {           
@@ -478,6 +493,7 @@ public class WeatherProxyResource {
     /**
      * 9-day forecasts from The Norwegian Met Office, using their locationforecast API
      * https://api.met.no/weatherapi/locationforecast/2.0/documentation
+     * 
      *
      * @param longitude
      * @param latitude
@@ -487,24 +503,159 @@ public class WeatherProxyResource {
     @GET
     @Path("forecasts/yr/")
     @Produces("application/json;charset=UTF-8")
+    @Operation(summary = "Get 9-day hourly forecasts from The Norwegian Met Office with hourly interpolation"
+        , description = "9-day hourly forecasts from The Norwegian Met Office, using their locationforecast API.\n" + //
+                        "The source API provides hourly values approximately 60 hours ahead in time. After that, \n" + //
+                        "the interval increases to 6 hours. This has until now (2026) been solved using interpolation for \n" + //
+                        "temperatures and wind, and by placing the six hours of precipitation in the first hour of the \n" + //
+                        "interval. We have now (2026) decided to deprecate this adaptation, as we think it is not well \n" + //
+                        "suited for risk models that require hourly models. The deprecated functionality is still available " +
+                        "through this endpoint. It will be removed shortly. If you want to continue using hourly interpolated forecasts, " +
+                        "please switch to the new endpoint at /rest/forecasts/metnolocationforecast/hourly-interpolated/. The new " +
+                        "functionality which will be working from this endpoint shortly can be found here: /rest/forecasts/metnolocationforecast/reliable/"
+    )
     public Response getMetNoLocationForecastYrPath(
             @QueryParam("longitude") Double longitude,
             @QueryParam("latitude") Double latitude,
-            @QueryParam("altitude") Double altitude) {
-        return this.getMetNoLocationForecast(longitude, latitude, altitude);
+            @QueryParam("altitude") Integer altitude) {
+        return this.getMetNoLocationForecastUnreliable(longitude, latitude, altitude);
     }
 
+    /**
+     * 9-day hourly forecasts from The Norwegian Met Office, using their locationforecast API.
+     * The source API provides hourly values approximately 60 hours ahead in time. After that, 
+     * the interval increases to 6 hours. This has until now (2026) been solved using interpolation for 
+     * temperatures and wind, and by placing the six hours of precipitation in the first hour of the 
+     * interval. We have now (2026) decided to deprecate this adaptation, as we think it is not well 
+     * suited for risk models that require hourly models.
+     * 
+     * @param longitude
+     * @param latitude
+     * @param altitude
+     * @return
+     */
+    @GET
+    @Path("forecasts/yr/hourly-interpolated/")
+    @Produces("application/json;charset=UTF-8")
+    @Operation(summary = "Get 9-day hourly forecasts from The Norwegian Met Office with hourly interpolation"
+        , description = "9-day hourly forecasts from The Norwegian Met Office, using their locationforecast API.\n" + //
+                        "The source API provides hourly values approximately 60 hours ahead in time. After that, \n" + //
+                        "the interval increases to 6 hours. This has until now (2026) been solved using interpolation for \n" + //
+                        "temperatures and wind, and by placing the six hours of precipitation in the first hour of the \n" + //
+                        "interval. We have now (2026) decided to deprecate this adaptation, as we think it is not well \n" + //
+                        "suited for risk models that require hourly models. This endpoint keeps the deprecated functionality."
+    )
+    public Response getYrForecastHourlyInterpolated(
+            @QueryParam("longitude") Double longitude,
+            @QueryParam("latitude") Double latitude,
+            @QueryParam("altitude") Integer altitude) {
+        return this.getMetNoLocationForecastUnreliable(longitude, latitude, altitude);
+    }
+
+    /**
+     * 9-day hourly forecasts from The Norwegian Met Office, using their locationforecast API.
+     * The source API provides hourly values approximately 60 hours ahead in time. After that, 
+     * the interval increases to 6 hours. This has until now (2026) been solved using interpolation for 
+     * temperatures and wind, and by placing the six hours of precipitation in the first hour of the 
+     * interval. We have now (2026) decided to deprecate this adaptation, as we think it is not well 
+     * suited for risk models that require hourly models.
+     * 
+     * @param longitude
+     * @param latitude
+     * @param altitude
+     * @return
+     */
+    @GET
+    @Path("forecasts/metnolocationforecast/hourly-interpolated/")
+    @Produces("application/json;charset=UTF-8")
+    @Operation(summary = "Get 9-day hourly forecasts from The Norwegian Met Office with hourly interpolation"
+        , description = "9-day hourly forecasts from The Norwegian Met Office, using their locationforecast API.\n" + //
+                        "The source API provides hourly values approximately 60 hours ahead in time. After that, \n" + //
+                        "the interval increases to 6 hours. This has until now (2026) been solved using interpolation for \n" + //
+                        "temperatures and wind, and by placing the six hours of precipitation in the first hour of the \n" + //
+                        "interval. We have now (2026) decided to deprecate this adaptation, as we think it is not well \n" + //
+                        "suited for risk models that require hourly models. This endpoint keeps the deprecated functionality."
+    )
+    public Response getMetNoLocationForecastHourlyInterpolated(
+            @QueryParam("longitude") Double longitude,
+            @QueryParam("latitude") Double latitude,
+            @QueryParam("altitude") Integer altitude) {
+        return this.getMetNoLocationForecastUnreliable(longitude, latitude, altitude);
+    }
+
+    /**
+     * 
+     * Wait for approval from current clients
+     * 
+     * @param longitude
+     * @param latitude
+     * @param altitude
+     * @return
+     */
     @GET
     @Path("forecasts/metnolocationforecast/")
     @Produces("application/json;charset=UTF-8")
-    public Response getMetNoLocationForecast(@QueryParam("longitude") Double longitude,
+    @Operation(summary = "Get 9-day hourly forecasts from The Norwegian Met Office with hourly interpolation"
+        , description = "9-day hourly forecasts from The Norwegian Met Office, using their locationforecast API.\n" + //
+                        "The source API provides hourly values approximately 60 hours ahead in time. After that, \n" + //
+                        "the interval increases to 6 hours. This has until now (2026) been solved using interpolation for \n" + //
+                        "temperatures and wind, and by placing the six hours of precipitation in the first hour of the \n" + //
+                        "interval. We have now (2026) decided to deprecate this adaptation, as we think it is not well \n" + //
+                        "suited for risk models that require hourly models. The deprecated functionality is still available " +
+                        "through this endpoint. It will be removed shortly. If you want to continue using hourly interpolated forecasts, " +
+                        "please switch to the new endpoint at /rest/forecasts/metnolocationforecast/hourly-interpolated/. The new " +
+                        "functionality which will be working from this endpoint shortly can be found here: /rest/forecasts/metnolocationforecast/reliable/"
+    )
+    public Response getMetNoLocationForecastUnreliable(@QueryParam("longitude") Double longitude,
             @QueryParam("latitude") Double latitude,
-            @QueryParam("altitude") Double altitude) {
+            @QueryParam("altitude") Integer altitude) {
         try {
             return Response.ok()
                     .entity(new MetNoLocationForecastProvider().getWeatherForecastsJSON(longitude, latitude, altitude))
                     .build();
         } catch (ParseException ex) {
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(ex.getMessage()).build();
+        }
+    }
+
+
+    /**
+     * TODO: Change path - remove "reliable" to make it the default
+     * Wait for approval from current clients
+     * @param longitude
+     * @param latitude
+     * @param altitude
+     * @param logIntervalId
+     * @return
+     */
+    @GET
+    @Path("forecasts/metnolocationforecast/reliable/")
+    @Produces("application/json;charset=UTF-8")
+    @Operation(
+            summary = "Get Met Norway's location forecast in the VIPS Json format",
+            description = "Transforms Met Norway's locationforecast (https://api.met.no/weatherapi/locationforecast/2.0/documentation) to VIPS weather format.\r\n" + //
+                           "If you request hourly values, you get the hourly values provided by the background service (Met Norway's locationforecast) which go out to about 60 hours from 'now'. \r\n" + //
+                           "If you request daily values, you get aggregated values for nine days ahead. This service will shortly be the default for location forecasts.")
+    public Response getMetNoLocationForecast(@QueryParam("longitude") Double longitude,
+            @QueryParam("latitude") Double latitude,
+            @QueryParam("altitude") Integer altitude,
+            @Parameter(description = "default is 1 (hourly). 2 (daily) is also supported. The forecast with daily values extends 9 days into the future, while the hourly forecast extends 54-66 hours into the future.",
+                    required = false) @QueryParam("logIntervalId") Integer logIntervalId) {
+        try {
+            logIntervalId = logIntervalId != null ? logIntervalId : 1; // Default to 1 hour interval
+            // Input check
+
+            if(logIntervalId != WeatherObservation.LOG_INTERVAL_ID_1H && logIntervalId != WeatherObservation.LOG_INTERVAL_ID_1D) {
+                return Response.status(Response.Status.BAD_REQUEST).entity("Invalid logIntervalId. Must be 1 (hourly) or 2 (daily).").build();
+            }
+
+            return Response.ok()
+                    .entity(
+                        logIntervalId == WeatherObservation.LOG_INTERVAL_ID_1D
+                            ? new MetNoLocationForecastProvider().getWeatherForecastsDaily(longitude, latitude, altitude)
+                            : new MetNoLocationForecastProvider().getWeatherForecastsHourly(longitude, latitude, altitude))
+                    .build();
+        } catch (ParseWeatherDataException ex) {
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(ex.getMessage()).build();
         }
     }
