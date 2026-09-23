@@ -64,7 +64,7 @@ import no.nibio.vips.weather.proxy.parsers.fmi.FmiOpenDataRadiationParser;
 /**
  * @author Tor-Einar Skog <tor-einar.skog@nibio.no>
  * @author Brita Linnestad <brita.linnestad@nibio.no>
- * @copyright 2019 <a href="http://www.nibio.no/">NIBIO</a>
+ * @copyright 2026 <a href="http://www.nibio.no/">NIBIO</a>
  */
 @Path("rest/")
 public class WeatherProxyResource {
@@ -109,16 +109,29 @@ public class WeatherProxyResource {
     @GET
     @Path("fmi/{stationId}")
     @Produces("application/json;charset=UTF-8")
+    @Operation (
+        summary = "Get FMI VIPS Weather Data",
+        description = "Retrieve weather data from the Finnish Meteorological Institute's open data API (https://en.ilmatieteenlaitos.fi/open-data) for a specific station."
+    )
     public Response getFMIVIPSWeatherData(
-            @PathParam("stationId") String stationId,
-            @FormParam("timeZone") String timeZonePOST,
-            @QueryParam("timeZone") String timeZoneGET,
-            @FormParam("startDate") String startDatePOST,
-            @QueryParam("startDate") String startDateGET,
-            @FormParam("endDate") String endDatePOST,
-            @QueryParam("endDate") String endDateGET,
-            @FormParam("elementMeasurementTypes[]") String[] elementMeasurementTypesPOST,
-            @QueryParam("elementMeasurementTypes[]") String[] elementMeasurementTypesGET) {
+            @Parameter(description = "The ID of the weather station for which to retrieve data.",
+                    required = true) @PathParam("stationId") String stationId,
+            @Parameter(description = "The time zone for startDate and endDate. Defaults to UTC",
+                    required = false) @FormParam("timeZone") String timeZonePOST,
+            @Parameter(description = "The time zone for startDate and endDate. Defaults to UTC",
+                    required = false) @QueryParam("timeZone") String timeZoneGET,
+            @Parameter(description = "The start date for the requested weather data in yyyy-MM-dd format",
+                    required = true) @FormParam("startDate") String startDatePOST,
+            @Parameter(description = "The start date for the requested weather data in yyyy-MM-dd format.",
+                    required = true) @QueryParam("startDate") String startDateGET,
+            @Parameter(description = "The end date for the requested weather data in yyyy-MM-dd format.",
+                    required = true) @FormParam("endDate") String endDatePOST,
+            @Parameter(description = "The end date for the requested weather data in yyyy-MM-dd format.",
+                    required = true) @QueryParam("endDate") String endDateGET,
+            @Parameter(description = "The element measurement types for the requested weather data.",
+                    required = false) @FormParam("elementMeasurementTypes[]") String[] elementMeasurementTypesPOST,
+            @Parameter(description = "The element measurement types for the requested weather data.",
+                    required = false) @QueryParam("elementMeasurementTypes[]") String[] elementMeasurementTypesGET) {
         try {
             String timeZoneParam = timeZonePOST != null ? timeZonePOST : timeZoneGET != null ? timeZoneGET : "UTC";
             TimeZone timeZone = TimeZone.getTimeZone(timeZoneParam);
@@ -218,14 +231,16 @@ public class WeatherProxyResource {
          @GET
          @Path("meteobotapi/Index")
          @Produces("application/json;charset=UTF-8")
+         @Operation(summary = "Get MeteoBot API weather data",
+                    description = "Retrieves weather data from the MeteoBot API for the specified station and date range.")
          public Response getMeteobotAPIWeatherData(
-                 @QueryParam("stationId") String stationId,
-                 @FormParam("startDate") String startDatePOST,
-                 @QueryParam("startDate") String startDateGET,
-                 @FormParam("endDate") String endDatePOST,
-                 @QueryParam("endDate") String endDateGET,
-                 @FormParam("timeZone") String timeZonePOST,
-                 @QueryParam("timeZone") String timeZoneGET
+                 @Parameter(description = "The ID of the weather station, including credentials, on the format: stationId;;username;;password") @QueryParam("stationId") String stationId,
+                 @Parameter(description = "The start date for the requested weather data in yyyy-MM-dd format (POST)") @FormParam("startDate") String startDatePOST,
+                 @Parameter(description = "The start date for the requested weather data in yyyy-MM-dd format (GET)") @QueryParam("startDate") String startDateGET,
+                 @Parameter(description = "The end date for the requested weather data in yyyy-MM-dd format (POST)") @FormParam("endDate") String endDatePOST,
+                 @Parameter(description = "The end date for the requested weather data in yyyy-MM-dd format (GET)") @QueryParam("endDate") String endDateGET,
+                 @Parameter(description = "The time zone for startDate and endDate (POST). Defaults to UTC") @FormParam("timeZone") String timeZonePOST,
+                 @Parameter(description = "The time zone for startDate and endDate (GET). Defaults to UTC") @QueryParam("timeZone") String timeZoneGET
                  ) throws ParseException {
         List<WeatherObservation> observations;
         try {           
