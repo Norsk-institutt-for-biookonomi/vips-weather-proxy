@@ -141,9 +141,8 @@
             <version>2.13.2</version>
         </dependency>
         <dependency>
-            <groupId>javax.annotation</groupId>
-            <artifactId>javax.annotation-api</artifactId>
-            <version>1.3.2</version>
+            <groupId>jakarta.annotation</groupId>
+            <artifactId>jakarta.annotation-api</artifactId>
         </dependency>
         <dependency>
             <groupId>io.gsonfire</groupId>
@@ -266,6 +265,7 @@
                                 <useGzipFeature>false</useGzipFeature>
                                 <sourceFolder>src/gen/java/main</sourceFolder>
                                 <useSingleRequestParameter>true</useSingleRequestParameter>
+                                <useJakartaEe>true</useJakartaEe>
                             </configOptions>
                         </configuration>
                     </execution>
